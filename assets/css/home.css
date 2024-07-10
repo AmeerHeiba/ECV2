@@ -1,0 +1,96 @@
+/* products categories */
+
+.products .card {
+  cursor: pointer;
+}
+
+.products .card img {
+  height: 7rem;
+  object-fit: contain;
+  transition: all 0.7s ease-in-out;
+}
+
+.products .card img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.products .card h6 {
+  text-align: center;
+}
+
+/* carousel */
+
+.carousel-item:nth-child(3) img {
+  height: 80vh;
+  object-fit: cover;
+
+  object-position: 0% 65%;
+}
+
+.carousel-item:nth-child(1) img,
+.carousel-item:nth-child(2) img {
+  height: 80vh;
+  object-fit: cover;
+  object-position: 10% 60%;
+}
+
+.carousel-item:nth-child(4) img {
+  height: 80vh;
+  object-fit: cover;
+  object-position: 10% 65%;
+}
+.carousel-caption {
+  position: absolute;
+  top: 15%;
+}
+
+.carousel-caption h5 {
+  color: black;
+  font-size: 3.2rem;
+}
+
+.carousel-caption p {
+  color: black;
+  font-size: 1.5rem;
+}
+
+/* promotion section */
+
+.promotion div {
+  transform: translate(-50px, -25px);
+}
+
+.promotion:hover .circle {
+  transform: scale(0.7) translateX(-50px);
+  color: white;
+}
+
+.promotion img,
+.promotion .circle {
+  transform: scale(1);
+  transition: all 3s ease-in-out;
+}
+
+.promotion:hover img {
+  transform: scale(1.2) rotate(5deg) translateX(20px);
+}
+
+@media screen and (max-width: 786px) {
+  .carousel-item:nth-child(1) img,
+  .carousel-item:nth-child(2) img {
+    height: 80vh;
+    object-fit: cover;
+    object-position: 90% 60%;
+  }
+
+  .carousel-caption h5 {
+    font-size: 3rem;
+    text-align: left;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}

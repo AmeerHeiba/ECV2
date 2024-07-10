@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Actor E-commerce System</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/home.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/defaultDataLoader.js"></script>
+  </head>
+  <body>
+    <section class="main-wrapper overflow-hidden">
+      <!-- hero start  -->
+      <section class="container-fluid position relative p-0">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <!-- <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button> -->
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="../assets/images/header-4.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-md-block">
+                <h5 class="text-light">Your Dream Home Awaits</h5>
+                <p class="text-info">
+                  Quality Craftsmanship, Timeless Designs.
+                </p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img
+                src="../assets/images/header-7.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-md-block">
+                <h5>From Modern to Classic</h5>
+                <p class="text-light">
+                  We've Got Your Furniture Needs Covered!
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+      <!-- hero end -->
+
+      <!-- first navbar start -->
+      <nav
+        class="navbar navbar-1 navbar-expand-lg bg-transparent position-absolute top-0 w-100 border-body"
+      >
+        <div class="container my-2">
+          <a class="h1 navbar-brand text-light fsize-1" href="./home.html"
+            >Tea.</a
+          >
+          <form class="d-flex col col-lg-8 mx-lg-5" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="What are you looking for?"
+              aria-label="Search"
+            />
+          </form>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse col" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
+              <li class="nav-item" id="logged-user">
+                <a class="nav-link active" aria-current="page" href="login.html"
+                  ><i class="bi bi-person-fill text-light">&nbsp Login</i></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="wishlist.html"
+                  ><i class="bi bi-bag-heart-fill text-light"
+                    >&nbsp Wishlist</i
+                  ></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="cart.html"
+                  ><i class="bi bi-cart4 text-light"
+                    ><span
+                      id="notification"
+                      style="font-size: 0.6rem"
+                      class="position-absolute top-40 start-10 translate-middle badge rounded-circle"
+                    >
+                    </span
+                    >&nbsp Cart
+                  </i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- first navbar end -->
+
+      <!-- second navbar start -->
+      <nav class="navbar navbar-expand navbar-light bg-light">
+        <div
+          class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
+        >
+          <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-6 h-scroll-child">
+            <li class="nav-item border-end mx-2 col-4 col-xl-3">
+              <a class="nav-link active" href="#"> All Categories </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#category2">Furniture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#category3">Storage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#category4">Bedrooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#category5">Outdoors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#category6">Appliances</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- second navbar end -->
+
+      <!-- products start -->
+      <section class="container h-scroll-parent products my-5">
+        <h3 class="small-line">Shop By Category</h3>
+        <div
+          class="row flex-nowrap overflow-auto row-cols-1 row-cols-md-3 g-4 m-2 h-scroll-child"
+        >
+          <div class="col-6 col-xl-2">
+            <div class="card border-0 pe-5 border-end">
+              <img
+                src="../assets/images/wardrobe.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Organization & storage</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/chair.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Furniture</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/lamp.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Lighting</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/table.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Tables</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/nightstand.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Nightstands</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-xl-2">
+            <div class="card border-0">
+              <img
+                src="../assets/images/desk.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Desks</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </section>
+      <!-- products end -->
+
+      <!-- featured products start -->
+      <section
+        class="container featured mb-4 h-scroll-parent"
+        data-aos="fade-left"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="1000"
+        data-aos-duration="2000"
+        scrollable-content
+      >
+        <h3>Featured Products</h3>
+
+        <div
+          id="featured-products"
+          class="row my-4 justify-content-start flex-nowrap p-2 h-scroll-child scrollable-content"
+        ></div>
+        <div
+          class="position-absolute top-50 start-0 d-flex justify-content-between w-100 opacity-100"
+        >
+          <button class="btn btn-info rounded-circle" id="scroll-btn-left">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="btn btn-info rounded-circle" id="scroll-btn-right">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+        <hr />
+      </section>
+
+      <!-- featured products end -->
+
+      <!-- promotion header row start -->
+      <section class="container my-5 px-3 pt-4 overflow-hidden">
+        <div class="row justify-content-around">
+          <div class="my-5 col-12 col-lg-3">
+            <img
+              style="object-fit: cover; object-position: 20% 70%; height: 30vh"
+              class="rounded-5 w-100 shadow-sm"
+              src="../assets/images/header-2.jpg"
+              alt=""
+              data-aos="fade-right"
+              data-aos-duration="2500"
+            />
+            <h1 class="text-center mt-4" style="font-size: 2rem">
+              Affordable Luxury
+            </h1>
+          </div>
+          <!-- promotion header end -->
+
+          <!-- promotion header start -->
+          <div class="my-3 col-12 col-lg-3">
+            <img
+              style="object-fit: cover; object-position: 10% 75%; height: 30vh"
+              class="rounded-5 w-100 shadow-sm"
+              src="../assets/images/promo-1.jpg"
+              alt=""
+              data-aos="fade-down"
+              data-aos-duration="2500"
+            />
+            <h1 class="text-center mt-4" style="font-size: 2rem">
+              Unmatched Quality
+            </h1>
+          </div>
+          <!-- promotion header end -->
+
+          <!-- promotion header start -->
+          <div class="my-5 col-12 col-lg-3">
+            <img
+              style="object-fit: cover; object-position: 10% 75%; height: 30vh"
+              class="rounded-5 w-100 shadow-sm"
+              src="../assets/images/product6.jpg"
+              alt=""
+              data-aos="fade-left"
+              data-aos-duration="2500"
+            />
+            <h1 class="text-center mt-4" style="font-size: 2rem">
+              Timeless Pieces
+            </h1>
+          </div>
+          <!-- promotion header end -->
+        </div>
+        <hr class="col-3 ms-auto" />
+        <hr class="col-3 me-auto" />
+      </section>
+      <!-- promotion header row end -->
+
+      <!-- promotion header start -->
+      <section class="promotion container-fluid w-100 overflow-x-hidden">
+        <div class="row position-relative">
+          <div class="d-flex justify-contents-center">
+            <div
+              style="width: 20rem; height: 20rem"
+              class="circle bg-warning rounded-circle position-absolute start-50 shadow-sm"
+            >
+              <!-- <h1
+              class="d-inline position-absolute top-50 start-50 translate-middle"
+            >
+              Crafted<br />for You
+            </h1> -->
+            </div>
+
+            <img
+              src="../assets/images/chair-2.png"
+              class="mx-auto"
+              style="width: 20rem"
+              alt=""
+            />
+            <!-- <h1 class="position-absolute top-50 start-0 translate-middle">
+              Modern
+            </h1>
+            <h1 class="position-absolute top-50 end-0 translate-middle">
+              Elegant
+            </h1> -->
+          </div>
+        </div>
+        <h3 class="p-2 mt-2 text-center text-bg-warning">
+          Revitalize Your Living Space Designs
+        </h3>
+        <h3 class="p-2 text-center text-bg-warning">
+          with Our Contemporary Furniture!
+        </h3>
+      </section>
+      <!-- promotion header end -->
+
+      <!-- footer start -->
+      <footer class="bg-dark text-white text-center mt-5">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-4 mb-4">
+              <h5>About Us</h5>
+              <p class="text-muted">
+                Brief description of your company or website.
+              </p>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <h5>Categories</h5>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-decoration-none text-warning"
+                    >Furniture</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none text-warning"
+                    >Storage</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none text-warning"
+                    >Lighting</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none text-warning"
+                    >Tables</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none text-warning"
+                    >Desks</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <h5>Contact Us</h5>
+              <ul class="list-unstyled">
+                <li>Email: example@example.com</li>
+                <li>Phone: +1234567890</li>
+                <li>Address: 123 Street, City, Country</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer end -->
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../Models/adminModel.js"></script>
+    <script src="../Models/userModel.js"></script>
+    <script src="../Models/sellerModel.js"></script>
+
+    <script src="../Controllers/authController.js"></script>
+
+    <!-- <script src="../Models/productModel.js"></script>
+    <script src="../Controllers/productController.js"></script>
+    <script src="../Controllers/cartController.js"></script>
+    <script src="../Models/cartModel.js"></script>
+    <script src="../Models/wishlistModel.js"></script>
+    <script src="../Controllers/wishlistController.js"></script> -->
+    <script src="home.js"></script>
+  </body>
+</html>
