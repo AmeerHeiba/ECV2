@@ -1,12 +1,13 @@
 function refreshProductsTable() {
-    const productData = ProductController.getproducts();
+    // const productData = ProductController.getproducts(); // TO BE HANDLED 
+    const productData = JSON.parse(localStorage.getItem('products'));
     productsTable.innerHTML = '';
     productData.forEach(product => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <th scope="row">${product.id}</th>
             <td>${product.description}</td>
-            <td><img src="${product.image}" alt="${product.name}" style="width: 50px; height: auto;"></td>
+            <td><img src="${product.images[0]}" alt="${product.name}" style="width: 50px; height: auto;"></td>
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.stock}</td>
@@ -314,7 +315,8 @@ if (window.location.pathname === '/Views/adminPanel.html') {
     });
 
     const productsTable = document.getElementById('productsTable').getElementsByTagName("tbody")[0];
-    const productData = ProductController.getproducts(); // Assuming getProducts() fetches all products
+    // const productData = ProductController.getproducts(); // Assuming getProducts() fetches all products
+    const productData = JSON.parse(localStorage.getItem('products'));
 
     productsTable.innerHTML = ''; // Clear existing rows
     productData.forEach(product => {
@@ -322,13 +324,14 @@ if (window.location.pathname === '/Views/adminPanel.html') {
     row.innerHTML = `
         <th scope="row">${product.id}</th>
         <td>${product.description}</td>
-        <td><img src=../assets/images/${product.image} alt="${product.name}" style="width: 50px; height: auto;"></td>
+        <td><img src=${product.images[0]} alt="${product.name}" style="width: 50px; height: auto;"></td>
         <td>${product.name}</td>
         <td>${product.price}</td>
         <td>${product.stock}</td>
         <td>${product.seller_id}</td>
         <td>
             <button class="btn btn-primary btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
+            <button class="btn btn-danger btn-sm" type="button" data-id="${product.id}" data-action="remove">Remove Product</button>
         </td>
     `;
     productsTable.appendChild(row);
@@ -346,16 +349,20 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 // Populate the form
                 document.getElementById('editProductId').value = product.id;
                 document.getElementById('editProductDescription').value = product.description;
-                document.getElementById('editProductImage').value = product.image;
+                document.getElementById('editProductImage').value = product.images;
                 document.getElementById('editProductName').value = product.name;
                 document.getElementById('editProductPrice').value = product.price;
                 document.getElementById('editProductStock').value = product.stock;
                 document.getElementById('editProductSellerId').value = product.seller_id;
                 // Show the modal
                 new bootstrap.Modal(document.getElementById('editProductModal')).show();
+            }else if(requestAction === 'remove'){
+                console.log('Removed')
             }
         }
     });
+
+ 
 
     document.getElementById('productSearch').addEventListener('input', function() {
         filterTable('productsTable', this.value);
