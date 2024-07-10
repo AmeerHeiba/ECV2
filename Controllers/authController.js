@@ -33,7 +33,7 @@ class AuthController {
             if (seller.state === true) {
 
                 this.setCurrentUser(seller);
-                window.location.href = 'home.html';
+                window.location.href = 'sellerDashboard.html';
                 
             }else{
                 alert('You account is suspended please contact support');

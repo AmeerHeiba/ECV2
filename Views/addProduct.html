@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/sidebarDashboard.css" rel="stylesheet" />
+
+    <style>
+      .img-preview {
+        display: none;
+        max-width: 100%;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar p-3">
+        <div class="logo">
+          <img src="../assets/images/p1.jpg" />
+          <h6>Seller Dashboard</h6>
+        </div>
+        <ul class="nav flex-column mt-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="sellerDashboard.html" onclick="ProductController.showProducts()">
+              <i class="fas fa-box"></i> Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="ProductController.showAnalytics()">
+              <i class="fas fa-chart-bar"></i> Analytics
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="ProductController.showOrders()">
+              <i class="fas fa-shopping-cart"></i> Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div id="products">
+
+        <div class="container mt-5">
+          <h2 class="mb-5 text-center">Add Product</h2>
+          <form id="productForm" novalidate>
+            <div class="form-floating my-4">
+              <input
+                type="text"
+                class="form-control"
+                id="productName"
+                placeholder="Enter product name"
+                required
+              />
+              <label for="productName">Product Name</label>
+              <div class="invalid-feedback">Please enter a product name.</div>
+            </div>
+            <div class="form-floating my-4">
+              <textarea
+                class="form-control"
+                id="productDescription"
+                rows="3"
+                placeholder="Enter product description"
+                required
+              ></textarea>
+              <label for="productDescription">Description</label>
+              <div class="invalid-feedback">
+                Please enter a product description.
+              </div>
+            </div>
+            <div class="form-floating my-4">
+              <input
+                type="number"
+                class="form-control"
+                id="productStock"
+                placeholder="Enter stock quantity"
+                min="1"
+                required
+              />
+              <label for="productStock">Stock</label>
+              <div class="invalid-feedback">
+                Please enter a stock quantity greater than zero.
+              </div>
+            </div>
+            <div class="form-floating my-4">
+              <input
+                type="number"
+                class="form-control"
+                id="productPrice"
+                placeholder="Enter product price"
+                step="0.01"
+                min="0.01"
+                required
+              />
+              <label for="productPrice">Price</label>
+              <div class="invalid-feedback">
+                Please enter a product price greater than zero.
+              </div>
+            </div>
+            <div class="form-floating my-4">
+              <select
+                class="form-select"
+                id="productCategory"
+                aria-label="Select category"
+                required
+              >
+                <option value="">Select category</option>
+                <option value="living-room">Living Room</option>
+                <option value="bedroom">Bedroom</option>
+                <option value="dining-room">Dining Room</option>
+                <option value="office">Office</option>
+                <option value="outdoor">Outdoor</option>
+              </select>
+              <label for="productCategory">Category</label>
+              <div class="invalid-feedback">Please select a category.</div>
+            </div>
+            <div class="form-group my-4">
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="productImage" accept="image/*"
+                required>
+                <label class="input-group-text" for="productImage">Upload Image</label>
+              </div>
+              <img
+                id="imgPreview"
+                class="img-preview"
+                src="#"
+                alt="Image Preview"
+                width="100"
+              />
+              <button
+                type="button"
+                id="changeImageBtn"
+                class="btn btn-warning mt-2"
+                style="display: none; background-color:rgb(197, 157, 110); color: white; border:0;"
+              >
+                Change Image
+              </button>
+              <div class="invalid-feedback">Please upload a product image.</div>
+            </div>
+            <button type="submit" class="btn btn-custom">Save</button>
+            <a
+              href="sellerDashboard.html"
+              type="cancel"
+              class="btn btn-secondary"
+              style="width: 100px"
+              >Cancel</a
+            >
+          </form>
+        </div>
+        </div>
+        <div id="analytics" style="display: none">
+          <h2>Analytics</h2>
+          <!-- Placeholder for analytics content -->
+        </div>
+        <div id="orders" style="display: none">
+          <div class="search-container">
+            <input
+              type="text"
+              class="form-control w-50 mr-2 "
+              placeholder="Search"
+              id="searchOrder"
+            />
+            
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped" id="orderTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>user</th>
+                  <th>Total Price</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  
+                </tr>
+              </thead>
+              <tbody id="orderTableBody">
+              
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../Models/productModel.js"></script>
+    <script src="../Controllers/productsController.js"></script>
+    <script src="../assets/js/addForm.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar and Table Layout</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+    />
+    <link href="../assets/css/sidebarDashboard.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar p-3">
+        <div class="logo">
+          <img src="../assets/images/p1.jpg" />
+          <h6>Seller Dashboard</h6>
+        </div>
+        <ul class="nav flex-column mt-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showProducts()">
+              <i class="fas fa-box"></i> Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showAnalytics()">
+              <i class="fas fa-chart-bar"></i> Analytics
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showOrders()">
+              <i class="fas fa-shopping-cart"></i> Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <div id="products">
+          <div class="search-container">
+            <input
+              type="text"
+              class="form-control w-50 mr-2"
+              placeholder="Search"
+              id="myInput"
+              onkeyup="filterProducts()"
+            />
+            <button class="btn btn-custom" id="addProductButton">
+              Add Product
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-striped" id="myTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Stock</th>
+                  <th>Price</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div id="analytics" style="display: none">
+          <h2>Analytics</h2>
+          <!-- Placeholder for analytics content -->
+        </div>
+        <div id="orders" style="display: none">
+          <div class="search-container">
+            <input
+              type="text"
+              class="form-control w-50 mr-2"
+              placeholder="Search"
+              id="myInput"
+              onkeyup="filterProducts()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/product.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+      $(document).ready(function () {
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+        $("#myTable").DataTable({
+          data: products,
+          columns: [
+            { data: "id" },
+            {
+              data: "image",
+              render: function (data, type, row) {
+                return `<img src="${data}" alt="Product Image" style="width: 50px; height: 50px;" />`;
+              },
+            },
+            { data: "name" },
+            { data: "description" },
+            { data: "stock" },
+            { data: "price" },
+            { data: "date" },
+            {
+              data: null,
+              render: function (data, type, row) {
+                return `
+                  <a href='/${row.id}/edit' class="btn btn-primary btn-sm">Edit</a>
+                  <button class="btn btn-danger btn-sm" onclick="deleteProduct(${row.id})">Delete</button>
+                `;
+              },
+            },
+          ],
+        });
+      });
+    </script>
+  </body>
+</html>

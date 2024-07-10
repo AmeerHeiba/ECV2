@@ -1,22 +1,16 @@
+// productModel.js
+
 class Product {
-  constructor(
-    itemId,
-    name,
-    imgName,
-    price,
-    description,
-    creationDate,
-    quantity,
-    sellerId
-  ) {
-    this.itemId = itemId;
+  constructor(id, name, image, price, description, stock, seller_id, date,category) {
+    this.id = id || Product.getNextProductId();
     this.name = name;
-    this.imgName = imgName;
+    this.image = image;
+    this.category=category
     this.price = price;
     this.description = description;
-    this.creationDate = creationDate;
-    this.quantity = quantity;
-    this.sellerId = sellerId;
+    this.stock = stock;
+    this.seller_id =seller_id;
+    this.date = date ||new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
   }
 
   static getProducts() {
@@ -26,25 +20,38 @@ class Product {
   static saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
   }
-
+  static deleteProduct(id) {
+    let products = Product.getProducts();
+    products = products.filter((product) => product.id !== id);
+    products.forEach((product, index) => {
+      product.id = index + 1;
+    });
+        Product.saveProducts(products);
+    return products;
+  }
   static addProduct(product) {
     const products = Product.getProducts();
     products.push(product);
     Product.saveProducts(products);
   }
-
-  static updateProductQuantity(id, quantity) {
+  static updateProduct(updatedProduct) {
     const products = Product.getProducts();
-    console.log(id);
-    const product = products.find((product) => product.itemId === id);
-    if (product) {
-      product.quantity = product.quantity - +quantity;
+    const index = products.findIndex(
+      (product) => product.id === updatedProduct.id
+    );
+    if (index !== -1) {
+      products[index] = updatedProduct;
       Product.saveProducts(products);
+    } else {
+      throw new Error(`Product with ID ${updatedProduct.id} not found.`);
     }
   }
-
   static getProductById(id) {
     const products = Product.getProducts();
-    return products.find((product) => product.itemId === id);
+    return products.find((product) => product.id === id);
+  }
+  static getNextProductId() {
+    const products = Product.getProducts();
+    return products.length ? Math.max(...products.map((p) => p.id)) + 1 : 1;
   }
 }

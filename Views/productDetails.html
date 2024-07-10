@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/sidebarDashboard.css" rel="stylesheet" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <style>
+      
+      .custom-card {
+       width: 90%;
+       border: none;
+     }
+    </style>
+    
+  
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar p-3">
+        <div class="logo">
+          <img src="../assets/images/p1.jpg" />
+          <h6>Seller Dashboard</h6>
+        </div>
+        <ul class="nav flex-column mt-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="sellerDashboard.html" onclick="ProductController.showProducts()">
+              <i class="fas fa-box"></i> Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="ProductController.showAnalytics()">
+              <i class="fas fa-chart-bar"></i> Analytics
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="ProductController.showOrders()">
+              <i class="fas fa-shopping-cart"></i> Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div id="products">
+            <h2 class="mb-5 text-center">Product Details</h2>
+
+            <div class="container d-flex justify-content-center my-5">
+
+                <div class="card custom-card">
+                  <div class="row " id="productDetailsContainer">
+          
+                    <div class="col-md-4 border-0 pe-3 my-5 border-end">
+                      <img
+                        src="../assets/images/p1.jpg"
+                        class="img-fluid rounded-start"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h2 class="card-title">Chair</h2>
+                        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">furniture</h6>
+                        <p class="card-text" style="margin-top: 1rem">
+                          This is a wider card with supporting text below as a natural
+                          lead-in to additional content. This content is a little bit
+                          longer.
+                        </p>
+                        <h3 class="card-text" style=" margin-top: 1rem;">100 EG</h3>
+          
+                        <h5 class="card-text">
+                            <small class="text-body-secondary" style="color: green">55 in stock </small>
+                          </h5>
+                          
+                          <p class="card-text">
+                              <small class="text-body-secondary" > added in 12-7-2024 </small>
+                          </p>
+                        <div class="d-flex align-items-center ">
+                            <i class="fa fa-pencil-alt edit-icon"></i>
+                            <i class="fa fa-trash-alt delete-icon" ></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div id="analytics" style="display: none">
+          <h2>Analytics</h2>
+          <!-- Placeholder for analytics content -->
+        </div>
+        <div id="orders" style="display: none">
+          <div class="search-container">
+            <input
+              type="text"
+              class="form-control w-50 mr-2 "
+              placeholder="Search"
+              id="searchOrder"
+            />
+            
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped" id="orderTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>user</th>
+                  <th>Total Price</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  
+                </tr>
+              </thead>
+              <tbody id="orderTableBody">
+              
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../Models/productModel.js"></script>
+    <script src="../Controllers/productsController.js"></script>
+    <script src="../assets/js/addForm.js"></script>
+
+  </body>
+</html>
