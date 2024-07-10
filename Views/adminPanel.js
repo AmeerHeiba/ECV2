@@ -112,6 +112,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 if (window.location.pathname === '/Views/adminPanel.html') {
 
+    //charts
+
+    const ctx = document.getElementById('myChart');
+    const CountofCustomers = AdminController.getCountofCustomers();
+    const CountofSellers = AdminController.getCountofSellers();
+      
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Customers', 'Sellers'],
+        datasets: [{
+          label: ' Users segregation',
+          data: [CountofCustomers, CountofSellers],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+
+        }
+      }
+    });
+
     // checkAccess(['admin']); // only accessable to admins 
     
     const sellerRequestsTable = document.getElementById('sellerRequestsTable').getElementsByTagName("tbody")[0];

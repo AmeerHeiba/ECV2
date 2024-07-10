@@ -7,11 +7,17 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <script src="../assets/js/accessControl.js"></script>
     <script src="../assets/js/defaultDataLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         auth.protectPage('admin');
     </script>
 
     <style>
+
+        #chartCon{
+            width: 20vw;
+            /* height: 15vh; */
+        }
         /* Custom responsive table styles */
         @media (max-width: 767.98px) {
             .table thead {
@@ -127,6 +133,10 @@
           <!-- second navbar end -->
     <div class="container">
         <h1 class="my-4">Admin Dashboard</h1>
+
+        <div id="chartCon">
+            <canvas id="myChart"></canvas>
+          </div>
 
         <div class="accordion" id="adminAccordion">
 
@@ -412,7 +422,7 @@
     <script src="../models/productModel.js"></script>
     <script src="../controllers/adminController.js"></script> 
     <script src="../controllers/userController.js"></script>
-    <script src="../controllers/productController.js"></script>
+    <!-- <script src="../controllers/productController.js"></script> -->
     <script src="../controllers/authController.js"></script>
 
 </body>

@@ -113,4 +113,14 @@ class AdminController {
             alert('User not found.');
         }
     }
+
+    static getCountofCustomers(){
+        const users = User.getCustomers();
+        return users.length;
+    }
+
+    static getCountofSellers(){
+        const sellers = Seller.getSeller();
+        return sellers.length;
+    }
 }
