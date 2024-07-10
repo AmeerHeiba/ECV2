@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "name": "Smartphone X",
+      "images": ["../assets/images/product1.jpg", "../assets/images/product2.jpg"],
+      "price": 799.99,
+      "description": "A powerful smartphone with a sleek design.",
+      "stock": 50,
+      "seller_id": 1,
+      "date": "01-01-2024",
+      "category": "Electronics"
+    },
+    {
+      "id": 2,
+      "name": "Gaming Laptop Pro",
+      "images": ["../assets/images/product3.jpg", "../assets/images/product4.jpg"],
+      "price": 1499.99,
+      "description": "High-performance laptop for gaming and work.",
+      "stock": 30,
+      "seller_id": 2,
+      "date": "15-01-2024",
+      "category": "Computers"
+    },
+    {
+      "id": 3,
+      "name": "Wireless Earbuds",
+      "images": ["../assets/images/product5.jpg", "../assets/images/product6.jpg"],
+      "price": 199.99,
+      "description": "Compact and comfortable wireless earbuds.",
+      "stock": 100,
+      "seller_id": 3,
+      "date": "10-02-2024",
+      "category": "Audio"
+    },
+    {
+      "id": 4,
+      "name": "4K Ultra HD TV",
+      "images": ["../assets/images/product7.jpg", "../assets/images/product.jpg"],
+      "price": 899.99,
+      "description": "Experience stunning visuals with 4K resolution.",
+      "stock": 20,
+      "seller_id": 1,
+      "date": "20-02-2024",
+      "category": "Home Entertainment"
+    },
+    {
+      "id": 5,
+      "name": "Smart Watch",
+      "images": ["../assets/images/image9.jpg", "../assets/images/image10.jpg"],
+      "price": 299.99,
+      "description": "Keep track of your health and notifications.",
+      "stock": 75,
+      "seller_id": 4,
+      "date": "05-03-2024",
+      "category": "Wearables"
+    }
+  ]
+  
