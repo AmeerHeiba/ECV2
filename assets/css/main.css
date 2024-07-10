@@ -1,0 +1,77 @@
+/* navbar  */
+
+nav i {
+  font-style: normal;
+  color: #754015;
+}
+
+.navbar-1 {
+  background-color: #fff;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #754015;
+}
+
+.currency {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* featured products */
+
+.h-scroll {
+  overflow-x: auto;
+}
+
+.h-scroll .row,
+.navbar-nav {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.h-scroll .row::-webkit-scrollbar {
+  display: none;
+}
+
+.featured .card {
+  width: 15rem;
+  height: 25rem;
+  cursor: pointer;
+}
+
+.featured .card img {
+  height: 18rem;
+  object-fit: cover;
+  position: relative;
+}
+
+.product-btns {
+  position: absolute;
+  top: 7%;
+  right: 9%;
+}
+
+.product-btns a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.featured h4 {
+  font-weight: 700;
+}
+
+.featured .card {
+  box-shadow: 1px 1px 20px #eee;
+}
+
+.currency {
+  font-weight: 400;
+  font-size: 1rem;
+}

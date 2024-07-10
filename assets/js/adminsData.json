@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "password": "123456Aa@",
+        "email": "admin@admin.com",
+        "role": "admin",
+        "contact": "01118006607",
+        "fullName": "adminTest1"
+    },
+    {
+        "id": 2,
+        "username": "admin2",
+        "password": "Admin2Pass@",
+        "email": "admin2@admin.com",
+        "role": "admin",
+        "contact": "01118006608",
+        "fullName": "adminTest2"
+    },
+    {
+        "id": 3,
+        "username": "admin3",
+        "password": "Admin3Pass@",
+        "email": "admin3@admin.com",
+        "role": "admin",
+        "contact": "01118006609",
+        "fullName": "adminTest3"
+    },
+    {
+        "id": 4,
+        "username": "admin4",
+        "password": "Admin4Pass@",
+        "email": "admin4@admin.com",
+        "role": "admin",
+        "contact": "01118006610",
+        "fullName": "adminTest4"
+    },
+    {
+        "id": 5,
+        "username": "admin5",
+        "password": "Admin5Pass@",
+        "email": "admin5@admin.com",
+        "role": "admin",
+        "contact": "01118006611",
+        "fullName": "adminTest5"
+    },
+    {
+        "id": 6,
+        "username": "admin6",
+        "password": "Admin6Pass@",
+        "email": "admin6@admin.com",
+        "role": "admin",
+        "contact": "01118006612",
+        "fullName": "adminTest6"
+    }
+]

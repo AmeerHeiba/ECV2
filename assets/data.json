@@ -1,0 +1,116 @@
+{
+  "cart": [
+    { "itemId": "1", "quantity": 5 },
+    { "itemId": "2", "quantity": 3 },
+    { "itemId": "3", "quantity": 12 },
+    { "itemId": "4", "quantity": 7 },
+    { "itemId": "5", "quantity": 1 },
+    { "itemId": "6", "quantity": 9 },
+    { "itemId": "7", "quantity": 4 },
+    { "itemId": "8", "quantity": 11 },
+    { "itemId": "9", "quantity": 2 },
+    { "itemId": "10", "quantity": 8 }
+  ],
+  "products": [
+    {
+      "itemId": "1",
+      "name": "Product 1",
+      "description": "Description of Product 1.",
+      "creationDate": "2024-07-05T00:00:00.000Z",
+      "quantity": 10,
+      "price": 29.99,
+      "sellerID": 101,
+      "imgName": "product1.jpg"
+    },
+    {
+      "itemId": "2",
+      "name": "Product 2",
+      "description": "Description of Product 2.",
+      "creationDate": "2024-07-04T00:00:00.000Z",
+      "quantity": 5,
+      "price": 49.99,
+      "sellerID": 102,
+      "imgName": "product2.jpg"
+    },
+    {
+      "itemId": "3",
+      "name": "Product 3",
+      "description": "Description of Product 3.",
+      "creationDate": "2024-07-03T00:00:00.000Z",
+      "quantity": 20,
+      "price": 19.99,
+      "sellerID": 103,
+      "imgName": "product3.jpg"
+    },
+    {
+      "itemId": "4",
+      "name": "Product 4",
+      "description": "Description of Product 4.",
+      "creationDate": "2024-07-02T00:00:00.000Z",
+      "quantity": 15,
+      "price": 39.99,
+      "sellerID": 104,
+      "imgName": "product4.jpg"
+    },
+    {
+      "itemId": "5",
+      "name": "Product 5",
+      "description": "Description of Product 5.",
+      "creationDate": "2024-07-01T00:00:00.000Z",
+      "quantity": 8,
+      "price": 24.99,
+      "sellerID": 105,
+      "imgName": "product5.jpg"
+    },
+    {
+      "itemId": "6",
+      "name": "Product 6",
+      "description": "Description of Product 6.",
+      "creationDate": "2024-06-30T00:00:00.000Z",
+      "quantity": 12,
+      "price": 59.99,
+      "sellerID": 106,
+      "imgName": "product6.jpg"
+    },
+    {
+      "itemId": "7",
+      "name": "Product 7",
+      "description": "Description of Product 7.",
+      "creationDate": "2024-06-29T00:00:00.000Z",
+      "quantity": 25,
+      "price": 9.99,
+      "sellerID": 107,
+      "imgName": "product7.jpg"
+    },
+    {
+      "itemId": "8",
+      "name": "Product 8",
+      "description": "Description of Product 8.",
+      "creationDate": "2024-06-28T00:00:00.000Z",
+      "quantity": 30,
+      "price": 14.99,
+      "sellerID": 108,
+      "imgName": "product8.jpg"
+    },
+    {
+      "itemId": "9",
+      "name": "Product 9",
+      "description": "Description of Product 9.",
+      "creationDate": "2024-06-27T00:00:00.000Z",
+      "quantity": 22,
+      "price": 34.99,
+      "sellerID": 109,
+      "imgName": "product9.jpg"
+    },
+    {
+      "itemId": "10",
+      "name": "Product 10",
+      "description": "Description of Product 10.",
+      "creationDate": "2024-06-26T00:00:00.000Z",
+      "quantity": 18,
+      "price": 44.99,
+      "sellerID": 110,
+      "imgName": "product10.jpg"
+    }
+  ]
+}

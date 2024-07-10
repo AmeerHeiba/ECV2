@@ -1,0 +1,98 @@
+[
+    {
+        "id": 7,
+        "username": "Seller1",
+        "password": "Password1@",
+        "email": "seller1@example.com",
+        "role": "seller",
+        "firstName": "John",
+        "lastName": "Doe",
+        "contact": "0123456789",
+        "addresses": {
+            "0": "New York",
+            "1": "Brooklyn"
+        },
+        "state": true,
+        "date": "07/08/2024"
+    },
+    {
+        "id": 8,
+        "username": "Seller2",
+        "password": "Password2@",
+        "email": "seller2@example.com",
+        "role": "seller",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "contact": "0987654321",
+        "addresses": {
+            "0": "Los Angeles",
+            "1": "Hollywood"
+        },
+        "state": true,
+        "date": "07/08/2024"
+    },
+    {
+        "id": 9,
+        "username": "Seller3",
+        "password": "Password3@",
+        "email": "seller3@example.com",
+        "role": "seller",
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "contact": "0234567890",
+        "addresses": {
+            "0": "Chicago",
+            "1": "Lincoln Park"
+        },
+        "state": true,
+        "date": "07/08/2024"
+    },
+    {
+        "id": 10,
+        "username": "Seller4",
+        "password": "Password4@",
+        "email": "seller4@example.com",
+        "role": "seller",
+        "firstName": "Bob",
+        "lastName": "Brown",
+        "contact": "0345678901",
+        "addresses": {
+            "0": "Houston",
+            "1": "Downtown"
+        },
+        "state": true,
+        "date": "07/08/2024"
+    },
+    {
+        "id": 11,
+        "username": "Seller5",
+        "password": "123456Aa@",
+        "email": "seller5@example.us",
+        "role": "seller",
+        "firstName": "Seller",
+        "lastName": "Test",
+        "contact": "021345434",
+        "addresses": {
+            "0": "Cairo",
+            "1": "Maadi"
+        },
+        "state": true,
+        "date": "08/07/2024"
+    },
+    {
+        "id": 12,
+        "username": "Seller6",
+        "password": "Password6@",
+        "email": "seller6@example.com",
+        "role": "seller",
+        "firstName": "Charlie",
+        "lastName": "Davis",
+        "contact": "0456789012",
+        "addresses": {
+            "0": "Miami",
+            "1": "Beach"
+        },
+        "state": true,
+        "date": "07/08/2024"
+    }
+]
