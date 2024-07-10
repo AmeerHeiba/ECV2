@@ -331,6 +331,7 @@ if (window.location.pathname === '/Views/adminPanel.html') {
         <td>${product.seller_id}</td>
         <td>
             <button class="btn btn-primary btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
+            <button class="btn btn-danger btn-sm" type="button" data-id="${product.id}" data-action="remove">Remove Product</button>
         </td>
     `;
     productsTable.appendChild(row);
@@ -355,9 +356,13 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 document.getElementById('editProductSellerId').value = product.seller_id;
                 // Show the modal
                 new bootstrap.Modal(document.getElementById('editProductModal')).show();
+            }else if(requestAction === 'remove'){
+                console.log('Removed')
             }
         }
     });
+
+ 
 
     document.getElementById('productSearch').addEventListener('input', function() {
         filterTable('productsTable', this.value);
