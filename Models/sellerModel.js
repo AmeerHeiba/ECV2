@@ -11,7 +11,7 @@ class Seller {
         this.addresses = {};
         this.state = true;
         this.date = date;
-        this.image = image; 
+        // this.image = image; 
         
     }
 

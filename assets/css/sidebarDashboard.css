@@ -1,0 +1,119 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0; /* Remove default margin */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.sidebar {
+  min-width: 250px;
+  background-color: #754114;
+  color: white;
+}
+.sidebar .nav-link {
+  color: white;
+  margin-bottom: 10px;
+}
+.sidebar .nav-link:hover {
+  background-color: rgba(202, 162, 130, 0.192);
+}
+i {
+  margin-right: 10px;
+}
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* Enable vertical scrolling for content */
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+td img {
+  width: 60px;
+  height: 60px;
+}
+.btn-custom {
+  width: 150px;
+  background-color: #754114;
+  border: 0;
+  color: white; /* Set text color to white */
+  /* margin-left: 10px; */
+}
+.btn-custom:hover {
+  background-color: rgba(202, 162, 130, 0.192);
+  color: #754114;
+}
+.btn-custom:active {
+  background-color: #754114;
+  color: white;
+}
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 30px;
+}
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+.edit-icon:hover {
+  color: #754114;
+
+}
+.delete-icon:hover {
+  color: red;
+}
+@media (max-width: 767.98px) {
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+  .table tr {
+    margin-bottom: 15px;
+  }
+  .table td {
+    text-align: center; 
+    padding-left: 0; 
+    position: relative;
+    max-width: 100px; /* Adjust max-width for smaller screens */
+  }
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+}
+/* Truncate long descriptions with ellipsis (...) */
+.table td:nth-child(4),.table td:nth-child(3){
+  max-width: 100px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*  */
+.img-preview {
+  display: none;
+  max-width: 100%;
+  margin-top: 10px;
+}
