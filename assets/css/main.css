@@ -149,7 +149,3 @@ h3::after {
 .sidebar h6:hover {
   background-color: #ffc107;
 }
-
-.sidebar:hover {
-  border: 1px solid #ddd;
-}
