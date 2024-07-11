@@ -5,17 +5,16 @@ class ProductController {
     const noProductMessage = document.getElementById("no-product");
 
     const products = JSON.parse(localStorage.getItem("products")) || [];
-    const currentUser= JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const sellerId = currentUser.id;
     if (products.length > 0) {
       tableBody.innerHTML = "";
 
       products.forEach((product, index) => {
-        if(product.seller_id===sellerId){
-        const row = ProductController.createProductRow(product, index);
-        tableBody.appendChild(row);
+        if (product.seller_id === sellerId) {
+          const row = ProductController.createProductRow(product, index);
+          tableBody.appendChild(row);
         }
-
       });
     } else {
       tableBody.innerHTML = ""; // Clear table body
@@ -38,12 +37,83 @@ class ProductController {
         <td class="action">
           <i class="fa fa-pencil-alt edit-icon" onclick="ProductController.editeProduct(${product.id})"></i>
           <i class="fa fa-trash-alt delete-icon" onclick="ProductController.deleteProduct(${product.id})"></i>
+          <i class="fa-solid fa-eye" onclick="ProductController.showProductDetails(${product.id})"></i>
+
         </td>
       `;
     return row;
   }
 
   // Function to delete a product from local storage and table
+
+  static showProductDetails(id) {
+    window.location.href = `productDetails.html?id=${id}`;
+  }
+  static getProductDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let product = products.find((product) => product.id === parseInt(id));
+
+    if (!product) {
+      console.error("Product not found in localStorage.");
+      return;
+    }
+    let stockStatus =
+      product.stock > 0 ? `${product.stock} in stock` : "Out of stock";
+
+    // Select the card container where the product details will be displayed
+    const cardContainer = document.getElementById("productDetailsContainer");
+
+    // Construct the HTML for the product details card
+    cardContainer.innerHTML = `
+        <div class="col-md-4 border-0 pe-3 my-5 border-end">
+                      <img
+                        src=${product.image}
+                        class="img-fluid rounded-start"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h2 class="card-title">${product.name}</h2>
+                        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${
+                          product.category
+                        }</h6>
+                        <p class="card-text" style="margin-top: 1rem">
+                        ${product.description}
+                        </p>
+                        <h3 class="card-text" style=" margin-top: 1rem;">${
+                          product.price
+                        } EG</h3>
+          
+                        <h5 class="card-text">
+                            <small class="text-body-secondary" style="color: ${
+                              product.stock > 0 ? "green" : "red"
+                            }">${stockStatus}</small>
+                          </h5>
+                          
+                          <p class="card-text">
+                              <small class="text-body-secondary" > added in ${
+                                product.date
+                              } </small>
+                          </p>
+                        <div class="d-flex align-items-center ">
+                           <i class="fa fa-pencil-alt edit-icon" onclick="ProductController.editeProduct(${
+                             product.id
+                           })"></i>
+          <i class="fa fa-trash-alt delete-icon" onclick="ProductController.deleteProduct(${
+            product.id
+          })"></i>
+            <i class="fa-solid fa-backward" onclick="ProductController.backHome()"></i>
+
+                        </div>
+                      </div>
+                    </div>
+    `;
+  }
+
   static deleteProduct(id) {
     $("#deleteProductModal").modal("show");
 
@@ -54,12 +124,18 @@ class ProductController {
         product.id = index + 1;
       });
       localStorage.setItem("products", JSON.stringify(products));
-      ProductController.displayProducts();
       $("#deleteProductModal").modal("hide");
+      ProductController.backHome()
+      ProductController.displayProducts();
+    
     });
     $(".cancelDelete").click(function () {
       $("#deleteProductModal").modal("hide");
+      
     });
+  }
+  static backHome() {
+    window.location.href = `sellerDashboard.html`;
   }
 
   static editeProduct(id) {
@@ -269,10 +345,7 @@ class ProductController {
   }
 
   // Function to get product details by ID
-  static getProductDetails(id) {
-    const products = JSON.parse(localStorage.getItem("products")) || [];
-    return products.filter((product) => product.id === id);
-  }
+
   static saveProduct() {
     const productName = document.getElementById("productName").value;
     const productDescription =
@@ -285,8 +358,8 @@ class ProductController {
     );
     const productImage = document.getElementById("imgPreview").src;
     const productCategory = document.getElementById("productCategory").value;
-   const currentUser= JSON.parse(localStorage.getItem('currentUser'));
-   const sellerId = currentUser.id;
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const sellerId = currentUser.id;
     const product = new Product(
       null,
       productName,
