@@ -46,7 +46,7 @@
     {
       "id": 5,
       "name": "Smart Watch",
-      "images": ["../assets/images/image9.jpg", "../assets/images/image10.jpg"],
+      "images": ["../assets/images/product5.jpg", "../assets/images/product6.jpg"],
       "price": 299.99,
       "description": "Keep track of your health and notifications.",
       "stock": 75,

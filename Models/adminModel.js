@@ -30,5 +30,8 @@ class AdminModel {
         return admins.find(admin => admin.username === username && admin.password === password);
     }
 
-    static getAdminById(id){}
+    static getAdminById(id){
+        const admins = AdminModel.getAdmins();
+        return admins.find(admin => admin.id === id);
+    }
 }
