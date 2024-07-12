@@ -58,6 +58,7 @@ function renderCartItems() {
 
       updateSummary();
     } else {
+      bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888"; class='text-center mt-5 '>There are no items in your cart.</h5> <i style='font-size: 17rem; color: #eee'; class='bi bi-cart-x'></i></div>`;
     }
   } else {
     alert("Please login as a customer to view your cart");
@@ -111,80 +112,99 @@ function removeFromCart(id) {
 
 // checkout
 
-(function creditCardValidation() {
-  document
-    .getElementById("cardNumber")
-    .addEventListener("input", function (event) {
+function creditCardValidation() {
+  const user = UserController.getUser();
+
+  if (user && user.cart.length > 0) {
+    // Card Number Validation
+    document
+      .getElementById("cardNumber")
+      .addEventListener("input", function (event) {
+        // Remove all non-numeric characters
+        let value = event.target.value.replace(/\D/g, "");
+
+        // Insert dashes every 4 characters
+        value = value.replace(/(\d{4})(?=\d)/g, "$1-");
+
+        // Limit to 14 characters
+        if (value.length > 14) {
+          value = value.slice(0, 19);
+        }
+
+        event.target.value = value;
+      });
+
+    // Expirey Date Validation
+    document
+      .getElementById("expiryDate")
+      .addEventListener("input", function (event) {
+        // Remove all non-numeric characters
+        let value = event.target.value.replace(/\D/g, "");
+
+        // Limit to 4 characters (MMYY format)
+        if (value.length > 4) {
+          value = value.slice(0, 4);
+        }
+
+        // Format as MM/YY
+        if (value.length > 2) {
+          value = value.substring(0, 2) + "/" + value.substring(2);
+        }
+
+        event.target.value = value;
+      });
+
+    // CVV Validation
+    document.getElementById("cvv").addEventListener("input", function (event) {
       // Remove all non-numeric characters
       let value = event.target.value.replace(/\D/g, "");
 
-      // Insert dashes every 4 characters
-      value = value.replace(/(\d{4})(?=\d)/g, "$1-");
-
-      // Limit to 14 characters
-      if (value.length > 14) {
-        value = value.slice(0, 19);
+      // Limit to 3 characters (CVV format)
+      if (value.length > 3) {
+        value = value.slice(0, 3);
       }
 
       event.target.value = value;
     });
 
-  document
-    .getElementById("expiryDate")
-    .addEventListener("input", function (event) {
-      // Remove all non-numeric characters
-      let value = event.target.value.replace(/\D/g, "");
+    // Card Name Validation
 
-      // Limit to 4 characters (MMYY format)
-      if (value.length > 4) {
-        value = value.slice(0, 4);
-      }
+    document
+      .getElementById("cardName")
+      .addEventListener("input", function (event) {
+        // Remove non-letter characters and convert to uppercase, allow spaces
+        let value = event.target.value
+          .replace(/[^A-Za-z\s]/g, "")
+          .toUpperCase();
 
-      // Format as MM/YY
-      if (value.length > 2) {
-        value = value.substring(0, 2) + "/" + value.substring(2);
-      }
+        // Limit the value to 20 characters
+        if (value.length > 20) {
+          value = value.substring(0, 40);
+        }
 
-      event.target.value = value;
-    });
-
-  // Allow only numeric input for CVV
-  document.getElementById("cvv").addEventListener("input", function (event) {
-    // Remove all non-numeric characters
-    let value = event.target.value.replace(/\D/g, "");
-
-    // Limit to 3 characters (CVV format)
-    if (value.length > 3) {
-      value = value.slice(0, 3);
-    }
-
-    event.target.value = value;
-  });
-
-  document
-    .getElementById("cardName")
-    .addEventListener("input", function (event) {
-      // Remove non-letter characters and convert to uppercase, allow spaces
-      let value = event.target.value.replace(/[^A-Za-z\s]/g, "").toUpperCase();
-
-      event.target.value = value;
-    });
-})();
-
-function togglePaymentDetails() {
-  const paymentMethod = document.getElementById("paymentMethod").value;
-  const cardDetails = document.getElementById("cardDetails");
-  if (paymentMethod === "Credit/Debit Card") {
-    cardDetails.style.display = "block";
-  } else {
-    cardDetails.style.display = "none";
+        event.target.value = value;
+      });
   }
 }
 
-togglePaymentDetails();
+function togglePaymentDetails() {
+  const user = UserController.getUser();
+
+  if (user && user.cart.length > 0) {
+    const paymentMethod = document.getElementById("paymentMethod").value;
+    const cardDetails = document.getElementById("cardDetails");
+    if (paymentMethod === "Credit/Debit Card") {
+      cardDetails.style.display = "block";
+    } else {
+      cardDetails.style.display = "none";
+    }
+  }
+}
 
 function populateAddresses() {
-  if (AuthController.getCurrentUser()) {
+  const user = UserController.getUser();
+
+  if (user && user.cart.length > 0) {
     const addresses = User.getAddresses();
     const addressSelect = document.getElementById("addresses");
     addressSelect.innerHTML = ""; // Clear existing options
@@ -199,6 +219,8 @@ function populateAddresses() {
 }
 
 populateAddresses();
+creditCardValidation();
+togglePaymentDetails();
 
 //renders success message
 

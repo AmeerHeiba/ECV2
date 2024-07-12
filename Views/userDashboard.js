@@ -234,7 +234,7 @@ document
     renderUserAddresses();
   });
 
-renderWishlist();
+UIController.renderWishlist();
 
 document.querySelector("#profile-info").addEventListener("click", function () {
   document.querySelector("#profile-card").classList.remove("d-none");

@@ -30,11 +30,11 @@ class User {
     return JSON.parse(localStorage.getItem("users")) || [];
   }
 
-  static getUserById(id){
+  static getUserById(id) {
     const users = this.getUsers();
-    return users.find(user => user.id === id);
+    return users.find((user) => user.id === id);
   }
-  static updateUserData(userId, newData){
+  static updateUserData(userId, newData) {
     const users = this.getUsers();
     const userIndex = users.findIndex((user) => user.id === userId);
 
@@ -164,7 +164,6 @@ class User {
       const currentUser = AuthController.getCurrentUser() || [];
       const users = User.getUsers();
       const user = users.find((i) => i.id === currentUser.id);
-      console.log(user);
       const addresses = user.addresses;
       return addresses;
     } else {
