@@ -191,6 +191,7 @@ class ProductController {
     document.getElementById("productStock").value = product.stock;
     document.getElementById("productPrice").value = product.price;
     document.getElementById("productCategory").value = product.category;
+    ProductController.imgArray=product.images
     const imgWrap = document.querySelector(".upload__img-wrap");
     // Display images from ProductController.imgArray
     product.images.forEach((imgURL) => {
@@ -230,7 +231,7 @@ class ProductController {
       return;
     }
     const productImages = ProductController.getImgArray();
-
+if (productImages.length===0){
     products[productIndex] = {
       ...products[productIndex],
       name: document.getElementById("productName").value,
@@ -238,8 +239,20 @@ class ProductController {
       stock: parseInt(document.getElementById("productStock").value),
       price: parseFloat(document.getElementById("productPrice").value),
       category: document.getElementById("productCategory").value,
+    }} else{
+
+      products[productIndex] = {
+      ...products[productIndex],
+      name: document.getElementById("productName").value,
+      description: document.getElementById("productDescription").value,
+      stock: parseInt(document.getElementById("productStock").value),
+      price: parseFloat(document.getElementById("productPrice").value),
+      category: document.getElementById("productCategory").value,
       images:productImages
-    };
+
+    }
+    }
+    
     localStorage.setItem("products", JSON.stringify(products));
   }
   // Function to filter products based on search input
