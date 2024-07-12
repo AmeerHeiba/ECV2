@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${admin.username}</td>
                 <td>
                     <button class="btn btn-danger btn-sm" type="button" data-id="${admin.id}" data-action="delete">Delete</button>
+                    <button class="btn btn-primary btn-sm" type="button" data-id="${admin.id}" data-action="resetpass">Reset Password</button>
                 </td>
             `;
             adminsTable.appendChild(row);
@@ -121,6 +122,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (requestAction === 'delete') {
                     removeAdmin(adminId);
                  
+                }else if(requestAction === 'resetpass'){
+                    const adminData = AdminModel.getAdminById(adminId)
+                    adminData.password = '123456Aa@';
+                    AdminModel.updateAdminDetails(adminId, adminData);
+                    // Email.send({
+                    //     SecureToken: "CD4894A0C1CEDB16C5119599932826AA65F602550148A26D23DFB56E33873710808DA29461D62687D88692ABCF91B8E3",
+                    //     To: 'ameerabdullahheiba@gmail.com',
+                    //     From: "heibaameer@gmail.com",
+                    //     Subject: "Test Email",
+                    //     Body: "This is a test email from client-side JavaScript."
+                    //   }).then(
+                    //     message => alert(message)
+                    //   );
+
+
                 }
             }
     

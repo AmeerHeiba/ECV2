@@ -30,6 +30,23 @@ class User {
     return JSON.parse(localStorage.getItem("users")) || [];
   }
 
+  static getUserById(id){
+    const users = this.getUsers();
+    return users.find(user => user.id === id);
+  }
+  static updateUserData(userId, newData){
+    const users = this.getUsers();
+    const userIndex = users.findIndex((user) => user.id === userId);
+
+    if (userIndex !== -1) {
+      users[userIndex] = { ...users[userIndex], ...newData };
+      this.saveUsers(users);
+      alert("Account details updated successfully.");
+    } else {
+      alert("User not found.");
+    }
+  }
+
   static getCurrentUser() {
     return JSON.parse(localStorage.getItem("currentUser"));
   }
