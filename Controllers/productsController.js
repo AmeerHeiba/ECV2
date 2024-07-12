@@ -111,7 +111,7 @@ class ProductController {
           <small class="text-body-secondary" > Added in ${product.date} </small>
         </p>
         <div class="d-flex align-items-center ">
-          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: #754114" onclick="ProductController.editProduct(${
+          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: #754114" onclick="ProductController.editeProduct(${
             product.id
           })"> <i class="fa fa-pencil-alt me-1"></i> Edit</button>
         <button class="btn btn-danger me-2" style="background-color:#e4e3e3; border:0 ;color:red " onclick="ProductController.deleteProduct(${
@@ -165,9 +165,8 @@ class ProductController {
     ProductController.updateProduct();
     form.reset();
     form.classList.remove("was-validated");
-    
+
     window.location.href = "sellerDashboard.html";
-    
   }
 
   static initializeUpdateProductData() {
@@ -191,30 +190,34 @@ class ProductController {
     document.getElementById("productStock").value = product.stock;
     document.getElementById("productPrice").value = product.price;
     document.getElementById("productCategory").value = product.category;
-    ProductController.imgArray=product.images
+    ProductController.imgArray = product.images;
     const imgWrap = document.querySelector(".upload__img-wrap");
     // Display images from ProductController.imgArray
     product.images.forEach((imgURL) => {
-        const html = `
+      const html = `
             <div class='upload__img-box'>
                 <div class='img-bg' style='background-image: url(${imgURL})'>
                     <div class='upload__img-close'></div>
                 </div>
             </div>
         `;
-        imgWrap.insertAdjacentHTML("beforeend", html);
+      imgWrap.insertAdjacentHTML("beforeend", html);
     });
 
     // Add event listener for image close button
     imgWrap.addEventListener("click", (e) => {
-        if (e.target.classList.contains("upload__img-close")) {
-            const box = e.target.closest(".upload__img-box");
-            const imgURL = box.querySelector(".img-bg").style.backgroundImage.replace('url("', "").replace('")', "");
-            ProductController.imgArray = ProductController.imgArray.filter((img) => img !== imgURL);
-            box.remove();
-        }
+      if (e.target.classList.contains("upload__img-close")) {
+        const box = e.target.closest(".upload__img-box");
+        const imgURL = box
+          .querySelector(".img-bg")
+          .style.backgroundImage.replace('url("', "")
+          .replace('")', "");
+        ProductController.imgArray = ProductController.imgArray.filter(
+          (img) => img !== imgURL
+        );
+        box.remove();
+      }
     });
-   
   }
 
   static updateProduct() {
@@ -231,28 +234,27 @@ class ProductController {
       return;
     }
     const productImages = ProductController.getImgArray();
-if (productImages.length===0){
-    products[productIndex] = {
-      ...products[productIndex],
-      name: document.getElementById("productName").value,
-      description: document.getElementById("productDescription").value,
-      stock: parseInt(document.getElementById("productStock").value),
-      price: parseFloat(document.getElementById("productPrice").value),
-      category: document.getElementById("productCategory").value,
-    }} else{
-
+    if (productImages.length === 0) {
       products[productIndex] = {
-      ...products[productIndex],
-      name: document.getElementById("productName").value,
-      description: document.getElementById("productDescription").value,
-      stock: parseInt(document.getElementById("productStock").value),
-      price: parseFloat(document.getElementById("productPrice").value),
-      category: document.getElementById("productCategory").value,
-      images:productImages
+        ...products[productIndex],
+        name: document.getElementById("productName").value,
+        description: document.getElementById("productDescription").value,
+        stock: parseInt(document.getElementById("productStock").value),
+        price: parseFloat(document.getElementById("productPrice").value),
+        category: document.getElementById("productCategory").value,
+      };
+    } else {
+      products[productIndex] = {
+        ...products[productIndex],
+        name: document.getElementById("productName").value,
+        description: document.getElementById("productDescription").value,
+        stock: parseInt(document.getElementById("productStock").value),
+        price: parseFloat(document.getElementById("productPrice").value),
+        category: document.getElementById("productCategory").value,
+        images: productImages,
+      };
+    }
 
-    }
-    }
-    
     localStorage.setItem("products", JSON.stringify(products));
   }
   // Function to filter products based on search input
