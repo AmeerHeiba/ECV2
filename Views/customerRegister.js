@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const pathname = urlObject.pathname;
             // Extract the part after the last slash and before the first space or period
             const filename = pathname.split('/').pop().split('%20')[0].split('.')[0];
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const email = document.getElementById('email').value;
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const contact = document.getElementById('contact').value;
-            const addressName = document.getElementById('title').value;
-            const addressText = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const zipCode = document.getElementById('zip').value;
+            const username = document.getElementById('usernameReg').value;
+            const password = document.getElementById('passwordReg').value;
+            const email = document.getElementById('emailReg').value;
+            const firstName = document.getElementById('firstNameReg').value;
+            const lastName = document.getElementById('lastNameReg').value;
+            const contact = document.getElementById('contactReg').value;
+            const addressName = document.getElementById('titleReg').value;
+            const addressText = document.getElementById('addressReg').value;
+            const city = document.getElementById('cityReg').value;
+            const zipCode = document.getElementById('zipReg').value;
             const address = {
                 id:1,
                 title:addressName,
