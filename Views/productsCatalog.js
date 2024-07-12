@@ -1,4 +1,6 @@
 function createProductCard(product) {
+  const isInCart = UserController.isProductInCart(product.id);
+  const isInWishlist = UserController.isProductInWishlist(product.id);
   return `
            <div class="card col-12 col-xl-2">
       <img
@@ -6,7 +8,26 @@ function createProductCard(product) {
         class="wishlist-img card-img-top rounded-2 mt-3"
         alt="${product.name}"
       />
-      
+      <div class="product-btns d-flex flex-column">
+            <a id="add-to-cart" class="btn rounded-5 mb-2 ${
+              isInCart ? "btn-success" : "btn-primary"
+            }" onclick="UserController.addToCart(${
+          product.id
+        }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
+              <i class="bi ${
+                isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
+              }"></i>
+            </a>
+            <a id="wishlist-btn" class="btn ${
+              isInWishlist ? "btn-danger" : "btn-secondary"
+            } rounded-5" onclick="UserController.addToWishlist(${
+          product.id
+        }); UserController.changeIcon(this); ">
+              <i class="bi ${
+                isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
+              }"></i>
+            </a>
+          </div>
       <div class="card-body">
         <h5 class="mb-3">${product.name}</h5>
                       <p class="card-text" style="color: #754114; margin-top: 1rem;">${product.category}</p>
