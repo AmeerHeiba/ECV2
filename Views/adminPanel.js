@@ -73,6 +73,28 @@ function refreshUsersTable() {
 }
 
 
+function refreshSupportTable() {
+    const supportData = SupportRequest.getSupportRequests();
+    // const productData = JSON.parse(localStorage.getItem('products'));
+    supportTable.innerHTML = ''; // Clear existing rows
+    supportData.forEach(request => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <th scope="row">${request.id}</th>
+            <td>${request.fullName}</td>
+            <td>${request.emailAddress}</td>
+            <td>${request.subject}</td>
+            <td>${request.message}</td>
+            <td>${request.state}</td>
+            <td>
+                ${request.state === "Opened" ? `<button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
+            </td>
+        `;
+        supportTable.appendChild(row);
+    });
+}
+
+
 
 
 
@@ -447,7 +469,8 @@ if (window.location.pathname === '/Views/adminPanel.html') {
           
             if (requestAction === 'resolve') {
                
-                SupportRequest.closeRequest(reqID)
+                SupportRequest.closeRequest(reqID);
+                refreshSupportTable()
             }
         }
 
