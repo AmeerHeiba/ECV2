@@ -106,8 +106,80 @@ function updateUserDetails() {
       let contact = document.getElementById("contact").value;
       let username = document.getElementById("username").value;
 
-      firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
-      lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+      firstName =
+        firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+      lastName =
+        lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+      email = email.toLowerCase();
+
+      const allUsers = User.getUsers();
+
+      const usernameExists = allUsers.some(
+        (existingUser) =>
+          existingUser.username.toLowerCase() === username.toLowerCase() &&
+          user.username.toLowerCase() !== existingUser.username.toLowerCase()
+      );
+
+      const emailExists = allUsers.some(
+        (existingUser) =>
+          existingUser.email.toLowerCase() === email.toLowerCase() &&
+          user.email.toLowerCase() !== existingUser.email.toLowerCase()
+      );
+
+      const contactExists = allUsers.some(
+        (existingUser) =>
+          existingUser.contact === contact &&
+          user.contact !== existingUser.contact
+      );
+
+      //validation
+
+      const nameRegex = /^[A-Za-z]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const contactRegex = /^(010|011|012|015)\d{8}$/;
+      const usernameRegex = /^[A-Za-z0-9_.]{1,20}$/;
+
+      if (!nameRegex.test(firstName) || firstName.length > 15) {
+        alert("First name must be a string and no more than 15 characters.");
+        return;
+      }
+
+      if (!nameRegex.test(lastName) || lastName.length > 15) {
+        alert("Last name must be a string and no more than 15 characters.");
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      if (!contactRegex.test(contact)) {
+        alert(
+          "Contact must be 11 digits and start with 010, 011, 012, or 015."
+        );
+        return;
+      }
+
+      if (!usernameRegex.test(username)) {
+        alert(
+          "Username can only contain letters, digits, underscores, and dots (up to 20 characters)."
+        );
+        return;
+      }
+
+      if (usernameExists) {
+        alert("Username already exists. Please choose a different username.");
+        return;
+      }
+      if (emailExists) {
+        alert("Email already exists. Please choose a different email.");
+        return;
+      }
+      if (contactExists) {
+        alert("Phone number already exists. Please choose a different number.");
+        return;
+      }
 
       let newDetails = {
         firstName: firstName,
@@ -119,6 +191,7 @@ function updateUserDetails() {
 
       UserController.updateUserDetails(user.id, newDetails);
       renderUserDetails();
+      UIController.welcomeUser("dark");
     });
 }
 
@@ -167,7 +240,7 @@ function renderUserAddresses() {
     updateAddressBtns.forEach((btn) => {
       btn.addEventListener("click", function () {
         const addressId = btn.getAttribute("data-address-id");
-        updateAddressModal(+addressId);
+        fillAddressUpdateModal(+addressId);
       });
     });
   } else {
@@ -180,11 +253,47 @@ function renderUserAddresses() {
   }
 }
 
-// validate user input
+// validate address
+function addressValidation(title, address, city, zip) {
+  const titleRegex = /^[A-Za-z0-9 ]{1,15}$/;
+  const addressRegex = /^[A-Za-z0-9 ]{1,30}$/;
+  const cityRegex = /^[A-Za-z ]{1,20}$/;
+  const zipRegex = /^\d{5}$/;
+
+  // Check if any field is empty
+  if (!title || !address || !city || !zip) {
+    alert("All fields are required.");
+    return false;
+  }
+
+  if (!titleRegex.test(title)) {
+    alert(
+      "Address title can only contain letters and numbers (up to 15 characters)."
+    );
+    return false;
+  }
+
+  if (!addressRegex.test(address)) {
+    alert("Address can only contain letters and digits (up to 30 characters).");
+    return false;
+  }
+
+  if (!cityRegex.test(city)) {
+    alert("City must contain only letters (up to 20 characters).");
+    return false;
+  }
+
+  if (!zipRegex.test(zip)) {
+    alert("Zip code must be exactly 5 digits.");
+    return false;
+  }
+
+  return true;
+}
 
 // update User Addresses
 
-function updateAddressModal(addressId) {
+function fillAddressUpdateModal(addressId) {
   const user = UserController.getUser();
   const address = user.addresses.find((addr) => addr.id === addressId);
   if (address) {
@@ -209,30 +318,44 @@ function addNewAddress() {
       let city = document.getElementById("city").value;
       let zip = document.getElementById("zip").value;
 
-      UserController.addNewAddress(title, address, city, zip);
-
-      renderUserAddresses();
+      if (addressValidation(title, address, city, zip)) {
+        UserController.addNewAddress(title, address, city, zip);
+        renderUserAddresses();
+      }
     });
 }
 
 addNewAddress();
 
 //update address
+function updateAddress() {
+  document
+    .getElementById("update-address-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      const addressId = document.getElementById("address-id").value;
+      const updatedAddress = {
+        title: document.getElementById("update-title").value,
+        address: document.getElementById("update-address").value,
+        city: document.getElementById("update-city").value,
+        zipCode: document.getElementById("update-zip").value,
+      };
 
-document
-  .getElementById("update-address-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    const addressId = document.getElementById("address-id").value;
-    const updatedAddress = {
-      title: document.getElementById("update-title").value,
-      address: document.getElementById("update-address").value,
-      city: document.getElementById("update-city").value,
-      zipCode: document.getElementById("update-zip").value,
-    };
-    UserController.updateUserAddress(+addressId, updatedAddress);
-    renderUserAddresses();
-  });
+      if (
+        addressValidation(
+          updatedAddress.title,
+          updatedAddress.address,
+          updatedAddress.city,
+          updatedAddress.zipCode
+        )
+      ) {
+        UserController.updateUserAddress(+addressId, updatedAddress);
+        renderUserAddresses();
+      }
+    });
+}
+
+updateAddress();
 
 UIController.renderWishlist();
 
