@@ -1,12 +1,12 @@
 class UIController {
   static welcomeUser(color) {
     if (AuthController.getCurrentUser()) {
-      let userFirstName = AuthController.getCurrentUser().firstName;
+      let firstName = UserController.getUser().firstName;
       const loggedUser = document.getElementById("logged-user");
       loggedUser.innerHTML = `
           <div class="dropdown nav-link p-0">
             <button class="btn text-${color} dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
-             <i class="bi bi-person-fill"> Hi ${userFirstName}!</i>
+             <i class="bi bi-person-fill"> Hi ${firstName}!</i>
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="userDashboard.html">Profile</a></li>
