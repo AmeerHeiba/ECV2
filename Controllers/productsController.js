@@ -17,7 +17,7 @@ class ProductController {
         }
       });
     } else {
-      tableBody.innerHTML = ""; // Clear table body
+      tableBody.innerHTML = "";
       noProductMessage.style.display = "block";
     }
   }
@@ -26,7 +26,7 @@ class ProductController {
   static createProductRow(product) {
     const row = document.createElement("tr");
     // const imgSrc = product.images[0]
-    console.log(product.images[0])
+    // console.log(product.images[0])
     row.innerHTML = `
         <td>${product.id}</td>
         <td><img src=${product.images[0]} alt="${product.name}" /></td>
@@ -46,7 +46,7 @@ class ProductController {
     return row;
   }
 
-  // Function to delete a product from local storage and table
+  // Function to get product details by ID
 
   static showProductDetails(id) {
     window.location.href = `productDetails.html?id=${id}`;
@@ -65,19 +65,23 @@ class ProductController {
     let stockStatus =
       product.stock > 0 ? `${product.stock} In Stock` : "Out of stock";
 
-    // Select the card container where the product details will be displayed
     const cardContainer = document.getElementById("productDetailsContainer");
 
-    // Construct the HTML for the product details card
     cardContainer.innerHTML = `
     <div class="col-md-4 border-0 pe-3 my-5 border-end">
       <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
         <div class="carousel-inner">
-          ${product.images.map((image, index) => `
-            <div class="carousel-item ${index === 0 ? 'active' : ''}">
-              <img src="${image}" class="img-fluid rounded-start carousel-image" alt="Product Image ${index + 1}">
+          ${product.images
+            .map(
+              (image, index) => `
+            <div class="carousel-item ${index === 0 ? "active" : ""}">
+              <img src="${image}" class="img-fluid rounded-start carousel-image" alt="Product Image ${
+                index + 1
+              }">
             </div>
-          `).join('')}
+          `
+            )
+            .join("")}
         </div>
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -93,28 +97,33 @@ class ProductController {
     <div class="col-md-8">
       <div class="card-body">
         <h2 class="card-title">${product.name}</h2>
-        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${product.category}</h6>
+        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${
+          product.category
+        }</h6>
         <p class="card-text" style="margin-top: 1rem">${product.description}</p>
         <h3 class="card-text" style=" margin-top: 1rem;">${product.price} $</h3>
         <h5 class="card-text">
-          <small class="text-body-secondary" style="color: ${product.stock > 0 ? "green" : "red"}">${stockStatus}</small>
+          <small class="text-body-secondary" style="color: ${
+            product.stock > 0 ? "green" : "red"
+          }">${stockStatus}</small>
         </h5>
         <p class="card-text">
           <small class="text-body-secondary" > Added in ${product.date} </small>
         </p>
         <div class="d-flex align-items-center ">
-          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: #754114" onclick="ProductController.editProduct(${product.id})"> <i class="fa fa-pencil-alt me-1"></i> Edit</button>
-        <button class="btn btn-danger me-2" style="background-color:#e4e3e3; border:0 ;color:red " onclick="ProductController.deleteProduct(${product.id})"> <i class="fa fa-trash-alt me-1"></i> Delete</button>
+          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: #754114" onclick="ProductController.editProduct(${
+            product.id
+          })"> <i class="fa fa-pencil-alt me-1"></i> Edit</button>
+        <button class="btn btn-danger me-2" style="background-color:#e4e3e3; border:0 ;color:red " onclick="ProductController.deleteProduct(${
+          product.id
+        })"> <i class="fa fa-trash-alt me-1"></i> Delete</button>
         <button class="btn btn-custom" onclick="ProductController.backHome()"> <i class="fa-solid fa-arrow-left"></i> Back</button>
         </div>
       </div>
     </div>
   `;
-  
-
-
   }
-
+  // Function to delete a product from local storage and table
   static deleteProduct(id) {
     $("#deleteProductModal").modal("show");
 
@@ -137,6 +146,8 @@ class ProductController {
     window.location.href = `sellerDashboard.html`;
   }
 
+  // Function to edite a product from local storage and table
+
   static editeProduct(id) {
     window.location.href = `editeProduct.html?id=${id}`;
   }
@@ -151,30 +162,12 @@ class ProductController {
       return;
     }
 
-    const stockInput = document.getElementById("productStock");
-    const priceInput = document.getElementById("productPrice");
-
-    if (parseInt(stockInput.value) <= 0) {
-      stockInput.setCustomValidity("Stock must be greater than zero.");
-      form.classList.add("was-validated");
-      return;
-    } else {
-      stockInput.setCustomValidity("");
-    }
-
-    if (parseFloat(priceInput.value) <= 0) {
-      priceInput.setCustomValidity("Price must be greater than zero.");
-      form.classList.add("was-validated");
-      return;
-    } else {
-      priceInput.setCustomValidity("");
-    }
-
     ProductController.updateProduct();
     form.reset();
-    ProductController.resetImagePreview();
     form.classList.remove("was-validated");
+    
     window.location.href = "sellerDashboard.html";
+    
   }
 
   static initializeUpdateProductData() {
@@ -193,17 +186,34 @@ class ProductController {
       console.error("Product not found in localStorage.");
       return;
     }
-    console.log(product);
-    // Populate form fields with existing product data
     document.getElementById("productName").value = product.name;
     document.getElementById("productDescription").value = product.description;
     document.getElementById("productStock").value = product.stock;
     document.getElementById("productPrice").value = product.price;
     document.getElementById("productCategory").value = product.category;
-    const imgPreview = document.getElementById("imgPreview");
-    imgPreview.src = product.image;
-    imgPreview.style.display = "block";
-    document.getElementById("changeImageBtn").style.display = "block";
+    const imgWrap = document.querySelector(".upload__img-wrap");
+    // Display images from ProductController.imgArray
+    product.images.forEach((imgURL) => {
+        const html = `
+            <div class='upload__img-box'>
+                <div class='img-bg' style='background-image: url(${imgURL})'>
+                    <div class='upload__img-close'></div>
+                </div>
+            </div>
+        `;
+        imgWrap.insertAdjacentHTML("beforeend", html);
+    });
+
+    // Add event listener for image close button
+    imgWrap.addEventListener("click", (e) => {
+        if (e.target.classList.contains("upload__img-close")) {
+            const box = e.target.closest(".upload__img-box");
+            const imgURL = box.querySelector(".img-bg").style.backgroundImage.replace('url("', "").replace('")', "");
+            ProductController.imgArray = ProductController.imgArray.filter((img) => img !== imgURL);
+            box.remove();
+        }
+    });
+   
   }
 
   static updateProduct() {
@@ -219,8 +229,8 @@ class ProductController {
       console.error("Product not found in localStorage.");
       return;
     }
+    const productImages = ProductController.getImgArray();
 
-    // Update product object with form data
     products[productIndex] = {
       ...products[productIndex],
       name: document.getElementById("productName").value,
@@ -228,7 +238,7 @@ class ProductController {
       stock: parseInt(document.getElementById("productStock").value),
       price: parseFloat(document.getElementById("productPrice").value),
       category: document.getElementById("productCategory").value,
-      image: document.getElementById("imgPreview").src,
+      images:productImages
     };
     localStorage.setItem("products", JSON.stringify(products));
   }
@@ -275,7 +285,6 @@ class ProductController {
       event.preventDefault();
       ProductController.saveProduct();
       form.reset();
-      // ProductController.resetImagePreview();
       form.classList.remove("was-validated");
       window.location.href = "sellerDashboard.html";
     }
@@ -305,9 +314,9 @@ class ProductController {
           const reader = new FileReader();
           reader.onload = (e) => {
             const imgURL = e.target.result;
-            console.log(imgURL)
+            console.log(imgURL);
             ProductController.imgArray.push(imgURL);
-            console.log( ProductController.imgArray)
+            console.log(ProductController.imgArray);
 
             const html = `
               <div class='upload__img-box'>
@@ -319,7 +328,6 @@ class ProductController {
             imgWrap.insertAdjacentHTML("beforeend", html);
           };
           reader.readAsDataURL(file);
-          // console.log(reader.readAsDataURL(file));
         });
       });
     });
@@ -327,8 +335,13 @@ class ProductController {
     document.body.addEventListener("click", (e) => {
       if (e.target.classList.contains("upload__img-close")) {
         const box = e.target.closest(".upload__img-box");
-        const imgURL = box.querySelector(".img-bg").style.backgroundImage.replace('url("', '').replace('")', '');
-        ProductController.imgArray = ProductController.imgArray.filter((img) => img !== imgURL);
+        const imgURL = box
+          .querySelector(".img-bg")
+          .style.backgroundImage.replace('url("', "")
+          .replace('")', "");
+        ProductController.imgArray = ProductController.imgArray.filter(
+          (img) => img !== imgURL
+        );
         box.remove();
       }
     });
@@ -355,8 +368,6 @@ class ProductController {
     document.getElementById("analytics").style.display = "none";
     document.getElementById("orders").style.display = "block";
   }
-
-  // Function to get product details by ID
 
   static saveProduct() {
     const productName = document.getElementById("productName").value;
