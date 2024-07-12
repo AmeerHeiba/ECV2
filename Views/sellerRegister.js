@@ -18,10 +18,19 @@ if (document.getElementById('registration-form')) {
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
         const contact = document.getElementById('contact').value;
-        const address1 = document.getElementById('address-1').value;
-        const address2 = document.getElementById('address-2').value;
-        const addresses = [address1, address2]
+        const addressName = document.getElementById('title').value;
+        const addressText = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const zipCode = document.getElementById('zip').value;
+        const address = {
+            id:1,
+            title:addressName,
+            address:addressText,
+            city:city,
+            zipCode:zipCode
 
+        }
+        const addresses = [address];
         // const role = document.getElementById('role').value;
        
         if (filename === 'sellerRegister') {
