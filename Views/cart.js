@@ -5,7 +5,8 @@ UIController.welcomeUser("dark");
 UIController.updateCartIcon();
 
 function renderCartItems() {
-  if (AuthController.getCurrentUser()) {
+  const user = AuthController.getCurrentUser();
+  if (user && user.role !== "admin") {
     const cartItems = User.getCartItems();
     const cartItemsContainer = document.getElementById("cart-items");
     const bodyContainer = document.querySelector(".cart");
@@ -57,10 +58,9 @@ function renderCartItems() {
 
       updateSummary();
     } else {
-      bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888"; class='text-center mt-5 '>There are no items in your cart.</h5> <i style='font-size: 17rem; color: #eee'; class='bi bi-cart-x'></i></div>`;
     }
   } else {
-    alert("Please login to view your cart");
+    alert("Please login as a customer to view your cart");
     window.location.href = "./login.html";
   }
 }

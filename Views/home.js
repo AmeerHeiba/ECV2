@@ -2,12 +2,12 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize animations
   AOS.init();
 
-  const wishlistLink = document.getElementById("wishlist-link");
-  if (!AuthController.getCurrentUser()) {
-    wishlistLink.classList.add("d-none");
-  } else {
-    wishlistLink.classList.add("d-block");
-  }
+  // const wishlistLink = document.getElementById("wishlist-link");
+  // if (!AuthController.getCurrentUser()) {
+  //   wishlistLink.classList.add("d-none");
+  // } else {
+  //   wishlistLink.classList.add("d-block");
+  // }
 
   // Welcome user
   UIController.welcomeUser("white");
