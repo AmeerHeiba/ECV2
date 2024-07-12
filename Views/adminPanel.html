@@ -51,87 +51,21 @@
     </style>
 </head>
 <body>
-        <!-- first navbar start -->
-        <nav class="navbar navbar-1 navbar-expand-lg border-bottom border-body">
-            <div class="container my-2">
-              <a class="navbar-brand" href="./home.html">Logo</a>
-              <form class="d-flex col col-lg-8 mx-lg-5" role="search">
-                <input
-                  class="form-control me-2"
-                  type="search"
-                  placeholder="What are you looking for?"
-                  aria-label="Search"
-                />
-              </form>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-4">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5501/Views/login.html"
-                      ><i class="bi bi-person-fill">&nbsp Login</i></a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="wishlist.html"
-                      ><i class="bi bi-bag-heart-fill">&nbsp Wishlist</i></a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active position-relative" href="./cart.html"
-                      ><i class="bi bi-cart4"
-                        ><span
-                          id="notification"
-                          style="font-size: 0.6rem"
-                          class="position-absolute top-40 start-10 translate-middle badge rounded-circle"
-                        >
-                        </span
-                        >&nbsp Cart
-                      </i>
-                    </a>
-                  </li>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="AuthController.logout()">Logout</a>
+                    </li>
                 </ul>
-              </div>
             </div>
-          </nav>
-          <!-- first navbar end -->
-      
-          <!-- second navbar start -->
-          <nav class="navbar navbar-expand navbar-light bg-light">
-            <div
-              class="container h-scroll justify-content-start flex-nowrap overflow-auto"
-            >
-              <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-6">
-                <li class="nav-item border-end mx-2 col-3 col-xl-3">
-                  <a class="nav-link active" href="#"> All Categories </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#category2">Furniture</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#category3">Storage</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#category4">Bedrooms</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#category5">Outdoors</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#category6">Appliances</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+        </div>
+    </nav>
       
           <!-- second navbar end -->
     <div class="container">
@@ -140,6 +74,7 @@
         <div class="chartCon">
             <canvas id="myChart"></canvas>
             <canvas id="pendingReq"></canvas>
+            <canvas id="pendingSupReq"></canvas>
         </div>
 
         <div class="accordion" id="adminAccordion">
