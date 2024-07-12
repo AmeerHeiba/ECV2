@@ -25,9 +25,11 @@ class ProductController {
   // Function to create a single product row
   static createProductRow(product) {
     const row = document.createElement("tr");
+    // const imgSrc = product.images[0]
+    console.log(product.images[0])
     row.innerHTML = `
         <td>${product.id}</td>
-        <td><img src="${product.image}" alt="${product.name}" /></td>
+        <td><img src=${product.images[0]} alt="${product.name}" /></td>
                 <td>${product.name}</td>
         <td>${product.description}</td>
         <td>${product.category}</td>
@@ -35,9 +37,9 @@ class ProductController {
         <td>${product.price} $</td>
         <td>${product.date}</td>
         <td class="action">
-          <i class="fa fa-pencil-alt edit-icon" onclick="ProductController.editeProduct(${product.id})"></i>
+          <i class="fa fa-pencil-alt edit-eye-icon" onclick="ProductController.editeProduct(${product.id})"></i>
           <i class="fa fa-trash-alt delete-icon" onclick="ProductController.deleteProduct(${product.id})"></i>
-          <i class="fa-solid fa-eye" onclick="ProductController.showProductDetails(${product.id})"></i>
+          <i class="fa-solid fa-eye edit-eye-icon" onclick="ProductController.showProductDetails(${product.id})"></i>
 
         </td>
       `;
@@ -61,57 +63,56 @@ class ProductController {
       return;
     }
     let stockStatus =
-      product.stock > 0 ? `${product.stock} in stock` : "Out of stock";
+      product.stock > 0 ? `${product.stock} In Stock` : "Out of stock";
 
     // Select the card container where the product details will be displayed
     const cardContainer = document.getElementById("productDetailsContainer");
 
     // Construct the HTML for the product details card
     cardContainer.innerHTML = `
-        <div class="col-md-4 border-0 pe-3 my-5 border-end">
-                      <img
-                        src=${product.image}
-                        class="img-fluid rounded-start"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                        <h2 class="card-title">${product.name}</h2>
-                        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${
-                          product.category
-                        }</h6>
-                        <p class="card-text" style="margin-top: 1rem">
-                        ${product.description}
-                        </p>
-                        <h3 class="card-text" style=" margin-top: 1rem;">${
-                          product.price
-                        } EG</h3>
-          
-                        <h5 class="card-text">
-                            <small class="text-body-secondary" style="color: ${
-                              product.stock > 0 ? "green" : "red"
-                            }">${stockStatus}</small>
-                          </h5>
-                          
-                          <p class="card-text">
-                              <small class="text-body-secondary" > added in ${
-                                product.date
-                              } </small>
-                          </p>
-                        <div class="d-flex align-items-center ">
-                           <i class="fa fa-pencil-alt edit-icon" onclick="ProductController.editeProduct(${
-                             product.id
-                           })"></i>
-          <i class="fa fa-trash-alt delete-icon" onclick="ProductController.deleteProduct(${
-            product.id
-          })"></i>
-            <i class="fa-solid fa-backward" onclick="ProductController.backHome()"></i>
+    <div class="col-md-4 border-0 pe-3 my-5 border-end">
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+        <div class="carousel-inner">
+          ${product.images.map((image, index) => `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+              <img src="${image}" class="img-fluid rounded-start carousel-image" alt="Product Image ${index + 1}">
+            </div>
+          `).join('')}
+        </div>
 
-                        </div>
-                      </div>
-                    </div>
-    `;
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">${product.name}</h2>
+        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${product.category}</h6>
+        <p class="card-text" style="margin-top: 1rem">${product.description}</p>
+        <h3 class="card-text" style=" margin-top: 1rem;">${product.price} $</h3>
+        <h5 class="card-text">
+          <small class="text-body-secondary" style="color: ${product.stock > 0 ? "green" : "red"}">${stockStatus}</small>
+        </h5>
+        <p class="card-text">
+          <small class="text-body-secondary" > Added in ${product.date} </small>
+        </p>
+        <div class="d-flex align-items-center ">
+          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: #754114" onclick="ProductController.editProduct(${product.id})"> <i class="fa fa-pencil-alt me-1"></i> Edit</button>
+        <button class="btn btn-danger me-2" style="background-color:#e4e3e3; border:0 ;color:red " onclick="ProductController.deleteProduct(${product.id})"> <i class="fa fa-trash-alt me-1"></i> Delete</button>
+        <button class="btn btn-custom" onclick="ProductController.backHome()"> <i class="fa-solid fa-arrow-left"></i> Back</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+
+
   }
 
   static deleteProduct(id) {
@@ -125,13 +126,11 @@ class ProductController {
       });
       localStorage.setItem("products", JSON.stringify(products));
       $("#deleteProductModal").modal("hide");
-      ProductController.backHome()
+      ProductController.backHome();
       ProductController.displayProducts();
-    
     });
     $(".cancelDelete").click(function () {
       $("#deleteProductModal").modal("hide");
-      
     });
   }
   static backHome() {
@@ -272,59 +271,72 @@ class ProductController {
       form.classList.add("was-validated");
       return;
     }
-
-    const stockInput = document.getElementById("productStock");
-    const priceInput = document.getElementById("productPrice");
-
-    if (parseInt(stockInput.value) <= 0) {
-      stockInput.setCustomValidity("Stock must be greater than zero.");
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      stockInput.setCustomValidity("");
-    }
-
-    if (parseFloat(priceInput.value) <= 0) {
-      priceInput.setCustomValidity("Price must be greater than zero.");
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      priceInput.setCustomValidity("");
-    }
-
-    form.classList.add("was-validated");
-
     if (form.checkValidity()) {
       event.preventDefault();
       ProductController.saveProduct();
       form.reset();
-      ProductController.resetImagePreview();
+      // ProductController.resetImagePreview();
       form.classList.remove("was-validated");
       window.location.href = "sellerDashboard.html";
     }
   }
+  static imgArray = [];
 
-  static handleImageChange(event) {
-    const input = event.target;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const imgPreview = document.getElementById("imgPreview");
-        imgPreview.src = e.target.result;
-        imgPreview.style.display = "block";
-        document.getElementById("changeImageBtn").style.display = "block";
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
+  static ImgUpload() {
+    const maxLength = 5;
+
+    document.querySelectorAll(".upload__inputfile").forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const imgWrap = input
+          .closest(".form-group")
+          .querySelector(".upload__img-wrap");
+        const files = Array.from(e.target.files);
+
+        files.forEach((file) => {
+          if (
+            !file.type.match("image.*") ||
+            ProductController.imgArray.length >= maxLength
+          ) {
+            return;
+          }
+          // console.log(file);
+          // ProductController.imgArray.push(file.name);
+
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const imgURL = e.target.result;
+            console.log(imgURL)
+            ProductController.imgArray.push(imgURL);
+            console.log( ProductController.imgArray)
+
+            const html = `
+              <div class='upload__img-box'>
+                <div class='img-bg' style='background-image: url(${imgURL})' data-file='${file.name}'>
+                  <div class='upload__img-close'></div>
+                </div>
+              </div>
+            `;
+            imgWrap.insertAdjacentHTML("beforeend", html);
+          };
+          reader.readAsDataURL(file);
+          // console.log(reader.readAsDataURL(file));
+        });
+      });
+    });
+
+    document.body.addEventListener("click", (e) => {
+      if (e.target.classList.contains("upload__img-close")) {
+        const box = e.target.closest(".upload__img-box");
+        const imgURL = box.querySelector(".img-bg").style.backgroundImage.replace('url("', '').replace('")', '');
+        ProductController.imgArray = ProductController.imgArray.filter((img) => img !== imgURL);
+        box.remove();
+      }
+    });
+  }
+  static getImgArray() {
+    return ProductController.imgArray;
   }
 
-  static resetImagePreview() {
-    const imgPreview = document.getElementById("imgPreview");
-    imgPreview.src = "#";
-    imgPreview.style.display = "none";
-    document.getElementById("changeImageBtn").style.display = "none";
-    document.getElementById("productImage").value = "";
-  }
   // Function to show/hide sections based on sidebar clicks
   static showProducts() {
     document.getElementById("products").style.display = "block";
@@ -356,14 +368,15 @@ class ProductController {
     const productPrice = parseFloat(
       document.getElementById("productPrice").value
     );
-    const productImage = document.getElementById("imgPreview").src;
+    // const productImage = document.getElementById("imgPreview").src;
+    const productImages = ProductController.getImgArray();
     const productCategory = document.getElementById("productCategory").value;
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const sellerId = currentUser.id;
     const product = new Product(
       null,
       productName,
-      productImage,
+      productImages,
       productPrice,
       productDescription,
       productStock,
