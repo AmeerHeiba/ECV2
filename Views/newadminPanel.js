@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-if (window.location.pathname === '/Views/adminPanel.html') {
+if (window.location.pathname === '/Views/newadminPanel.html') {
 
     //charts
 
@@ -587,8 +587,8 @@ if (window.location.pathname === '/Views/adminPanel.html') {
         <td>${product.stock}</td>
         <td>${product.seller_id}</td>
         <td>
-            <button class="btn btn-primary btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
-            <button class="btn btn-danger btn-sm" type="button" data-id="${product.id}" data-action="remove">Remove Product</button>
+            <button class="btn btn-outline-warning btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
+            <button class="btn btn-outline-danger btn-sm" type="button" data-id="${product.id}" data-action="remove">Remove</button>
         </td>
     `;
     productsTable.appendChild(row);

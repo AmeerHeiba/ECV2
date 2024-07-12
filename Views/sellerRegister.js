@@ -1,8 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-if (document.getElementById('registration-form')) {
-    document.getElementById('registration-form').addEventListener('submit', (event) => {
+if (document.getElementById('registration-form-Seller')) {
+    document.getElementById('registration-form-Seller').addEventListener('submit', (event) => {
         event.preventDefault();
 
         const form = event.target;

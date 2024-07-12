@@ -1,25 +1,12 @@
 class AdminController {
 
-   static displaySellerRequests() {
-        const requests = Seller.getSellerRequests();
-        return requests ; 
-        // this.view.renderSellerRequests(requests);
-    }
 
     static approveSellerRequest(request){
         
         //addSeller(seller)
         const id = request.id;
-        // const username = request.username;
-        // const password = request.password;
-        // const email = request.email;
-        // const role = 'seller';
-        // const newUser = new User(id, username, password, email, role);
         Seller.addSeller(request);
         Seller. removeSellerRequest(id);
-        location.reload();
-
-        // Seller.addSeller(request);
     }
     static rejectSellerRequest(request,reason){
         const adminID = User.getCurrentUser().id;
