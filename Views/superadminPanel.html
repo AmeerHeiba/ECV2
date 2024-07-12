@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <!-- <script src="../assets/js/accessControl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/accessControl.js"></script>
     <script>
-        auth.protectPage('admin');
-    </script> -->
-        
+        auth.protectPage('super_admin');
+    </script>
     <style>
         /* Custom responsive table styles */
+        .chartCon {
+            width: 15vw;
+            display: flex;
+            flex-direction: row;
+        }
         @media (max-width: 767.98px) {
             .table thead {
                 display: none;
@@ -41,101 +46,133 @@
     </style>
 </head>
 <body>
-    <body>
-        <div class="container">
-            <h1 class="my-4">Super Admin Dashboard</h1>
-            <div class="accordion" id="superadminAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingAdmins">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdminsTable" aria-expanded="true" aria-controls="collapseAdminsTable">
-                            Admins Accounts
-                        </button>
-                    </h2>
-                    <div id="collapseAdminsTable" class="accordion-collapse collapse show" aria-labelledby="headingAdmins" data-bs-parent="#AdminsTable">
-                        <div class="accordion-body">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h2>Admins List</h2>
-                                </div>
-                                <div class="card-body">
-                                    <table id="adminsTable" class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Admin Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Contact</th>
-                                                <th scope="col">User Name</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="admin-list-table-body">
-                                            <!-- Admin list will be inserted here -->
-                                        </tbody>
-                                    </table>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Super Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="AuthController.logout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="accordion" id="superadminAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAdmins">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdminsTable" aria-expanded="true" aria-controls="collapseAdminsTable">
+                        Admins Accounts
+                    </button>
+                </h2>
+                <div id="collapseAdminsTable" class="accordion-collapse collapse show" aria-labelledby="headingAdmins" data-bs-parent="#superadminAccordion">
+                    <div class="accordion-body">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h2>Admins List</h2>
+                            </div>
+                            <div class="card-body">
+                                <table id="adminsTable" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Admin Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Contact</th>
+                                            <th scope="col">User Name</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-list-table-body">
+                                        <!-- Admin list will be inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAddAdmins">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdminsForm" aria-expanded="false" aria-controls="collapseAdminsForm">
+                        Add New Admin
+                    </button>
+                </h2>
+                <div id="collapseAdminsForm" class="accordion-collapse collapse" aria-labelledby="headingAddAdmins" data-bs-parent="#superadminAccordion">
+                    <div class="accordion-body">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Add New Admin</h2>
+                            </div>
+                            <div class="card-body">
+                                <form id="add-admin-form">
+                                    <div class="mb-3">
+                                        <label for="admin-name" class="form-label">Admin Name</label>
+                                        <input type="text" class="form-control" id="admin-name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="admin-contact" class="form-label">Admin Contact</label>
+                                        <input type="number" class="form-control" id="admin-contact" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="admin-user" class="form-label">User Name</label>
+                                        <input type="text" class="form-control" id="admin-user" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="admin-email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="admin-email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="admin-password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="admin-password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add Admin</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingstats">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsestats" aria-expanded="false" aria-controls="collapsestats">
+                        Statistics
+                    </button>
+                </h2>
+                <div id="collapsestats" class="accordion-collapse collapse" aria-labelledby="headingstats" data-bs-parent="#superadminAccordion">
+                    <div class="accordion-body">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Statistics</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="chartCon">
+                                    <canvas id="myChart"></canvas>
+                                    <canvas id="pendingReq"></canvas>
+                                    <canvas id="pendingSupReq"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingAddAdmins">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdminsForm" aria-expanded="true" aria-controls="collapseAdminsForm">
-                                Add New Admin
-                            </button>
-                        </h2>
-                        <div id="collapseAdminsForm" class="accordion-collapse collapse collapse" aria-labelledby="headingAdmins" data-bs-parent="#AdminsForm">
-                            <div class="accordion-body">
-                                    
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h2>Add New Admin</h2>
-                                    </div>
-                                    <div class="card-body">
-                                        <form id="add-admin-form">
-                                            <div class="mb-3">
-                                                <label for="admin-name" class="form-label">Admin Name</label>
-                                                <input type="text" class="form-control" id="admin-name" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="admin-contact" class="form-label">Admin Contact</label>
-                                                <input type="number" class="form-control" id="admin-contact" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="admin-user" class="form-label">User Name</label>
-                                                <input type="text" class="form-control" id="admin-user" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="admin-email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="admin-email" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="admin-password" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="admin-password" required>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Add Admin</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-            
-
-
-        
+            </div>
         </div>
+    </div>
+
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../models/userModel.js"></script>
     <script src="../models/sellerModel.js"></script>
-    <script src="../Models/adminModel.js"></script>
-    <script src="../Controllers/adminController.js"></script>
+    <script src="../models/adminModel.js"></script>
+    <script src="../controllers/adminController.js"></script>
     <script src="../controllers/authController.js"></script>
-    <script src="../Views/superadminPanel.js"></script>
-
-
+    <script src="../views/superadminPanel.js"></script>
+    <script src="../models/supportModel.js"></script>
 </body>
 </html>

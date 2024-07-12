@@ -13,6 +13,79 @@ function removeAdmin(id){
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    const ctx = document.getElementById('myChart');
+    const CountofCustomers = AdminController.getCountofCustomers();
+    const CountofSellers = AdminController.getCountofSellers();
+      
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Customers', 'Sellers'],
+        datasets: [{
+          label: ' Users segregation',
+          data: [CountofCustomers, CountofSellers],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+
+        }
+      }
+    });
+
+    const pendingSellersReqsChart = document.getElementById('pendingReq');
+    const CountofRejectedReqs = Seller.getRejectedSellerRequests().length;
+    
+    new Chart(pendingSellersReqsChart, {
+        type: 'doughnut',
+        data: {
+          labels: ['Rejected', 'Sellers'],
+          datasets: [{
+            label: ' Users segregation',
+            data: [CountofRejectedReqs, CountofSellers],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            },
+  
+          }
+        }
+      });
+
+
+      const countOfOpenReqs = SupportRequest.getCountOfOpened();
+      const countOfClosedReqs = SupportRequest.getCountOfClosed();
+      const pendingSupReqChart = document.getElementById('pendingSupReq');
+
+      new Chart(pendingSupReqChart, {
+        type: 'doughnut',
+        data: {
+          labels: ['Opened', 'Closed'],
+          datasets: [{
+            label: ' Support Requests segregation',
+            data: [countOfOpenReqs, countOfClosedReqs],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            },
+  
+          }
+        }
+      });
+
+
     if (window.location.pathname === '/Views/superadminPanel.html') {
 
         

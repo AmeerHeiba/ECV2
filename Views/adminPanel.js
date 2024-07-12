@@ -72,10 +72,10 @@ function refreshUsersTable() {
     });
 }
 
-
 function refreshSupportTable() {
+    const supportTable = document.getElementById('supportTable').getElementsByTagName("tbody")[0];
     const supportData = SupportRequest.getSupportRequests();
-    // const productData = JSON.parse(localStorage.getItem('products'));
+    
     supportTable.innerHTML = ''; // Clear existing rows
     supportData.forEach(request => {
         const row = document.createElement('tr');
@@ -93,6 +93,34 @@ function refreshSupportTable() {
         supportTable.appendChild(row);
     });
 }
+function refreshRejectedSellerTable() {
+
+    const rejectedSellerRequestsTable = document.getElementById('RejectedSellerRequests').getElementsByTagName("tbody")[0];
+    const rejectedSellerRequests = Seller.getRejectedSellerRequests();
+    rejectedSellerRequestsTable.innerHTML = ''; // Clear existing rows
+    rejectedSellerRequests.forEach(request => {
+        const row = document.createElement('tr');
+        console.log(request)
+        const adminName = AdminModel.getAdminById(request.rejectedBy);
+        row.innerHTML = `
+            <th scope="row">${request.id}</th>
+            <td>${request.firstName + " "+ request.lastName}</td>
+            <td>${request.email}</td>
+            <td>${request.contact}</td>
+            <td>${request.username}</td>
+            <td>${adminName.username}</td>
+            <td>${request.date}</td>
+            <td>
+                <button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
+            </td>
+        `;
+        rejectedSellerRequestsTable.appendChild(row);
+    });
+
+}
+
+
+
 
 
 
@@ -182,6 +210,33 @@ if (window.location.pathname === '/Views/adminPanel.html') {
           }
         }
       });
+
+
+      const countOfOpenReqs = SupportRequest.getCountOfOpened();
+      const countOfClosedReqs = SupportRequest.getCountOfClosed();
+      const pendingSupReqChart = document.getElementById('pendingSupReq');
+
+      new Chart(pendingSupReqChart, {
+        type: 'doughnut',
+        data: {
+          labels: ['Opened', 'Closed'],
+          datasets: [{
+            label: ' Support Requests segregation',
+            data: [countOfOpenReqs, countOfClosedReqs],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            },
+  
+          }
+        }
+      });
+
+
 
     
     const sellerRequestsTable = document.getElementById('sellerRequestsTable').getElementsByTagName("tbody")[0];
@@ -470,7 +525,7 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             if (requestAction === 'resolve') {
                
                 SupportRequest.closeRequest(reqID);
-                refreshSupportTable()
+                refreshSupportTable();
             }
         }
 

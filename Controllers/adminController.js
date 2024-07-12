@@ -23,6 +23,7 @@ class AdminController {
     }
     static rejectSellerRequest(request,reason){
         const adminID = User.getCurrentUser().id;
+        console.log(adminID)
         const targetUserID = request.id;
         const title = 'Rejected Account';
         // const reason = 'Test';

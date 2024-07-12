@@ -38,8 +38,19 @@ class SupportRequest{
         } else {
             alert('User not found.');
         }
+
     }
 
+    static getCountOfOpened(){
+        const reqs = this.getSupportRequests();
+        const opened = reqs.filter(req => req.state === 'Opened');
+        return opened.length;
+    }
 
+    static getCountOfClosed(){
+        const reqs = this.getSupportRequests();
+        const closed = reqs.filter(req => req.state === 'Closed');
+        return closed.length;
+    }
 
 }
