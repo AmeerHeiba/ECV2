@@ -39,18 +39,6 @@
               data-bs-slide-to="1"
               aria-label="Slide 2"
             ></button>
-            <!-- <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="3"
-              aria-label="Slide 4"
-            ></button> -->
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -133,18 +121,21 @@
           <div class="collapse navbar-collapse col" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
               <li class="nav-item" id="logged-user">
-                <a class="nav-link active" aria-current="page" href="login.html"
+                <a
+                  class="nav-link active justify-content-center"
+                  aria-current="page"
+                  href="login.html"
                   ><i class="bi bi-person-fill text-light">&nbsp Login</i></a
                 >
               </li>
-              <li class="nav-item">
+              <li id="wishlist-link" class="nav-item">
                 <a class="nav-link active" href="wishlist.html"
                   ><i class="bi bi-bag-heart-fill text-light"
                     >&nbsp Wishlist</i
                   ></a
                 >
               </li>
-              <li class="nav-item">
+              <li id="cart-link" class="nav-item">
                 <a class="nav-link active" href="cart.html"
                   ><i class="bi bi-cart4 text-light"
                     ><span

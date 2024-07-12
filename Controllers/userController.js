@@ -129,62 +129,109 @@ class UserController {
     }
   }
 
-  // wishlist
-
-  static addItemToWishlist(item) {
-    if (AuthController.getCurrentUser()) {
-      const currentUser = AuthController.getCurrentUser();
+  // Get wishlist items
+  static getWishlist() {
+    const currentUser = AuthController.getCurrentUser();
+    if (currentUser) {
       const users = User.getUsers();
-      const userIndex = users.findIndex((u) => u.id === currentUser.id);
+      const user = users.find((user) => user.id === currentUser.id);
+      return user.wishlist || [];
+    }
+    return [];
+  }
+
+  // Add product to wishlist
+  static addToWishlist(productId) {
+    const currentUser = AuthController.getCurrentUser();
+    if (currentUser) {
+      const users = User.getUsers();
+      const userIndex = users.findIndex((user) => user.id === currentUser.id);
 
       if (userIndex !== -1) {
-        const user = users[userIndex];
-        const items = user.wishList;
-        const existingItemIndex = items.findIndex(
-          (i) => i.itemId === item.itemId
+        const wishlistIndex = users[userIndex].wishlist.findIndex(
+          (item) => item.id === productId
         );
 
-        if (existingItemIndex !== -1) {
-          // If item exists, remove it from wishlist
-          items.splice(existingItemIndex, 1);
+        if (wishlistIndex === -1) {
+          // Product not in wishlist, add it
+          users[userIndex].wishlist.push({ id: productId });
+          User.saveUsers(users);
         } else {
-          // If item doesn't exist, add it to wishlist
-          items.push(item);
+          // Product already in wishlist, remove it
+          users[userIndex].wishlist.splice(wishlistIndex, 1);
+          User.saveUsers(users);
         }
-
-        // Update user's wishlist and save users
-        user.wishList = items;
-        users[userIndex] = user;
-        User.saveUsers(users);
+      } else {
+        alert("User not found.");
       }
+    } else {
+      alert("Please log in to add items to wishlist.");
     }
   }
+
+  // Remove product from wishlist
+  // static removeFromWishlist(productId) {
+  //   const currentUser = AuthController.getCurrentUser();
+  //   if (currentUser) {
+  //     const users = User.getUsers();
+  //     const userIndex = users.findIndex((user) => user.id === currentUser.id);
+
+  //     if (userIndex !== -1) {
+  //       users[userIndex].wishlist = users[userIndex].wishlist.filter(
+  //         (item) => item.itemId !== productId
+  //       );
+  //       User.saveUsers(users);
+  //       alert("Product removed from wishlist.");
+  //     } else {
+  //       alert("User not found.");
+  //     }
+  //   } else {
+  //     alert("Please log in to remove items from wishlist.");
+  //   }
+  // }
 
   static isProductInCart(productId) {
     const currentUser = AuthController.getCurrentUser();
     if (currentUser) {
       const cartItems = User.getCartItems();
-      console.log(cartItems);
       return cartItems.some((item) => item.id === productId);
     }
     return false;
   }
 
-  static changeIcon(button) {
-    const icon = button.querySelector("i.bi");
-
-    if (icon.classList.contains("bi-cart-plus-fill")) {
-      icon.classList.remove("bi-cart-plus-fill");
-      icon.classList.add("bi-cart-check-fill");
-      button.classList.remove("btn-primary");
-      button.classList.add("btn-success");
+  static isProductInWishlist(productId) {
+    const currentUser = AuthController.getCurrentUser();
+    if (currentUser) {
+      const wishlist = UserController.getWishlist();
+      return wishlist.some((item) => item.id === productId);
     }
+    return false;
+  }
 
-    if (icon.classList.contains("bi-bag-heart")) {
-      icon.classList.remove("bi-bag-heart");
-      icon.classList.add("bi-bag-heart-fill");
-      button.classList.remove("btn-primary");
-      button.classList.add("btn-danger");
+  // change cart and wishlist icon
+
+  static changeIcon(button) {
+    if (AuthController.getCurrentUser()) {
+      const icon = button.querySelector("i.bi");
+
+      if (icon.classList.contains("bi-cart-plus-fill")) {
+        icon.classList.remove("bi-cart-plus-fill");
+        icon.classList.add("bi-cart-check-fill");
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-success");
+      }
+
+      if (icon.classList.contains("bi-bag-heart")) {
+        icon.classList.remove("bi-bag-heart");
+        icon.classList.add("bi-bag-heart-fill");
+        button.classList.remove("btn-secondary");
+        button.classList.add("btn-danger");
+      } else {
+        icon.classList.remove("bi-bag-heart-fill");
+        icon.classList.add("bi-bag-heart");
+        button.classList.remove("btn-danger");
+        button.classList.add("btn-secondary");
+      }
     }
   }
 }

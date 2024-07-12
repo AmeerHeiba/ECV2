@@ -177,6 +177,10 @@ function renderUserAddresses() {
   }
 }
 
+// validate user input
+
+// update User Addresses
+
 function updateAddressModal(addressId) {
   const user = UserController.getUser();
   const address = user.addresses.find((addr) => addr.id === addressId);
@@ -227,8 +231,7 @@ document
     renderUserAddresses();
   });
 
-// OrderController.renderOrders();
-// WishlistController.renderWishlist();
+renderWishlist();
 
 document.querySelector("#profile-info").addEventListener("click", function () {
   document.querySelector("#profile-card").classList.remove("d-none");

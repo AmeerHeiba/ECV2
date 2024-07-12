@@ -2,6 +2,13 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize animations
   AOS.init();
 
+  const wishlistLink = document.getElementById("wishlist-link");
+  if (!AuthController.getCurrentUser()) {
+    wishlistLink.classList.add("d-none");
+  } else {
+    wishlistLink.classList.add("d-block");
+  }
+
   // Welcome user
   UIController.welcomeUser("white");
 
@@ -33,17 +40,18 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Load featured products on home page
-  if (document.getElementById("featured-products")) {
-    const products = Product.getProducts();
-    let featuredProducts = products.slice(0, 8); // get the first 8 products
-    featuredProducts = shuffleArray(featuredProducts);
-    const featuredProductsContainer =
-      document.getElementById("featured-products");
+  function renderProducts() {
+    if (document.getElementById("featured-products")) {
+      const products = Product.getProducts();
+      let featuredProducts = products.slice(0, 8); // get the first 8 products
+      featuredProducts = shuffleArray(featuredProducts);
+      const featuredProductsContainer =
+        document.getElementById("featured-products");
 
-    featuredProducts.forEach((product) => {
-      const isInCart = UserController.isProductInCart(product.id);
-      console.log(isInCart);
-      const productCard = `
+      featuredProducts.forEach((product) => {
+        const isInCart = UserController.isProductInCart(product.id);
+        const isInWishlist = UserController.isProductInWishlist(product.id);
+        const productCard = `
         <!-- card start -->
         <div class="card me-4">
           <img
@@ -55,19 +63,19 @@ window.addEventListener("DOMContentLoaded", () => {
             <a id="add-to-cart" class="btn rounded-5 mb-2 ${
               isInCart ? "btn-success" : "btn-primary"
             }" onclick="UserController.addToCart(${
-        product.id
-      }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
+          product.id
+        }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
               <i class="bi ${
                 isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
               }"></i>
             </a>
-            <a class="btn btn-secondary rounded-5" onclick="UserController.addItemToWishlist('${
-              product.id
-            }'); UserController.changeIcon(this);">
+            <a id="wishlist-btn" class="btn ${
+              isInWishlist ? "btn-danger" : "btn-secondary"
+            } rounded-5" onclick="UserController.addToWishlist(${
+          product.id
+        }); UserController.changeIcon(this); ">
               <i class="bi ${
-                UserController.isProductInCart(product.id)
-                  ? "bi-bag-heart-fill"
-                  : "bi-bag-heart"
+                isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
             </a>
           </div>
@@ -85,7 +93,9 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
         <!-- card end -->
       `;
-      featuredProductsContainer.innerHTML += productCard;
-    });
+        featuredProductsContainer.innerHTML += productCard;
+      });
+    }
   }
+  renderProducts();
 });

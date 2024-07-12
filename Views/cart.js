@@ -5,14 +5,15 @@ UIController.welcomeUser("dark");
 UIController.updateCartIcon();
 
 function renderCartItems() {
-  const cartItems = User.getCartItems();
-  const cartItemsContainer = document.getElementById("cart-items");
-  const bodyContainer = document.querySelector(".cart");
-  cartItemsContainer.innerHTML = "";
-  if (cartItems.length > 0) {
-    cartItems.forEach((item) => {
-      const product = Product.getProductById(item.id);
-      const cartItem = `
+  if (AuthController.getCurrentUser()) {
+    const cartItems = User.getCartItems();
+    const cartItemsContainer = document.getElementById("cart-items");
+    const bodyContainer = document.querySelector(".cart");
+    cartItemsContainer.innerHTML = "";
+    if (cartItems.length > 0) {
+      cartItems.forEach((item) => {
+        const product = Product.getProductById(item.id);
+        const cartItem = `
          <div class="card my-4 p-1">
           <div class="row g-4 align-items-center">
             <div class="col-6 col-md-4 border-end h-50">
@@ -51,12 +52,16 @@ function renderCartItems() {
           </div>
         </div>
         `;
-      cartItemsContainer.innerHTML += cartItem;
-    });
+        cartItemsContainer.innerHTML += cartItem;
+      });
 
-    updateSummary();
+      updateSummary();
+    } else {
+      bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888"; class='text-center mt-5 '>There are no items in your cart.</h5> <i style='font-size: 17rem; color: #eee'; class='bi bi-cart-x'></i></div>`;
+    }
   } else {
-    bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888"; class='text-center mt-5 '>There are no items in your cart.</h5> <i style='font-size: 17rem; color: #eee'; class='bi bi-cart-x'></i></div>`;
+    alert("Please login to view your cart");
+    window.location.href = "./login.html";
   }
 }
 
@@ -159,8 +164,8 @@ function removeFromCart(id) {
   document
     .getElementById("cardName")
     .addEventListener("input", function (event) {
-      // Remove non-letter characters and convert to uppercase
-      let value = event.target.value.replace(/[^A-Za-z]/g, "").toUpperCase();
+      // Remove non-letter characters and convert to uppercase, allow spaces
+      let value = event.target.value.replace(/[^A-Za-z\s]/g, "").toUpperCase();
 
       event.target.value = value;
     });
@@ -179,16 +184,18 @@ function togglePaymentDetails() {
 togglePaymentDetails();
 
 function populateAddresses() {
-  const addresses = User.getAddresses();
-  const addressSelect = document.getElementById("addresses");
-  addressSelect.innerHTML = ""; // Clear existing options
+  if (AuthController.getCurrentUser()) {
+    const addresses = User.getAddresses();
+    const addressSelect = document.getElementById("addresses");
+    addressSelect.innerHTML = ""; // Clear existing options
 
-  addresses.forEach((address) => {
-    const option = document.createElement("option");
-    option.value = address.id;
-    option.textContent = `${address.title}, ${address.address}, ${address.city}, ${address.zipCode}`;
-    addressSelect.appendChild(option);
-  });
+    addresses.forEach((address) => {
+      const option = document.createElement("option");
+      option.value = address.id;
+      option.textContent = `${address.title}, ${address.address}, ${address.city}, ${address.zipCode}`;
+      addressSelect.appendChild(option);
+    });
+  }
 }
 
 populateAddresses();

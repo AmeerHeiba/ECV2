@@ -1,110 +1,117 @@
 [
-    {
+  {
+    "id": 1,
+    "username": "Customer1",
+    "password": "Customer1@",
+    "email": "customer1@example.com",
+    "role": "customer",
+    "firstName": "Emily",
+    "lastName": "Clark",
+    "contact": "0555123456",
+    "addresses": [
+      {
         "id": 1,
-        "username": "Customer1",
-        "password": "Customer1@",
-        "email": "customer1@example.com",
-        "role": "customer",
-        "firstName": "Emily",
-        "lastName": "Clark",
-        "contact": "0555123456",
-        "addresses": {
-            "0": "San Francisco",
-            "1": "Downtown"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
+        "title": "San Francisco",
+        "address": "Downtown",
+        "city": "LA",
+        "zipCode": 46546
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  },
+  {
+    "id": 2,
+    "username": "Customer2",
+    "password": "Customer2@",
+    "email": "customer2@example.com",
+    "role": "customer",
+    "firstName": "Michael",
+    "lastName": "Lee",
+    "contact": "0655234567",
+    "addresses": {
+      "0": "Seattle",
+      "1": "Capitol Hill"
     },
-    {
-        "id": 2,
-        "username": "Customer2",
-        "password": "Customer2@",
-        "email": "customer2@example.com",
-        "role": "customer",
-        "firstName": "Michael",
-        "lastName": "Lee",
-        "contact": "0655234567",
-        "addresses": {
-            "0": "Seattle",
-            "1": "Capitol Hill"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {}
+  },
+  {
+    "id": 3,
+    "username": "Customer3",
+    "password": "Customer3@",
+    "email": "customer3@example.com",
+    "role": "customer",
+    "firstName": "Sarah",
+    "lastName": "Wilson",
+    "contact": "0755345678",
+    "addresses": {
+      "0": "Denver",
+      "1": "Cherry Creek"
     },
-    {
-        "id": 3,
-        "username": "Customer3",
-        "password": "Customer3@",
-        "email": "customer3@example.com",
-        "role": "customer",
-        "firstName": "Sarah",
-        "lastName": "Wilson",
-        "contact": "0755345678",
-        "addresses": {
-            "0": "Denver",
-            "1": "Cherry Creek"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {}
+  },
+  {
+    "id": 4,
+    "username": "Customer4",
+    "password": "Customer4@",
+    "email": "customer4@example.com",
+    "role": "customer",
+    "firstName": "David",
+    "lastName": "Garcia",
+    "contact": "0855456789",
+    "addresses": {
+      "0": "Boston",
+      "1": "Back Bay"
     },
-    {
-        "id": 4,
-        "username": "Customer4",
-        "password": "Customer4@",
-        "email": "customer4@example.com",
-        "role": "customer",
-        "firstName": "David",
-        "lastName": "Garcia",
-        "contact": "0855456789",
-        "addresses": {
-            "0": "Boston",
-            "1": "Back Bay"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {}
+  },
+  {
+    "id": 5,
+    "username": "Customer5",
+    "password": "Customer5@",
+    "email": "customer5@example.com",
+    "role": "customer",
+    "firstName": "Laura",
+    "lastName": "Martinez",
+    "contact": "0955567890",
+    "addresses": {
+      "0": "Austin",
+      "1": "Downtown"
     },
-    {
-        "id": 5,
-        "username": "Customer5",
-        "password": "Customer5@",
-        "email": "customer5@example.com",
-        "role": "customer",
-        "firstName": "Laura",
-        "lastName": "Martinez",
-        "contact": "0955567890",
-        "addresses": {
-            "0": "Austin",
-            "1": "Downtown"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {}
+  },
+  {
+    "id": 6,
+    "username": "Customer6",
+    "password": "Customer6@",
+    "email": "customer6@example.com",
+    "role": "customer",
+    "firstName": "James",
+    "lastName": "Hernandez",
+    "contact": "1055678901",
+    "addresses": {
+      "0": "Portland",
+      "1": "Pearl District"
     },
-    {
-        "id": 6,
-        "username": "Customer6",
-        "password": "Customer6@",
-        "email": "customer6@example.com",
-        "role": "customer",
-        "firstName": "James",
-        "lastName": "Hernandez",
-        "contact": "1055678901",
-        "addresses": {
-            "0": "Portland",
-            "1": "Pearl District"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    }
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {}
+  }
 ]

@@ -23,7 +23,7 @@ class User {
     this.cart = []; // Array of objects
     this.orders = [];
     this.paymentInfo = {}; // card#,cardName,ExpirySDate,cvv
-    this.wishList = [];
+    this.wishlist = [];
   }
 
   static getUsers() {
@@ -143,6 +143,7 @@ class User {
       const currentUser = AuthController.getCurrentUser() || [];
       const users = User.getUsers();
       const user = users.find((i) => i.id === currentUser.id);
+      console.log(user);
       const addresses = user.addresses;
       return addresses;
     } else {
