@@ -121,7 +121,11 @@
           <div class="collapse navbar-collapse col" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
               <li class="nav-item" id="logged-user">
-                <a class="nav-link active" aria-current="page" href="login.html"
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  data-bs-toggle="modal"
+                  data-bs-target="#login"
                   ><i class="bi bi-person-fill text-light">&nbsp Login</i></a
                 >
               </li>
@@ -151,6 +155,82 @@
       </nav>
       <!-- first navbar end -->
 
+      <!-- login modal start -->
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="login"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <form id="login-form" class="my-3">
+                  <div class="form-group my-2">
+                    <label for="username">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-2">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group mb-2">
+                    <a
+                      href="customerRegister.html"
+                      class="btn text-secondary p-0"
+                      >Not a user? Register here</a
+                    >
+                  </div>
+
+                  <button
+                    type="submit"
+                    name="submitBtn"
+                    value="userLogin"
+                    class="btn btn-info text-white mt-3"
+                  >
+                    Login
+                  </button>
+                  <button
+                    type="submit"
+                    name="submitBtn"
+                    value="sellerLogin"
+                    class="btn btn-outline-info mt-3"
+                  >
+                    Login for Sellers
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login modal end -->
+
       <!-- second navbar start -->
       <nav class="navbar navbar-expand navbar-light bg-light">
         <div
@@ -158,7 +238,9 @@
         >
           <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-6 h-scroll-child">
             <li class="nav-item border-end mx-2 col-4 col-xl-3">
-              <a class="nav-link active" href="productCatalog.html"> All Categories </a>
+              <a class="nav-link active" href="productCatalog.html">
+                All Categories
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#category2">Furniture</a>
@@ -446,10 +528,12 @@
     <script src="../Models/userModel.js"></script>
     <script src="../Models/sellerModel.js"></script>
 
+    <script src="../Views/Login.js"></script>
+    <script src="./home.js"></script>
+
     <script src="../Controllers/authController.js"></script>
     <script src="../Models/productModel.js"></script>
     <script src="../Controllers/userController.js"></script>
     <script src="../Controllers/UIController.js"></script>
-    <script src="home.js"></script>
   </body>
 </html>
