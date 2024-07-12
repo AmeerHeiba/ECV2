@@ -12,12 +12,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <style>
-      .custom-card {
-        width: 90%;
-        border: none;
-      }
-    </style>
+    
   </head>
   <body>
     <!-- first navbar start -->
@@ -106,23 +101,40 @@
     <!-- second navbar end -->
 
     <!-- products catalog start -->
-    <div class="container my-4 col-10 my-4">
-      <div class="search-container">
+    <div class="container my-4 col-10 my-4 ">
+    <div class="d-flex ">
         <h3 class="my-4">Product Catalog</h3>
-
-        <div id="product-wrapper" class="row gap-4">
-          <h2
-            id="no-match-message"
-            style="
-              display: none;
-              text-align: center;
-              color: rgb(202, 194, 194);
-              margin: 110px auto;
-            "
+        <div class="form-floating  form-select-sm my-2 ">
+          <select
+            class="form-select"
+            id="productCategory"            
           >
-            No products match your search.
-          </h2>
+            <option value="">Filter By category</option>
+            <option value="living-room">Living Room</option>
+            <option value="bedroom">Bedroom</option>
+            <option value="dining-room">Dining Room</option>
+            <option value="office">Office</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+          <label for="productCategory">Category</label>
+          
         </div>
+        <div class="form-floating  form-select-sm my-2 ">
+          <select
+            class="form-select"
+            id="priceFilter"            
+          >
+            <option value="">Filter By Price</option>
+            
+            <option value="ascending">From Low To High</option>
+            <option value="descending">From High To Low</option>
+          </select>
+          <label for="productPrice">Price</label>
+          
+        </div>
+      </div>
+        <div id="product-wrapper" class="row gap-4">
+          
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
