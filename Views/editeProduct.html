@@ -12,12 +12,40 @@
     <link href="../assets/css/sidebarDashboard.css" rel="stylesheet" />
 
     <style>
-      .img-preview {
-        display: none;
-        max-width: 100%;
-        margin-top: 10px;
+      .upload__img-wrap {
+        display: flex;
+        flex-wrap: wrap;
       }
-    </style>
+      .upload__img-box {
+        width: 150px;
+        padding: 0 10px;
+        position: relative;
+      }
+      .upload__img-close {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        z-index: 1;
+        cursor: pointer;
+      }
+      .upload__img-close::after {
+        content: '\2716';
+        font-size: 14px;
+        color: white;
+      }
+      .img-bg {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        padding-bottom: 100%;
+      }
+      </style>
   </head>
   <body>
     <div class="wrapper">
@@ -43,7 +71,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="#" onclick="AuthController.logout()">
               <i class="fas fa-sign-out-alt"></i> Logout
             </a>
           </li>
@@ -128,25 +156,11 @@
            
             <div class="form-group my-4">
               <div class="input-group mb-3">
-                <input type="file" class="form-control" id="productImage" accept="image/*"
-                required>
+                <input type="file" class="form-control upload__inputfile" id="productImages" accept="image/*" multiple>
+
                 <label class="input-group-text" for="productImage">Upload Image</label>
               </div>
-              <img
-                id="imgPreview"
-                class="img-preview"
-                src="#"
-                alt="Image Preview"
-                width="100"
-              />
-              <button
-                type="button"
-                id="changeImageBtn"
-                class="btn btn-warning mt-3"
-                style="display: none; background-color:rgb(197, 157, 110); color: white; border:0;"
-              >
-                Change Image
-              </button>
+              <div class="upload__img-wrap"></div>
               <div class="invalid-feedback">Please upload a product image.</div>
             </div>
             <button type="submit" class="btn btn-custom">Save</button>

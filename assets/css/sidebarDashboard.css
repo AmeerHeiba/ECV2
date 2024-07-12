@@ -2,8 +2,9 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin: 0; /* Remove default margin */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin: 0; 
+  overflow-x: hidden;
+  text-transform: capitalize; 
 }
 .wrapper {
   flex: 1;
@@ -28,7 +29,7 @@ i {
 .content {
   flex: 1;
   padding: 20px;
-  overflow-y: auto; /* Enable vertical scrolling for content */
+  overflow-y: auto; 
 }
 .search-container {
   display: flex;
@@ -40,11 +41,10 @@ td img {
   height: 60px;
 }
 .btn-custom {
-  width: 150px;
+  width: 120px;
   background-color: #754114;
   border: 0;
-  color: white; /* Set text color to white */
-  /* margin-left: 10px; */
+  color: white; 
 }
 .btn-custom:hover {
   background-color: rgba(202, 162, 130, 0.192);
@@ -66,7 +66,7 @@ td img {
   height: 50px;
   border-radius: 100%;
 }
-.edit-icon:hover {
+.edit-eye-icon:hover {
   color: #754114;
 
 }
@@ -91,7 +91,7 @@ td img {
     text-align: center; 
     padding-left: 0; 
     position: relative;
-    max-width: 100px; /* Adjust max-width for smaller screens */
+    max-width: 100px; 
   }
   .table td::before {
     content: attr(data-label);
@@ -104,7 +104,6 @@ td img {
   }
   
 }
-/* Truncate long descriptions with ellipsis (...) */
 .table td:nth-child(4),.table td:nth-child(3){
   max-width: 100px; 
   white-space: nowrap;

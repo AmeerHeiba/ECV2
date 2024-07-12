@@ -1,10 +1,10 @@
 // productModel.js
 
 class Product {
-  constructor(id, name, image, price, description, stock, seller_id, date,category) {
+  constructor(id, name, images, price, description, stock, seller_id, date,category) {
     this.id = id || Product.getNextProductId();
     this.name = name;
-    this.image = image;
+    this.images = images;
     this.category=category
     this.price = price;
     this.description = description;
