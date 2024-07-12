@@ -19,10 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const contact = document.getElementById('contact').value;
             const address1 = document.getElementById('address-1').value;
             const address2 = document.getElementById('address-2').value;
-            const addresses = {
-                0:address1,
-                1:address2
-            };
+            const addresses = [address1,address2];
     if(filename === 'customerRegister'){
 
                 // const email = document.getElementById('email').value;
