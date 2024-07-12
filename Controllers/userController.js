@@ -219,6 +219,11 @@ class UserController {
         icon.classList.add("bi-cart-check-fill");
         button.classList.remove("btn-primary");
         button.classList.add("btn-success");
+      } else if (icon.classList.contains("bi-cart-check-fill")) {
+        icon.classList.remove("bi-cart-check-fill");
+        icon.classList.add("bi-cart-plus-fill");
+        button.classList.remove("btn-success");
+        button.classList.add("btn-primary");
       }
 
       if (icon.classList.contains("bi-bag-heart")) {
@@ -226,7 +231,7 @@ class UserController {
         icon.classList.add("bi-bag-heart-fill");
         button.classList.remove("btn-secondary");
         button.classList.add("btn-danger");
-      } else {
+      } else if (icon.classList.contains("bi-bag-heart-fill")) {
         icon.classList.remove("bi-bag-heart-fill");
         icon.classList.add("bi-bag-heart");
         button.classList.remove("btn-danger");

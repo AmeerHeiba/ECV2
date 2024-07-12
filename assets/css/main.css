@@ -41,10 +41,17 @@ body::-webkit-scrollbar-thumb:hover {
   color: white;
 }
 
+.input-group input:focus,
+.form-control:focus {
+  border-color: yellow; /* Change this color to your desired focus color */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Optional: Add a box shadow for better visibility */
+}
+
 nav i {
   font-style: normal;
 
   font-size: 1.1rem;
+  cursor: pointer;
 }
 
 .navbar-1 {
