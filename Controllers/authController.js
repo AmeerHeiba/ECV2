@@ -59,7 +59,7 @@ class AuthController {
 
     static logout() {
         localStorage.removeItem('currentUser');
-        window.location.href = 'login.html';
+        window.location.href = 'home.html';
     }
 
     static getCurrentUser() {
