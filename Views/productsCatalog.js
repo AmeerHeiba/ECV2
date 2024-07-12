@@ -1,5 +1,5 @@
 function createProductCard(product) {
-    return `
+  return `
            <div class="card col-12 col-xl-2">
       <img
         src="${product.images[0]}"
@@ -8,7 +8,9 @@ function createProductCard(product) {
       />
       
       <div class="card-body">
-        <h6 class="mb-3">${product.name}</h6>
+        <h5 class="mb-3">${product.name}</h5>
+                      <p class="card-text" style="color: #754114; margin-top: 1rem;">${product.category}</p>
+
         <div class="d-flex flex-column align-items-start">
           <h4 class="mb-3">
             <span class="currency me-1">EGP</span>${product.price}
@@ -22,38 +24,65 @@ function createProductCard(product) {
       </div>
     </div>
     `;
+}
+
+function renderProducts(products) {
+  const productList = document.getElementById("product-wrapper");
+  productList.innerHTML = "";
+
+  if (products.length === 0) {
+    productList.innerHTML =
+      '<h2 style="text-align: center;color: rgb(202, 194, 194);margin: 110px auto">No products match.</h2>';
+  } else {
+    products.forEach((product) => {
+      productList.innerHTML += createProductCard(product);
+    });
+  }
+}
+
+function getFilteredProducts() {
+  const searchInput = document
+    .getElementById("search-product")
+    .value.trim()
+    .toLowerCase();
+  const selectedCategory = document
+    .getElementById("productCategory")
+    .value.trim()
+    .toLowerCase();
+  const priceFilter = document.getElementById("priceFilter").value;
+
+  let products = Product.getProducts();
+  products = products.filter((product) => {
+    const productName = product.name.toLowerCase();
+    const productCategory = product.category.toLowerCase();
+    return (
+      (productName.includes(searchInput) || searchInput === "") &&
+      (productCategory === selectedCategory || selectedCategory === "")
+    );
+  });
+
+  if (priceFilter === "ascending") {
+    products.sort((a, b) => a.price - b.price);
+  } else if (priceFilter === "descending") {
+    products.sort((a, b) => b.price - a.price);
   }
 
-  // Inject product cards into the product list
-  const productList = document.getElementById("product-wrapper");
-  const savedProducts = Product.getProducts(); // Fetch products from local storage
-  savedProducts.forEach((product) => {
-    productList.innerHTML += createProductCard(product);
-  });
-  function filterProducts() {
-    const searchInput = document.getElementById("search-product");
-    const filter = searchInput.value.trim().toLowerCase();
-    const productCards = document.querySelectorAll('.card');
-    let matchFound = false; // Flag to track if any matching product is found
-  
-    productCards.forEach(card => {
-      const productName = card.querySelector('h6').textContent.toLowerCase(); // Assuming product name is inside <h6> tag
-  
-      if (productName.includes(filter)) {
-        card.style.display = ''; // Show the card
-        matchFound = true; // Set flag to true if a match is found
-      } else {
-        card.style.display = 'none'; // Hide the card
-      }
-    });
-  
-    // Display message if no products match the filter
-    const noMatchMessage = document.getElementById('no-match-message');
-    if (!matchFound) {
-      noMatchMessage.style.display = 'block'; // Show the message
-    } else {
-      noMatchMessage.style.display = 'none'; // Hide the message
-    }
-  }
-  
-  
+  return products;
+}
+
+function displayFilteredProducts() {
+  const filteredProducts = getFilteredProducts();
+  renderProducts(filteredProducts);
+}
+
+renderProducts(Product.getProducts());
+
+document
+  .getElementById("priceFilter")
+  .addEventListener("change", displayFilteredProducts);
+document
+  .getElementById("search-product")
+  .addEventListener("input", displayFilteredProducts);
+document
+  .getElementById("productCategory")
+  .addEventListener("change", displayFilteredProducts);
