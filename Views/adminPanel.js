@@ -120,7 +120,12 @@ function refreshRejectedSellerTable() {
 }
 
 
+function resetUserPass(id){
+    const user = User.getUserById(id);
+    user.password = '123456Aa@';
+    User.updateUserData(id, user);
 
+}
 
 
 
@@ -348,6 +353,7 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 <button class="btn btn-success btn-sm" type="button" data-id="${seller.id}" data-action="activate">Activate</button>
                 <button class="btn btn-danger btn-sm" type="button" data-id="${seller.id}" data-action="suspend">Suspend</button>
                 <button class="btn btn-primary btn-sm" type="button" data-id="${seller.id}" data-action="edit">Modify</button>
+                <button class="btn btn-primary btn-sm" type="button" data-id="${seller.id}" data-action="resetpass">Reset Password</button>
             </td>
         `;
         sellersTable.appendChild(row);
@@ -360,7 +366,7 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             
           
             if (requestAction === 'activate') {
-                console.log(sellerId)
+                
                 UserController.setState(true, sellerId)
             }else if (requestAction === 'suspend'){
                 UserController.setState(false, sellerId)
@@ -377,6 +383,8 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 document.getElementById('editSellerState').value = seller.state;
                 // Show the modal
                 new bootstrap.Modal(document.getElementById('editSellerModal')).show();
+            }else if(requestAction === 'resetpass'){
+                resetUserPass(sellerId);
             }
         }
 
@@ -432,6 +440,7 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 <button class="btn btn-success btn-sm" type="button" data-id="${user.id}" data-action="activate">Activate</button>
                 <button class="btn btn-danger btn-sm" type="button" data-id="${user.id}" data-action="suspend">Suspend</button>
                 <button class="btn btn-primary btn-sm" type="button" data-id="${user.id}" data-action="edit">Modify</button>
+                <button class="btn btn-primary btn-sm" type="button" data-id="${user.id}" data-action="resetpass">Reset Password</button>
             </td>
         `;
         usersTable.appendChild(row);
@@ -461,6 +470,8 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 document.getElementById('editUserState').value = user.state;
                 // Show the modal
                 new bootstrap.Modal(document.getElementById('editUserModal')).show();
+            }else if(requestAction === 'resetpass'){
+                resetUserPass(userId);
             }
         }
 

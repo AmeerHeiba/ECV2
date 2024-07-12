@@ -34,4 +34,17 @@ class AdminModel {
         const admins = AdminModel.getAdmins();
         return admins.find(admin => admin.id === id);
     }
+
+    static updateAdminDetails(adminId, newDetails) {
+        const admins = this.getAdmins();
+        const adminIndex = admins.findIndex((admin) => admin.id === adminId);
+    
+        if (adminIndex !== -1) {
+            admins[adminIndex] = { ...admins[adminIndex], ...newDetails };
+          this.saveAdmins(admins);
+          alert("Account details updated successfully.");
+        } else {
+          alert("User not found.");
+        }
+      }
 }
