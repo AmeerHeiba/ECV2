@@ -13,9 +13,30 @@ cardContainer.innerHTML = `
   <div class="card custom-card">
     <div class="row">
       <div class="col-md-4 border-0 pe-3 my-5 border-end">
-        <img src="${
-          product.images[0]
-        }" class="img-fluid rounded-start" alt="..."/>
+       <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+        <div class="carousel-inner">
+          ${product.images
+            .map(
+              (image, index) => `
+            <div class="carousel-item ${index === 0 ? "active" : ""}">
+              <img src="${image}" class="img-fluid rounded-start carousel-image" alt="Product Image ${
+                index + 1
+              }">
+            </div>
+          `
+            )
+            .join("")}
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
       </div>
       <div class="col-md-8">
         <div class="card-body">
