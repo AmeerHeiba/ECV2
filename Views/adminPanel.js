@@ -1,6 +1,6 @@
 function refreshProductsTable() {
-    // const productData = ProductController.getproducts(); // TO BE HANDLED 
-    const productData = JSON.parse(localStorage.getItem('products'));
+    const productData = Product.getProducts(); // TO BE HANDLED 
+    // const productData = JSON.parse(localStorage.getItem('products'));
     productsTable.innerHTML = '';
     productData.forEach(product => {
         const row = document.createElement('tr');
@@ -73,6 +73,28 @@ function refreshUsersTable() {
 }
 
 
+function refreshSupportTable() {
+    const supportData = SupportRequest.getSupportRequests();
+    // const productData = JSON.parse(localStorage.getItem('products'));
+    supportTable.innerHTML = ''; // Clear existing rows
+    supportData.forEach(request => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <th scope="row">${request.id}</th>
+            <td>${request.fullName}</td>
+            <td>${request.emailAddress}</td>
+            <td>${request.subject}</td>
+            <td>${request.message}</td>
+            <td>${request.state}</td>
+            <td>
+                ${request.state === "Opened" ? `<button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
+            </td>
+        `;
+        supportTable.appendChild(row);
+    });
+}
+
+
 
 
 
@@ -112,7 +134,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
 if (window.location.pathname === '/Views/adminPanel.html') {
 
-    // checkAccess(['admin']); // only accessable to admins 
+    //charts
+
+    const ctx = document.getElementById('myChart');
+    const CountofCustomers = AdminController.getCountofCustomers();
+    const CountofSellers = AdminController.getCountofSellers();
+      
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Customers', 'Sellers'],
+        datasets: [{
+          label: ' Users segregation',
+          data: [CountofCustomers, CountofSellers],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+
+        }
+      }
+    });
+
+    const pendingSellersReqsChart = document.getElementById('pendingReq');
+    const CountofRejectedReqs = Seller.getRejectedSellerRequests().length;
+    
+    new Chart(pendingSellersReqsChart, {
+        type: 'doughnut',
+        data: {
+          labels: ['Rejected', 'Sellers'],
+          datasets: [{
+            label: ' Users segregation',
+            data: [CountofRejectedReqs, CountofSellers],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            },
+  
+          }
+        }
+      });
+
     
     const sellerRequestsTable = document.getElementById('sellerRequestsTable').getElementsByTagName("tbody")[0];
     const sellerRequests = AdminController.displaySellerRequests();
@@ -137,18 +207,73 @@ if (window.location.pathname === '/Views/adminPanel.html') {
         if (event.target && event.target.classList.contains('btn')) {
             const requestId = event.target.getAttribute('data-id');
             const requestAction = event.target.getAttribute('data-action');
-            
-          
+
             if (requestAction === 'approve') {
                 const sellerRequestData = Seller.getSellerRequestById(parseInt(requestId));
-                AdminController.approveSellerRequest(sellerRequestData)
-            }else if (requestAction === 'reject'){
-                const sellerRequestData = Seller.getSellerRequestById(parseInt(requestId));
-                AdminController.rejectSellerRequest(sellerRequestData)
+                AdminController.approveSellerRequest(sellerRequestData);
+            } else if (requestAction === 'reject') {
+                const modal = new bootstrap.Modal(document.getElementById('Rejection_Reason'));
+                modal.show();
+                
+                // Remove previous event listener to avoid duplication
+                const saveBtn = document.getElementById("saveBtn");
+                saveBtn.removeEventListener('click', handleSaveClick);
+                saveBtn.addEventListener('click', handleSaveClick.bind(null, requestId));
             }
         }
     });
 
+    function handleSaveClick(requestId) {
+        const rejectionReason = document.getElementById("rejectionReasoninput").value;
+        const sellerRequestData = Seller.getSellerRequestById(parseInt(requestId));
+        AdminController.rejectSellerRequest(sellerRequestData, rejectionReason);
+
+        // const recipientEmail = sellerRequestData.email; 
+
+        // Sending email using SMTPJS
+
+
+    }
+
+    // Rejected Table
+
+    const rejectedSellerRequestsTable = document.getElementById('RejectedSellerRequests').getElementsByTagName("tbody")[0];
+    const rejectedSellerRequests = Seller.getRejectedSellerRequests();
+    rejectedSellerRequestsTable.innerHTML = ''; // Clear existing rows
+    rejectedSellerRequests.forEach(request => {
+        const row = document.createElement('tr');
+        const adminName = AdminModel.getAdminById(request.rejectedBy);
+        row.innerHTML = `
+            <th scope="row">${request.id}</th>
+            <td>${request.firstName + " "+ request.lastName}</td>
+            <td>${request.email}</td>
+            <td>${request.contact}</td>
+            <td>${request.username}</td>
+            <td>${adminName.username}</td>
+            <td>${request.date}</td>
+            <td>
+                <button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
+            </td>
+        `;
+        rejectedSellerRequestsTable.appendChild(row);
+    });
+    rejectedSellerRequestsTable.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        if (event.target && event.target.classList.contains('btn')) {
+
+            const sellerId = parseInt(event.target.getAttribute('data-id'));
+            const requestAction = event.target.getAttribute('data-action');
+            
+          
+            if (requestAction === 'approve') {
+                const sellerRequestData = Seller.getRejectedSellerRequestByID(sellerId);
+                AdminController.approveRejectedSellerRequest(sellerRequestData);
+            }
+        }
+
+
+    })
 
     const sellersTable = document.getElementById('sellerDataTable').getElementsByTagName("tbody")[0];
     const sellerData = Seller.getSeller();
@@ -314,9 +439,47 @@ if (window.location.pathname === '/Views/adminPanel.html') {
         new bootstrap.Modal(document.getElementById('editUserModal')).hide();
     });
 
+
+    const supportTable = document.getElementById('supportTable').getElementsByTagName("tbody")[0];
+    const supportData = SupportRequest.getSupportRequests();
+    
+    supportTable.innerHTML = ''; // Clear existing rows
+    supportData.forEach(request => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <th scope="row">${request.id}</th>
+            <td>${request.fullName}</td>
+            <td>${request.emailAddress}</td>
+            <td>${request.subject}</td>
+            <td>${request.message}</td>
+            <td>${request.state}</td>
+            <td>
+                ${request.state === "Opened" ? `<button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
+            </td>
+        `;
+        supportTable.appendChild(row);
+    });
+
+
+    supportTable.addEventListener('click', function(event) {
+        if (event.target && event.target.classList.contains('btn')) {
+            const reqID = parseInt(event.target.getAttribute('data-id'));
+            const requestAction = event.target.getAttribute('data-action');
+            
+          
+            if (requestAction === 'resolve') {
+               
+                SupportRequest.closeRequest(reqID);
+                refreshSupportTable()
+            }
+        }
+
+
+    });
+
     const productsTable = document.getElementById('productsTable').getElementsByTagName("tbody")[0];
-    // const productData = ProductController.getproducts(); // Assuming getProducts() fetches all products
-    const productData = JSON.parse(localStorage.getItem('products'));
+    const productData = Product.getProducts(); // Assuming getProducts() fetches all products
+    // const productData = JSON.parse(localStorage.getItem('products'));
 
     productsTable.innerHTML = ''; // Clear existing rows
     productData.forEach(product => {
@@ -357,7 +520,9 @@ if (window.location.pathname === '/Views/adminPanel.html') {
                 // Show the modal
                 new bootstrap.Modal(document.getElementById('editProductModal')).show();
             }else if(requestAction === 'remove'){
-                console.log('Removed')
+                Product.deleteProduct(productId);
+                refreshProductsTable()
+
             }
         }
     });

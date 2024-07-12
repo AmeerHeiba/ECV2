@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/cart.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <!-- first navbar start -->
+    <nav
+      class="navbar navbar-1 navbar-expand-lg bg-transparent w-100 border-body"
+    >
+      <div class="container my-2">
+        <a class="h1 navbar-brand fsize-1" href="./home.html">Tea.</a>
+        <form class="d-flex col col-lg-8 mx-lg-5" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="What are you looking for?"
+            aria-label="Search"
+          />
+        </form>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
+            <li class="nav-item" id="logged-user">
+              <a class="nav-link active" aria-current="page" href="#"
+                ><i class="bi bi-person-fill">&nbsp Login</i></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="wishlist.html"
+                ><i class="bi bi-bag-heart-fill">&nbsp Wishlist</i></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="cart.html"
+                ><i class="bi bi-cart4"
+                  ><span
+                    id="notification"
+                    style="font-size: 0.6rem"
+                    class="position-absolute top-40 start-10 translate-middle badge rounded-circle"
+                  >
+                  </span
+                  >&nbsp Cart
+                </i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- first navbar end -->
+
+    <!-- second navbar start -->
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div
+        class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
+      >
+        <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-6 h-scroll-child">
+          <li class="nav-item border-end mx-2 col-4 col-xl-3">
+            <a class="nav-link active" href="#"> All Categories </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#category2">Furniture</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#category3">Storage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#category4">Bedrooms</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#category5">Outdoors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#category6">Appliances</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- second navbar end -->
+    <!-- cart start -->
+
+    <section class="cart container my-4 px-4">
+      <h3>Your Cart</h3>
+      <div class="row">
+        <div class="card col-lg-7 mt-4">
+          <div id="cart-items">
+            <!-- card -->
+          </div>
+        </div>
+        <div class="col-lg-5 px-4">
+          <div class="row">
+            <div class="card my-4 p-4">
+              <h4>Order Summary</h4>
+              <div class="d-flex justify-content-between mt-4">
+                <p>Subtotal</p>
+                <p id="sub-total"></p>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <p>VAT</p>
+                <p>14%</p>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <p>Shipping Fee</p>
+                <p class="text-success fw-bold">Free</p>
+              </div>
+              <hr />
+              <div class="d-flex justify-content-between">
+                <h4>Total</h4>
+                <h4 id="total"></h4>
+              </div>
+              <div class="d-grid gap-2 mt-4">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#checkout"
+                >
+                  Checkout
+                  <i class="bi bi-arrow-right-short"></i>
+                </button>
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="checkout"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="checkoutLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content p-5">
+                      <button
+                        type="button"
+                        class="btn-close align-self-end"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                      <div class="d-flex align-items-center mb-3">
+                        <h4>Address Information</h4>
+                      </div>
+
+                      <form id="checkout-form">
+                        <div class="form-group">
+                          <label for="fullName">Full Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required
+                          />
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="email">Email address</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="Enter email"
+                            required
+                          />
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="address">Address</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="address"
+                            placeholder="Enter your address"
+                            required
+                          />
+                        </div>
+                        <div class="form-row mt-3">
+                          <div class="form-group">
+                            <label for="city">City</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="city"
+                              required
+                            />
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="zip">ZIP Code</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="zip"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="payment">Payment Method</label>
+                          <select class="form-control" id="payment">
+                            <option>Credit Card</option>
+                            <option>PayPal</option>
+                            <option>Stripe</option>
+                          </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">
+                          Place Order
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- cart end -->
+    <script src="../Models/productModel.js"></script>
+    <script src="../Models/userModel.js"></script>
+    <script src="../Models/cartModel.js"></script>
+    <script src="../Models/orderModel.js"></script>
+    <script src="../Controllers/cartController.js"></script>
+    <script src="../Controllers/authController.js"></script>
+    <script src="../Controllers/orderController.js"></script>
+    <script>
+      //navbar welcome
+      let currentUser = true;
+
+      if (currentUser) {
+        const loggedUser = document.getElementById("logged-user");
+        loggedUser.innerHTML = `
+        <div class="dropdown nav-link p-0">
+          <button class="btn dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+          <i class="bi bi-person-fill"> Hi Ahmed!</i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="userDashboard.html">Profile</a></li>
+            <li><a class="dropdown-item" href="orders.html">Orders</a></li>
+            <li class="d-flex justify-content-center mt-2"><button class="btn btn-info col-10 ">Logout</button></li>
+          
+          </ul>
+        </div>
+        `;
+      }
+
+      // update cart icon notification
+      CartController.updateCartIcon();
+      // Handle adding products to cart
+      if (document.getElementById("add-to-cart-form")) {
+        document
+          .getElementById("add-to-cart-form")
+          .addEventListener("submit", (event) => {
+            event.preventDefault();
+            const productId = document.getElementById("product-id").value;
+            const quantity = document.getElementById("quantity").value;
+            CartController.addToCart(productId, quantity);
+          });
+      }
+
+      // Load cart items on cart page
+      if (document.getElementById("cart-items")) {
+        CartController.renderCartItems();
+      }
+
+      // Handle checkout process
+      if (document.getElementById("checkout-form")) {
+        document
+          .getElementById("checkout-form")
+          .addEventListener("submit", (event) => {
+            event.preventDefault();
+            const shippingDetails = {
+              address: document.getElementById("address").value,
+              city: document.getElementById("city").value,
+              zip: document.getElementById("zip").value,
+            };
+            const payment = document.getElementById("payment").value;
+            OrderController.checkout(shippingDetails, payment);
+          });
+      }
+    </script>
+  </body>
+</html>

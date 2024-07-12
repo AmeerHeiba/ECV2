@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Super Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- <script src="../assets/js/accessControl.js"></script>
     <script>
@@ -44,59 +44,89 @@
     <body>
         <div class="container">
             <h1 class="my-4">Super Admin Dashboard</h1>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2>Admins List</h2>
+            <div class="accordion" id="superadminAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingAdmins">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdminsTable" aria-expanded="true" aria-controls="collapseAdminsTable">
+                            Admins Accounts
+                        </button>
+                    </h2>
+                    <div id="collapseAdminsTable" class="accordion-collapse collapse show" aria-labelledby="headingAdmins" data-bs-parent="#AdminsTable">
+                        <div class="accordion-body">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h2>Admins List</h2>
+                                </div>
+                                <div class="card-body">
+                                    <table id="adminsTable" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Admin Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Contact</th>
+                                                <th scope="col">User Name</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-list-table-body">
+                                            <!-- Admin list will be inserted here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <table id="adminsTable" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Admin Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Contact</th>
-                                <th scope="col">User Name</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-list-table-body">
-                            <!-- Admin list will be inserted here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-    
-            <div class="card">
-                <div class="card-header">
-                    <h2>Add New Admin</h2>
-                </div>
-                <div class="card-body">
-                    <form id="add-admin-form">
-                        <div class="mb-3">
-                            <label for="admin-name" class="form-label">Admin Name</label>
-                            <input type="text" class="form-control" id="admin-name" required>
+
+                
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingAddAdmins">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdminsForm" aria-expanded="true" aria-controls="collapseAdminsForm">
+                                Add New Admin
+                            </button>
+                        </h2>
+                        <div id="collapseAdminsForm" class="accordion-collapse collapse collapse" aria-labelledby="headingAdmins" data-bs-parent="#AdminsForm">
+                            <div class="accordion-body">
+                                    
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h2>Add New Admin</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="add-admin-form">
+                                            <div class="mb-3">
+                                                <label for="admin-name" class="form-label">Admin Name</label>
+                                                <input type="text" class="form-control" id="admin-name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="admin-contact" class="form-label">Admin Contact</label>
+                                                <input type="number" class="form-control" id="admin-contact" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="admin-user" class="form-label">User Name</label>
+                                                <input type="text" class="form-control" id="admin-user" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="admin-email" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="admin-email" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="admin-password" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="admin-password" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Add Admin</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="admin-contact" class="form-label">Admin Contact</label>
-                            <input type="number" class="form-control" id="admin-contact" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="admin-user" class="form-label">User Name</label>
-                            <input type="text" class="form-control" id="admin-user" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="admin-email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="admin-email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="admin-password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="admin-password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Admin</button>
-                    </form>
-                </div>
-            </div>
+                    </div>
+            
+
+
+        
         </div>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../models/userModel.js"></script>

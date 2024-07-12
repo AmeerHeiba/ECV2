@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "fullName": "Ameer Abdullah Heiba Alsayed",
+        "emailAddress": "heibaameer@gmail.com",
+        "phoneNumber": "01118006607",
+        "subject": "issue",
+        "message": "asdasdasdasd",
+        "state":"Opened"
+    },
+    {
+        "id": 2,
+        "fullName": "Jane Marie Smith",
+        "emailAddress": "janemariesmith@example.com",
+        "phoneNumber": "555-5678-910",
+        "subject": "support",
+        "message": "I need help with my account settings.",
+        "state":"Opened"
+    },
+    {
+        "id": 3,
+        "fullName": "Alex Lee Johnson",
+        "emailAddress": "alexleejohnson@example.com",
+        "phoneNumber": "555-2345-678",
+        "subject": "feedback",
+        "message": "I wanted to provide some feedback on your service.",
+        "state":"Opened"
+    },
+    {
+        "id": 4,
+        "fullName": "Emily Ann Brown",
+        "emailAddress": "emilyannbrown@example.com",
+        "phoneNumber": "555-3456-789",
+        "subject": "query",
+        "message": "I have a question about my recent order.",
+        "state":"Closed"
+    },
+    {
+        "id": 5,
+        "fullName": "Michael David Wilson",
+        "emailAddress": "michaeldavidwilson@example.com",
+        "phoneNumber": "555-4567-890",
+        "subject": "complaint",
+        "message": "I am not satisfied with the product quality.",
+        "state":"Closed"
+    }
+]

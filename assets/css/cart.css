@@ -1,0 +1,13 @@
+.cart .card img {
+  height: 12rem;
+  object-fit: cover;
+  object-position: 65%;
+}
+
+#cart-items {
+  max-height: 400px; /* Adjust this value as needed */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}

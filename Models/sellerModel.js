@@ -1,16 +1,17 @@
 class Seller {
-    constructor(id, username, password, email, firstName,lastName,contact, addresses, date) {
+    constructor(id, username, password, email, firstName,lastName,contact, addresses, date, approvedBy) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = 'seller'; // 'customer', 'seller', 'admin'
         this.firstName = firstName;
-        this.lastName = lastName; /// store name
+        this.lastName = lastName; 
         this.contact = contact;
-        this.addresses = {};
+        this.addresses = addresses;
         this.state = true;
         this.date = date;
+        this.approvedBy = approvedBy;
         // this.image = image; 
         
     }
@@ -19,6 +20,15 @@ class Seller {
         return JSON.parse(localStorage.getItem('users')).filter(seller => seller.role === 'seller') || [];
     }
 
+    static getRejectedSellerRequests() {
+        const rejected =  localStorage.getItem('rejectedsellersRequests');
+        return rejected ? JSON.parse(rejected) : [];
+    }
+
+    static getRejectedSellerRequestByID(id) {
+        const rejected =  this.getRejectedSellerRequests()
+        return rejected.find(seller =>seller.id === id);
+    }
 
     static getSellerRequests() {
         const sellerRequests = localStorage.getItem('sellersRequests');
@@ -26,8 +36,23 @@ class Seller {
     }
 
     static getSellerRequestById(id){
-        const sellers = Seller.getSellerRequests();
+        const sellers = this.getSellerRequests();
         return sellers.find(seller =>seller.id === id);
+    }
+
+    static saveRejectedSellerRequests(sellerRequests){
+
+        localStorage.setItem('rejectedsellersRequests', JSON.stringify(sellerRequests));
+
+    }
+
+    static addSellerRequestToRejected(sellersRequest){
+
+        // localStorage.setItem('rejectedsellersRequests', JSON.stringify(sellersRequest));
+        const rejectedRequests = this.getRejectedSellerRequests()
+        rejectedRequests.push(sellersRequest);
+        this.saveRejectedSellerRequests(rejectedRequests)
+
     }
 
     // static saveSellers(sellers) {
@@ -36,13 +61,26 @@ class Seller {
 
     static removeSellerRequest(id){
 
-        const sellersRequests = Seller.getSellerRequests();
+        const sellersRequests = this.getSellerRequests();
         let index = sellersRequests.findIndex(obj => obj.id === id);
         if (index !== -1) {
             sellersRequests.splice(index, 1);
         }
 
         Seller.saveSellersRequests(sellersRequests)
+  
+
+    }
+
+    static removeRejectedSellerRequest(id){
+
+        const sellersRequests = this.getRejectedSellerRequests();
+        let index = sellersRequests.findIndex(obj => obj.id === id);
+        if (index !== -1) {
+            sellersRequests.splice(index, 1);
+        }
+
+        this.saveRejectedSellerRequests(sellersRequests);
   
 
     }

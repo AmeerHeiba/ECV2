@@ -1,8 +1,49 @@
+/* scrollbar */
+
+body {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #ffc107;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(to bottom, #0dcaf0, #ffc107);
+}
+
 /* navbar  */
+
+.navbar-1 {
+  z-index: 100;
+}
+
+.navbar-1 .dropdown-menu {
+  z-index: 200;
+}
+
+.dropdown-menu a:active,
+.dropdown-menu a:focus {
+  background-color: #0dcaf0;
+  color: white;
+}
 
 nav i {
   font-style: normal;
-  color: #754015;
+
+  font-size: 1.1rem;
 }
 
 .navbar-1 {
@@ -21,20 +62,14 @@ nav i {
 
 /* featured products */
 
-.h-scroll {
+.h-scroll-parent {
   overflow-x: auto;
 }
 
-.h-scroll .row,
-.navbar-nav {
-  display: flex;
+.h-scroll-child {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-}
-
-.h-scroll .row::-webkit-scrollbar {
-  display: none;
 }
 
 .featured .card {
@@ -74,4 +109,47 @@ nav i {
 .currency {
   font-weight: 400;
   font-size: 1rem;
+}
+
+/* wishlist */
+
+.wishlist-img {
+  height: 12rem;
+  object-fit: cover;
+}
+
+/* cart */
+
+.cart-img {
+  height: 12rem;
+  width: 14rem;
+  object-fit: cover;
+}
+
+/* headers */
+
+h3 {
+  position: relative;
+  padding-bottom: 20px; /* Adjust the padding as needed */
+}
+
+h3::after {
+  content: "";
+  display: block;
+  width: 5%;
+  height: 2px;
+  background-color: #ffc107;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* sidebar */
+
+.sidebar h6:hover {
+  background-color: #ffc107;
+}
+
+.sidebar:hover {
+  border: 1px solid #ddd;
 }

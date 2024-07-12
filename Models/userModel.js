@@ -20,6 +20,10 @@ class User {
         return JSON.parse(localStorage.getItem('users')) || [];
     }
 
+    static getCurrentUser() {
+        return JSON.parse(localStorage.getItem('currentUser'));
+    }
+
     static getCustomers(){
         return JSON.parse(localStorage.getItem('users')).filter(seller => seller.role === 'customer') || [];
     }

@@ -7,11 +7,20 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <script src="../assets/js/accessControl.js"></script>
     <script src="../assets/js/defaultDataLoader.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
     <script>
         auth.protectPage('admin');
     </script>
 
     <style>
+
+        .chartCon{
+            width: 15vw;
+            display: flex;
+            flex-direction: row;
+        }
         /* Custom responsive table styles */
         @media (max-width: 767.98px) {
             .table thead {
@@ -128,6 +137,11 @@
     <div class="container">
         <h1 class="my-4">Admin Dashboard</h1>
 
+        <div class="chartCon">
+            <canvas id="myChart"></canvas>
+            <canvas id="pendingReq"></canvas>
+        </div>
+
         <div class="accordion" id="adminAccordion">
 
             <!-- Seller Requests Section -->
@@ -164,6 +178,43 @@
                     </div>
                 </div>
             </div>
+
+
+                        <!-- Rejected Seller Requests Section -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingRejectedSellerRequests">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRejectedSellerRequests" aria-expanded="true" aria-controls="collapseheadingRejectedSellerRequests">
+                                    Rejected Seller Requests
+                                </button>
+                            </h2>
+                            <div id="collapseRejectedSellerRequests" class="accordion-collapse collapse show" aria-labelledby="RejectedSellerRequests" data-bs-parent="#adminAccordion">
+                                <div class="accordion-body">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h2>Rejected Seller Requests</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <table id="RejectedSellerRequests" class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Seller Name</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Contact</th>
+                                                        <th scope="col">User Name</th>
+                                                        <th scope="col">Rejected By</th>
+                                                        <th scope="col">Request Date</th>
+                                                        <th scope="col">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
             <!-- Sellers Accounts Section -->
             <div class="accordion-item">
@@ -236,6 +287,44 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Support Requests Section -->
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSupport">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSupport" aria-expanded="false" aria-controls="collapseSupport">
+                        Support Requests
+                    </button>
+                </h2>
+                <div id="collapseSupport" class="accordion-collapse collapse" aria-labelledby="headingSupport" data-bs-parent="#adminAccordion">
+                    <div class="accordion-body">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Support Requests</h2>
+            
+                            </div>
+                            <div class="card-body">
+                                <table id="supportTable" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col">Message</th>
+                                            <th scope="col">State</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Products Section -->
             <div class="accordion-item">
@@ -402,6 +491,30 @@
             </div>
         </div>
 
+
+<!-- Rejection Reason Modal -->
+<div class="modal fade" id="Rejection_Reason" tabindex="-1" aria-labelledby="rejectionReasonLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rejectionReasonLabel">Rejection Reason</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="rejectionReasoninput" class="form-label">Reason</label>
+                    <input type="text" class="form-control" id="rejectionReasoninput">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     </div>
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
@@ -412,8 +525,11 @@
     <script src="../models/productModel.js"></script>
     <script src="../controllers/adminController.js"></script> 
     <script src="../controllers/userController.js"></script>
-    <script src="../controllers/productController.js"></script>
+    <script src="../controllers/productsController.js"></script>
     <script src="../controllers/authController.js"></script>
+    <script src="../Controllers/notificationsController.js"></script>
+    <script src="../Models/notificationModel.js"></script>
+    <script src="../Models/supportModel.js"></script>
 
 </body>
 </html>
