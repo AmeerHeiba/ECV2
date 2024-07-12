@@ -1,110 +1,152 @@
 [
-    {
+  {
+    "id": 1,
+    "username": "Customer1",
+    "password": "Customer1@",
+    "email": "customer1@example.com",
+    "role": "customer",
+    "firstName": "Emily",
+    "lastName": "Clark",
+    "contact": "0555123456",
+    "addresses": [
+      {
         "id": 1,
-        "username": "Customer1",
-        "password": "Customer1@",
-        "email": "customer1@example.com",
-        "role": "customer",
-        "firstName": "Emily",
-        "lastName": "Clark",
-        "contact": "0555123456",
-        "addresses": {
-            "0": "San Francisco",
-            "1": "Downtown"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    },
-    {
-        "id": 2,
-        "username": "Customer2",
-        "password": "Customer2@",
-        "email": "customer2@example.com",
-        "role": "customer",
-        "firstName": "Michael",
-        "lastName": "Lee",
-        "contact": "0655234567",
-        "addresses": {
-            "0": "Seattle",
-            "1": "Capitol Hill"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    },
-    {
-        "id": 3,
-        "username": "Customer3",
-        "password": "Customer3@",
-        "email": "customer3@example.com",
-        "role": "customer",
-        "firstName": "Sarah",
-        "lastName": "Wilson",
-        "contact": "0755345678",
-        "addresses": {
-            "0": "Denver",
-            "1": "Cherry Creek"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    },
-    {
-        "id": 4,
-        "username": "Customer4",
-        "password": "Customer4@",
-        "email": "customer4@example.com",
-        "role": "customer",
-        "firstName": "David",
-        "lastName": "Garcia",
-        "contact": "0855456789",
-        "addresses": {
-            "0": "Boston",
-            "1": "Back Bay"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    },
-    {
-        "id": 5,
-        "username": "Customer5",
-        "password": "Customer5@",
-        "email": "customer5@example.com",
-        "role": "customer",
-        "firstName": "Laura",
-        "lastName": "Martinez",
-        "contact": "0955567890",
-        "addresses": {
-            "0": "Austin",
-            "1": "Downtown"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    },
-    {
-        "id": 6,
-        "username": "Customer6",
-        "password": "Customer6@",
-        "email": "customer6@example.com",
-        "role": "customer",
-        "firstName": "James",
-        "lastName": "Hernandez",
-        "contact": "1055678901",
-        "addresses": {
-            "0": "Portland",
-            "1": "Pearl District"
-        },
-        "state": true,
-        "date": "07/08/2024",
-        "cart":[],
-        "payment_info":{}
-    }
+        "title": "San Francisco",
+        "address": "Downtown",
+        "city": "San Francisco",
+        "zipCode": 94103
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  },
+  {
+    "id": 2,
+    "username": "Customer2",
+    "password": "Customer2@",
+    "email": "customer2@example.com",
+    "role": "customer",
+    "firstName": "Michael",
+    "lastName": "Lee",
+    "contact": "0655234567",
+    "addresses": [
+      {
+        "id": 1,
+        "title": "Seattle",
+        "address": "Capitol Hill",
+        "city": "Seattle",
+        "zipCode": 98101
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  },
+  {
+    "id": 3,
+    "username": "Customer3",
+    "password": "Customer3@",
+    "email": "customer3@example.com",
+    "role": "customer",
+    "firstName": "Sarah",
+    "lastName": "Wilson",
+    "contact": "0755345678",
+    "addresses": [
+      {
+        "id": 1,
+        "title": "Denver",
+        "address": "Cherry Creek",
+        "city": "Denver",
+        "zipCode": 80206
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  },
+  {
+    "id": 4,
+    "username": "Customer4",
+    "password": "Customer4@",
+    "email": "customer4@example.com",
+    "role": "customer",
+    "firstName": "David",
+    "lastName": "Garcia",
+    "contact": "0855456789",
+    "addresses": [
+      {
+        "id": 1,
+        "title": "Boston",
+        "address": "Back Bay",
+        "city": "Boston",
+        "zipCode": 54545
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  },
+  {
+    "id": 5,
+    "username": "Customer5",
+    "password": "Customer5@",
+    "email": "customer5@example.com",
+    "role": "customer",
+    "firstName": "Laura",
+    "lastName": "Martinez",
+    "contact": "0955567890",
+    "addresses": [
+      {
+        "id": 1,
+        "title": "Austin",
+        "address": "Downtown",
+        "city": "Austin",
+        "zipCode": 78701
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  },
+  {
+    "id": 6,
+    "username": "Customer6",
+    "password": "Customer6@",
+    "email": "customer6@example.com",
+    "role": "customer",
+    "firstName": "James",
+    "lastName": "Hernandez",
+    "contact": "1055678901",
+    "addresses": [
+      {
+        "id": 1,
+        "title": "Portland",
+        "address": "Pearl District",
+        "city": "Portland",
+        "zipCode": 97209
+      }
+    ],
+    "state": true,
+    "date": "07/08/2024",
+    "cart": [],
+    "payment_info": {},
+    "orders": [],
+    "wishlist": []
+  }
 ]

@@ -1,0 +1,20 @@
+h6 {
+  cursor: pointer;
+}
+
+#address-cards {
+  max-height: 300px; /* Adjust this value as needed */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+/* orders */
+
+#orders-card img {
+  height: 10rem;
+  width: 100%;
+  object-fit: cover;
+  object-position: 65%;
+}
