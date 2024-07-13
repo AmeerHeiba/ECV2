@@ -4,7 +4,7 @@ class UIController {
     const loggedUser = document.getElementById("logged-user");
     const wishlistLink = document.getElementById("wishlist-link");
 
-    if (!user || (user && user.role === "admin")) {
+    if (!user) {
       wishlistLink.classList.add("d-none");
       const registration = document.getElementById("register");
       registration.classList.remove("d-none");
@@ -14,6 +14,7 @@ class UIController {
 
     if (user && user.role !== "admin") {
       let firstName = UserController.getUser().firstName;
+
       loggedUser.innerHTML = `
           <div class="dropdown nav-link p-0">
             <button class="btn text-${color} dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
@@ -29,6 +30,7 @@ class UIController {
           `;
     } else if (user && user.role === "admin") {
       const adminName = AuthController.getCurrentUser().fullName;
+      wishlistLink.classList.add("d-none");
 
       loggedUser.innerHTML = `
           <div class="dropdown nav-link p-0">
@@ -36,7 +38,22 @@ class UIController {
              <i class="bi bi-person-fill"> Hi ${adminName}!</i>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="adminPanel.html">Admin Panel</a></li>
+              <li><a class="dropdown-item mt-2 mb-3" href="adminPanel.html"><i class="bi bi-person-fill-gear"></i> Admin Panel</a></li>
+              <li class="d-flex justify-content-center mt-2"><button class="btn btn-info col-10" onclick="AuthController.logout()">Logout</button></li>
+            
+            </ul>
+          </div>
+          `;
+    } else if (user && user.role === "seller") {
+      const sellerName = AuthController.getCurrentUser().fullName;
+
+      loggedUser.innerHTML = `
+          <div class="dropdown nav-link p-0">
+            <button class="btn text-${color} dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+             <i class="bi bi-person-fill"> Hi ${sellerName}!</i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item mt-2 mb-3" href="sellerDashboard.html"><i class="bi bi-person-lines-fill"></i> Seller Dashboard</a></li>
               <li class="d-flex justify-content-center mt-2"><button class="btn btn-info col-10" onclick="AuthController.logout()">Logout</button></li>
             
             </ul>
