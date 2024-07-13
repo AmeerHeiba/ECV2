@@ -8,7 +8,7 @@
 }
 
 .main-color {
-  background-color: var(--main-color);
+  background-color: var(--main-color) !important;
 }
 
 .secondary-color {
@@ -16,27 +16,27 @@
 }
 
 .muted-color {
-  background-color: var(--muted-color);
+  background-color: var(--muted-color) !important;
 }
 
 .accent-color {
-  background-color: var(--accent-color);
+  background-color: var(--accent-color) !important;
 }
 
 .text-main {
-  color: var(--main-color);
+  color: var(--main-color) !important;
 }
 
 .text-secondary {
-  color: var(--secondary-color);
+  color: var(--secondary-color) !important;
 }
 
 .text-muted {
-  color: var(--muted-color);
+  color: var(--muted-color) !important;
 }
 
 .text-accent {
-  color: var(--accent-color);
+  color: var(--accent-color) !important;
 }
 
 /* scrollbar */

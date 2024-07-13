@@ -81,11 +81,11 @@ class UIController {
           const wishlistItem = `
        <!-- card start -->
        
-    <div class="card col-12 col-xl-2">
+    <div class="card col-12 col-md-5 col-xl-2">
       <img
             src="${product.images[0]}"
             class="card-img-top rounded-2 mt-3"
-            style="  height: 11rem;
+            style="  height: 13rem;
   object-fit: cover;"
             alt="${product.name}"
           />
