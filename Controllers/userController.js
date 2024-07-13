@@ -40,7 +40,12 @@ class UserController {
   }
 
   static addToCart(id) {
-    User.addCartItem(id);
+    const product = Product.getProductById(id);
+    if (product.stock === 0) {
+      alert("Product is out of stock");
+    } else {
+      User.addCartItem(id);
+    }
   }
 
   static removeUserAddress(addressId) {
@@ -169,27 +174,6 @@ class UserController {
     }
   }
 
-  // Remove product from wishlist
-  // static removeFromWishlist(productId) {
-  //   const currentUser = AuthController.getCurrentUser();
-  //   if (currentUser) {
-  //     const users = User.getUsers();
-  //     const userIndex = users.findIndex((user) => user.id === currentUser.id);
-
-  //     if (userIndex !== -1) {
-  //       users[userIndex].wishlist = users[userIndex].wishlist.filter(
-  //         (item) => item.itemId !== productId
-  //       );
-  //       User.saveUsers(users);
-  //       alert("Product removed from wishlist.");
-  //     } else {
-  //       alert("User not found.");
-  //     }
-  //   } else {
-  //     alert("Please log in to remove items from wishlist.");
-  //   }
-  // }
-
   static isProductInCart(productId) {
     const currentUser = AuthController.getCurrentUser();
     if (currentUser) {
@@ -213,17 +197,16 @@ class UserController {
   static changeIcon(button) {
     if (AuthController.getCurrentUser()) {
       const icon = button.querySelector("i.bi");
+      const productID = button.getAttribute("data-product-id");
+      const product = Product.getProductById(+productID);
 
-      if (icon.classList.contains("bi-cart-plus-fill")) {
-        icon.classList.remove("bi-cart-plus-fill");
-        icon.classList.add("bi-cart-check-fill");
-        button.classList.remove("btn-primary");
-        button.classList.add("btn-success");
-      } else if (icon.classList.contains("bi-cart-check-fill")) {
-        icon.classList.remove("bi-cart-check-fill");
-        icon.classList.add("bi-cart-plus-fill");
-        button.classList.remove("btn-success");
-        button.classList.add("btn-primary");
+      if (product.stock !== 0) {
+        if (icon.classList.contains("bi-cart-plus-fill")) {
+          icon.classList.remove("bi-cart-plus-fill");
+          icon.classList.add("bi-cart-check-fill");
+          button.classList.remove("btn-primary");
+          button.classList.add("btn-success");
+        }
       }
 
       if (icon.classList.contains("bi-bag-heart")) {

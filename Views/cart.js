@@ -61,8 +61,9 @@ function renderCartItems() {
       bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888"; class='text-center mt-5 '>There are no items in your cart.</h5> <i style='font-size: 17rem; color: #eee'; class='bi bi-cart-x'></i></div>`;
     }
   } else {
+    document.querySelector(".cart").innerHTML = "";
     alert("Please login as a customer to view your cart");
-    window.location.href = "./login.html";
+    window.location.href = "./home.html";
   }
 }
 
@@ -281,6 +282,20 @@ function processCheckout() {
     return;
   }
 
+  // Check if any product in cart is out of stock
+  const allProducts = Product.getProducts();
+  const outOfStockProducts = cartItems.filter((item) => {
+    const product = allProducts.find((p) => p.id === item.id);
+    return product.stock < item.quantity;
+  });
+
+  if (outOfStockProducts.length > 0) {
+    alert(
+      "Some products in your cart are out of stock. Please remove them before proceeding."
+    );
+    return;
+  }
+
   const addressSelect = document.getElementById("addresses");
   const paymentMethodSelect = document.getElementById("paymentMethod");
   const selectedAddressId = addressSelect.value;
@@ -316,6 +331,16 @@ function processCheckout() {
     };
   }
 
+  // Decrease product stock
+  const products = Product.getProducts();
+  cartItems.forEach((cartItem) => {
+    const product = products.find((p) => p.id === cartItem.id);
+    if (product) {
+      product.stock -= cartItem.quantity;
+      Product.updateProduct(product); // Assuming you have an update method in Product class
+    }
+  });
+
   const totalOrderPrice = calculateTotalOrderPrice(cartItems);
 
   // Create order
@@ -347,5 +372,5 @@ function processCheckout() {
   orderPlaced();
   // Optionally redirect to order confirmation page or clear form fields
   document.getElementById("checkoutForm").reset();
-  // location.href = "orders.html";
+  location.href = "orders.html";
 }

@@ -18,3 +18,9 @@ h6 {
   object-fit: cover;
   object-position: 65%;
 }
+
+/* sidebar */
+
+.sidebar h6:hover {
+  background-color: #eee;
+}
