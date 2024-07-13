@@ -46,6 +46,185 @@ class ProductController {
     return row;
   }
 
+  static displayOrders() {
+    const tableBody = document.getElementById("orderTableBody");
+    tableBody.innerHTML = "";
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const sellerId = currentUser.id;
+  
+    if (users.length > 0) {
+      users.forEach((user) => {
+        const userOrders = user.orders;
+  
+        if (userOrders && userOrders.length > 0) {
+          userOrders.forEach((order) => {
+            let totalQuantity = 0;
+            let totalPrice = 0;
+  
+            order.items.forEach((item) => {
+              const product = Product.getProductById(item.id);
+              if (product && product.seller_id == sellerId) {
+                totalQuantity += parseFloat(item.quantity);
+                totalPrice += parseFloat(item.quantity) * parseFloat(product.price);
+              }
+            });
+  
+            if (totalQuantity > 0) {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${order.id}</td>
+                <td>${totalQuantity}</td>
+                <td>${totalPrice.toFixed(2)}</td>
+                <td class="order-status">${order.status}</td>
+                <td>${order.orderDate}</td>
+                <td class="action">
+                  <select
+                    class="form-select order-status-select"
+                    data-order-id="${order.id}"
+                    aria-label="Select status"
+                  >
+                    <option value="pending" ${order.status === "pending" ? "selected" : ""}>pending</option>
+                    <option value="inProgress" ${order.status === "inProgress" ? "selected" : ""}>inProgress</option>
+                    <option value="completed" ${order.status === "completed" ? "selected" : ""}>completed</option>
+                  </select>
+                </td>
+              `;
+              tableBody.appendChild(row);
+  
+              const selectElement = row.querySelector("select");
+              selectElement.addEventListener("change", (event) => {
+                const newStatus = event.target.value;
+                const orderId = event.target.getAttribute("data-order-id");
+                ProductController.updateOrderStatus(orderId, newStatus);
+                row.querySelector(".order-status").textContent = newStatus;
+              });
+            }
+          });
+        }
+      });
+    }
+  }
+  
+
+  // Function to update order status in local storage
+  static updateOrderStatus(orderId, newStatus) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users.forEach((user) => {
+      if (user.orders && user.orders.length > 0) {
+        user.orders.forEach((order) => {
+          if (order.id == orderId) {
+            order.status = newStatus;
+          }
+        });
+      }
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+  static createCharts() {
+    const counts = {
+        inProgress: countOrdersByStatus("inProgress"),
+        pending: countOrdersByStatus("pending"),
+        completed: countOrdersByStatus("completed")
+    };
+
+    function countOrdersByStatus(status) {
+        const tableRows = document.querySelectorAll("#orderTableBody tr");
+        let count = 0;
+        tableRows.forEach(row => {
+            const statusCell = row.querySelector(".order-status");
+            if (statusCell.textContent.trim() === status) {
+                count++;
+            }
+        });
+        return count;
+    }
+
+    const ctxMyChart = document.getElementById('myChart').getContext('2d');
+    new Chart(ctxMyChart, {
+        type: 'bar',
+        data: {
+            labels: ['In Progress', 'Pending', 'Completed'],
+            datasets: [{
+                label: 'Orders by Status',
+                data: [counts.inProgress, counts.pending, counts.completed],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    
+    const ctxPendingReq = document.getElementById('pendingReq').getContext('2d');
+    new Chart(ctxPendingReq, {
+        type: 'pie',
+        data: {
+            labels: ['Pending', 'Completed'],
+            datasets: [{
+                label: 'Pending Requests',
+                data: [counts.pending, counts.completed],
+                backgroundColor: [
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+   
+}
+
+  static filterOrders() {
+    const input = document.getElementById("searchOrder");
+    const filter = input.value.trim().toUpperCase();
+    const table = document.getElementById("orderTableBody");
+    const rows = table.getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+      const td1 = rows[i].getElementsByTagName("td")[0];
+
+      if (td1) {
+        const txtValue1 = td1.textContent || td1.innerText;
+
+        if (txtValue1.toUpperCase().indexOf(filter) > -1) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
+      }
+    }
+  }
+
   // Function to get product details by ID
 
   static showProductDetails(id) {

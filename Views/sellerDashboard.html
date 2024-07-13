@@ -8,15 +8,24 @@
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/sidebarDashboard.css" rel="stylesheet" />
   <script src="../assets/js/accessControl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script>
       auth.protectPage('seller');
   </script>
+  <style>
+    .chartCon{
+            width: 25vw;
+          display: flex;
+          justify-content: space-around;
+        }
+  </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="sidebar p-3">
       <div class="logo">
-        <img src="../assets//images/product1.jpg" />
+        <img src="../assets//images/logo.jpg" />
         <h6>Seller Dashboard</h6>
       </div>
       <ul class="nav flex-column mt-auto">
@@ -74,7 +83,6 @@
               </tr>
             </thead>
             <tbody id="productTableBody">
-            
                   
                 </td>
               </tr>
@@ -99,10 +107,16 @@
             </div>
           </div>
         </div>
+
+
       </div>
       <div id="analytics" style="display: none">
-        <h2>Analytics</h2>
-        <!-- Placeholder for analytics content -->
+        <h2 style="text-align: center; margin-bottom: 50px;">Analytics</h2>
+
+        <div class="chartCon" >
+          <canvas id="myChart" ></canvas>
+          <canvas id="pendingReq"  ></canvas>
+      </div>
       </div>
       <div id="orders" style="display: none">
         <div class="search-container">
@@ -111,6 +125,8 @@
             class="form-control w-50 mr-2 "
             placeholder="Search"
             id="searchOrder"
+            onkeyup="ProductController.filterOrders()"
+
           />
           
         </div>
@@ -123,7 +139,7 @@
                 <th>Total Price</th>
                 <th>Status</th>
                 <th>Date</th>
-                
+                <th>Action</th>
               </tr>
             </thead>
             <tbody id="orderTableBody">
@@ -144,10 +160,12 @@
     <script src="../Models/productModel.js"></script>
     <script src="../Models/userModel.js"></script>
 
-    <script src="../assets/js/table.js"> </script>
-              <script src="../Controllers/productsController.js"></script>
-              <script src="../Controllers/authController.js"></script>
-
+    <script src="../Controllers/authController.js"></script>
+    <script src="../Controllers/userController.js"></script>
+    <script src="../Controllers/UIController.js"></script>
+    <script src="./table.js"> </script>
+    <script src="../Controllers/productsController.js"></script>
+   
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </body>
 </html>

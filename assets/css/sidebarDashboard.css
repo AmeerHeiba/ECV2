@@ -30,6 +30,7 @@ i {
   flex: 1;
   padding: 20px;
   overflow-y: auto; 
+  /* background-color: #f4ece9; */
 }
 .search-container {
   display: flex;
@@ -41,7 +42,7 @@ td img {
   height: 60px;
 }
 .btn-custom {
-  width: 120px;
+  width: 130px;
   background-color: #754114;
   border: 0;
   color: white; 
@@ -86,6 +87,7 @@ td img {
   }
   .table tr {
     margin-bottom: 15px;
+
   }
   .table td {
     text-align: center; 
@@ -110,7 +112,6 @@ td img {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/*  */
 .img-preview {
   display: none;
   max-width: 100%;
