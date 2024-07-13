@@ -1,3 +1,28 @@
+/* input  */
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.15rem white !important; /* Change the color and shadow as desired */
+}
+
+input:focus {
+  border-color: var(--main-color) !important; /* Change this color as desired */
+}
+
+textarea:focus {
+  border-color: var(
+    --primary-color
+  ) !important; /* Change this color as desired */
+}
+
+select:focus {
+  border-color: var(
+    --primary-color
+  ) !important; /* Change this color as desired */
+}
+
 /* products categories */
 
 .products .card {
