@@ -93,6 +93,7 @@ function renderOrders() {
           ${orderItems}
         </div>
       `;
+
     });
   } else {
     bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888" class="text-center mt-5">You have made no orders yet.</h5><i style="font-size: 17rem; color: #eee" class="bi bi-cart-x"></i></div>`;

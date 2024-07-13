@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     ProductController.displayProducts();
-  
-    // Add product button functionality
+    ProductController.displayOrders()
+    ProductController.createCharts()
+
     const addProductButton = document.getElementById("addProductButton");
     addProductButton.addEventListener("click", function () {
       window.location.href = "addProduct.html"; // Replace with the actual URL of your Add Product page
