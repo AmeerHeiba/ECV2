@@ -1,3 +1,8 @@
+UIController.welcomeUser("dark");
+
+// update cart icon notification
+UIController.updateCartIcon();
+
 function createProductCard(product) {
   const isInCart = UserController.isProductInCart(product.id);
   const isInWishlist = UserController.isProductInWishlist(product.id);
