@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", () => {
               <h4 class="mb-3">
                 <span class="currency me-1">EGP</span>${product.price}
               </h4>
-              <a href="productDetails.html?id=${
+              <a href="productDetailsCustomer.html?id=${
                 product.id
               }" class="btn btn btn-outline-dark btn-sm">View Details</a>
             </div>
