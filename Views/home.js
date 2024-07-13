@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
               isInWishlist ? "btn-danger" : "btn-secondary"
             } rounded-5" onclick="UserController.addToWishlist(${
           product.id
-        }); UserController.changeIcon(this); ">
+        }); UserController.changeIcon(this);" >
               <i class="bi ${
                 isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
