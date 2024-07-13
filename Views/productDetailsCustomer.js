@@ -1,3 +1,8 @@
+
+UIController.welcomeUser("dark");
+
+// update cart icon notification
+UIController.updateCartIcon();
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
