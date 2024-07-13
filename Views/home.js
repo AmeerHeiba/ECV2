@@ -88,14 +88,11 @@ window.addEventListener("DOMContentLoaded", () => {
               <h4 class="mb-3">
                 <span class="currency me-1">EGP</span>${product.price}
               </h4>
-<<<<<<< HEAD
               ${
                 isOutOfStock
                   ? '<span style="border-radius: 0;" class="badge bg-danger border-0 position-absolute end-0">Out of Stock</span>'
                   : ""
               }
-=======
->>>>>>> 677c64a3b893f80776b3cb1204d8f0193e2e91a7
               <a href="productDetailsCustomer.html?id=${
                 product.id
               }" class="btn btn btn-outline-dark btn-sm">View Details</a>
