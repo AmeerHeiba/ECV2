@@ -1,58 +1,232 @@
 [
-    {
+  {
       "id": 1,
-      "name": "Smartphone X",
-      "images": ["../assets/images/product1.jpg", "../assets/images/product2.jpg"],
-      "price": 799.99,
-      "description": "A powerful smartphone with a sleek design.",
-      "stock": 50,
-      "seller_id": 1,
-      "date": "01-01-2024",
-      "category": "Electronics"
-    },
-    {
-      "id": 2,
-      "name": "Gaming Laptop Pro",
+      "name": "Comfy Sofa",
       "images": ["../assets/images/product3.jpg", "../assets/images/product4.jpg"],
-      "price": 1499.99,
-      "description": "High-performance laptop for gaming and work.",
-      "stock": 30,
-      "seller_id": 2,
-      "date": "15-01-2024",
-      "category": "Computers"
-    },
-    {
-      "id": 3,
-      "name": "Wireless Earbuds",
-      "images": ["../assets/images/product5.jpg", "../assets/images/product6.jpg"],
-      "price": 199.99,
-      "description": "Compact and comfortable wireless earbuds.",
-      "stock": 100,
+      "price": 799.99,
+      "description": "A comfortable sofa for your living room.",
+      "stock": 10,
       "seller_id": 3,
-      "date": "10-02-2024",
-      "category": "Audio"
-    },
-    {
+      "date": "06-25-2023",
+      "category": "living-room"
+  },
+  {
+      "id": 2,
+      "name": "Elegant Bed",
+      "images": ["../assets/images/bedroomx1.webp", "../assets/images/bedroomx2.jpg"],
+      "price": 699.99,
+      "description": "A luxurious bed for a peaceful sleep.",
+      "stock": 8,
+      "seller_id": 5,
+      "date": "05-18-2023",
+      "category": "Bedroom"
+  },
+  {
+      "id": 3,
+      "name": "Dining Table",
+      "images": ["../assets/images/table.png", "../assets/images/product1.jpg"],
+      "price": 499.99,
+      "description": "A modern dining table for family gatherings.",
+      "stock": 15,
+      "seller_id": 2,
+      "date": "07-12-2023",
+      "category": "dining-room"
+  },
+  {
       "id": 4,
-      "name": "4K Ultra HD TV",
-      "images": ["../assets/images/product7.jpg", "../assets/images/product.jpg"],
-      "price": 899.99,
-      "description": "Experience stunning visuals with 4K resolution.",
-      "stock": 20,
-      "seller_id": 1,
-      "date": "20-02-2024",
-      "category": "Home Entertainment"
-    },
-    {
-      "id": 5,
-      "name": "Smart Watch",
-      "images": ["../assets/images/product5.jpg", "../assets/images/product6.jpg"],
+      "name": "Office Desk",
+      "images": ["../assets/images/product2.jpg", "../assets/images/product2.jpg"],
       "price": 299.99,
-      "description": "Keep track of your health and notifications.",
-      "stock": 75,
+      "description": "An ergonomic desk for your workspace.",
+      "stock": 20,
       "seller_id": 4,
-      "date": "05-03-2024",
-      "category": "Wearables"
-    }
-  ]
-  
+      "date": "08-05-2023",
+      "category": "Office"
+  },
+  {
+      "id": 5,
+      "name": "Patio Set",
+      "images": ["../assets/images/product3.jpg", "../assets/images/product4.jpg"],
+      "price": 199.99,
+      "description": "Outdoor furniture set for your patio.",
+      "stock": 12,
+      "seller_id": 1,
+      "date": "06-30-2023",
+      "category": "Outdoor"
+  },
+  {
+      "id": 6,
+      "name": "Modern Lamp",
+      "images": ["../assets/images/lamp.png", "../assets/images/product5.jpg"],
+      "price": 89.99,
+      "description": "A stylish lamp to brighten up your room.",
+      "stock": 25,
+      "seller_id": 3,
+      "date": "09-15-2023",
+      "category": "living-room"
+  },
+  {
+      "id": 7,
+      "name": "Stylish Wardrobe",
+      "images": ["../assets/images/wardrobe.png", "../assets/images/product6.jpg"],
+      "price": 899.99,
+      "description": "A spacious wardrobe for your bedroom.",
+      "stock": 5,
+      "seller_id": 5,
+      "date": "07-22-2023",
+      "category": "Bedroom"
+  },
+  {
+      "id": 8,
+      "name": "Classic Cabinet",
+      "images": ["../assets/images/product7.jpg", "../assets/images/product8.jpg"],
+      "price": 599.99,
+      "description": "A classic cabinet for your dining room.",
+      "stock": 18,
+      "seller_id": 2,
+      "date": "08-10-2023",
+      "category": "dining-room"
+  },
+  {
+      "id": 9,
+      "name": "Ergonomic Chair",
+      "images": ["../assets/images/chair.png", "../assets/images/product9.jpg"],
+      "price": 199.99,
+      "description": "A comfortable chair for your office.",
+      "stock": 30,
+      "seller_id": 4,
+      "date": "09-01-2023",
+      "category": "Office"
+  },
+  {
+      "id": 10,
+      "name": "Outdoor Table",
+      "images": ["../assets/images/product10.jpg", "../assets/images/image9.jpg"],
+      "price": 120.99,
+      "description": "A sturdy outdoor table for your garden.",
+      "stock": 15,
+      "seller_id": 1,
+      "date": "07-28-2023",
+      "category": "Outdoor"
+  },
+  {
+      "id": 11,
+      "name": "Bookcase",
+      "images": ["../assets/images/product1.jpg", "../assets/images/product2.jpg"],
+      "price": 159.99,
+      "description": "A practical bookcase for your living room.",
+      "stock": 22,
+      "seller_id": 3,
+      "date": "08-18-2023",
+      "category": "living-room"
+  },
+  {
+      "id": 12,
+      "name": "Nightstand",
+      "images": ["../assets/images/nightstand.png", "../assets/images/product3.jpg"],
+      "price": 79.99,
+      "description": "A compact nightstand for your bedroom.",
+      "stock": 10,
+      "seller_id": 5,
+      "date": "06-20-2023",
+      "category": "Bedroom"
+  },
+  {
+      "id": 13,
+      "name": "Conference Table",
+      "images": ["../assets/images/product4.jpg", "../assets/images/product5.jpg"],
+      "price": 449.99,
+      "description": "A large conference table for your office.",
+      "stock": 12,
+      "seller_id": 2,
+      "date": "09-05-2023",
+      "category": "Office"
+  },
+  {
+      "id": 14,
+      "name": "Outdoor Chair",
+      "images": ["../assets/images/product6.jpg", "../assets/images/product7.jpg"],
+      "price": 69.99,
+      "description": "A comfortable outdoor chair for relaxation.",
+      "stock": 8,
+      "seller_id": 1,
+      "date": "07-10-2023",
+      "category": "Outdoor"
+  },
+  {
+      "id": 15,
+      "name": "Sideboard",
+      "images": ["../assets/images/product8.jpg", "../assets/images/product9.jpg"],
+      "price": 299.99,
+      "description": "A stylish sideboard for your dining room.",
+      "stock": 15,
+      "seller_id": 4,
+      "date": "08-22-2023",
+      "category": "dining-room"
+  },
+  {
+      "id": 16,
+      "name": "Executive Chair",
+      "images": ["../assets/images/product10.jpg", "../assets/images/image9.jpg"],
+      "price": 399.99,
+      "description": "An executive chair for your office.",
+      "stock": 7,
+      "seller_id": 3,
+      "date": "09-18-2023",
+      "category": "Office"
+  },
+  {
+      "id": 17,
+      "name": "Patio Umbrella",
+      "images": ["../assets/images/chair-2.png", "../assets/images/chair.png"],
+      "price": 129.99,
+      "description": "A colorful patio umbrella for shade.",
+      "stock": 20,
+      "seller_id": 5,
+      "date": "07-15-2023",
+      "category": "Outdoor"
+  },
+  {
+      "id": 18,
+      "name": "Chandelier",
+      "images": ["../assets/images/lamp.png", "../assets/images/lamp.png"],
+      "price": 599.99,
+      "description": "A stunning chandelier for your living room.",
+      "stock": 3,
+      "seller_id": 1,
+      "date": "06-05-2023",
+      "category": "living-room"
+  },
+  {
+      "id": 19,
+      "name": "Bedside Table",
+      "images": ["../assets/images/nightstand.png", "../assets/images/nightstand.png"],
+      "price": 119.99,
+      "description": "A small bedside table for your bedroom.",
+      "stock": 25,
+      "seller_id": 2,
+      "date": "08-30-2023",
+      "category": "Bedroom"
+  },
+  {
+      "id": 20,
+      "name": "Buffet Cabinet",
+      "images": ["../assets/images/wardrobe.png", "../assets/images/wardrobe.png"],
+      "price": 499.99,
+      "description": "A buffet cabinet for your dining room.",
+      "stock": 9,
+      "seller_id": 4,
+      "date": "09-10-2023",
+      "category": "dining-room"
+  },
+  {
+      "id": 21,
+      "name": "Monitor Stand",
+      "images": ["../assets/images/desk.png", "../assets/images/desk.png"],
+      "price": 89.99,
+      "description": "A sleek monitor stand for your office.",
+      "stock": 18,
+      "seller_id": 1,
+      "date": "07-05-2023",
+      "category": "Office"
+  }]
