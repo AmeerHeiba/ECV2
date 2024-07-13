@@ -13,7 +13,7 @@ function refreshProductsTable() {
             <td>${product.stock}</td>
             <td>${product.seller_id}</td>
             <td>
-                <button class="btn btn-primary btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
+                <button class="btn btn-outline-primary btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
             </td>
         `;
         productsTable.appendChild(row);
@@ -37,9 +37,9 @@ function refreshSellersTable() {
             <td>${seller.state}</td>
             
             <td>
-                <button class="btn btn-success btn-sm" type="button" data-id="${seller.id}" data-action="activate">Activate</button>
-                <button class="btn btn-danger btn-sm" type="button" data-id="${seller.id}" data-action="suspend">Suspend</button>
-                <button class="btn btn-primary btn-sm" type="button" data-id="${seller.id}" data-action="edit">Modify</button>
+                <button class="btn btn-outline-success  btn-sm" type="button" data-id="${seller.id}" data-action="activate">Activate</button>
+                <button class="btn btn-outline-warning btn-sm" type="button" data-id="${seller.id}" data-action="suspend">Suspend</button>
+                <button class="btn btn-outline-primary btn-sm" type="button" data-id="${seller.id}" data-action="edit">Modify</button>
             </td>
         `;
         sellersTable.appendChild(row);
@@ -63,10 +63,10 @@ function refreshUsersTable() {
             <td>${user.state}</td>
             
             <td>
-                ${user.state === false ? `<button class="btn btn-success btn-sm" type="button" data-id="${user.id}" data-action="activate">Activate</button>` : ''} 
-                ${user.state === true ? `<button class="btn btn-danger btn-sm" type="button" data-id="${user.id}" data-action="suspend">Suspend</button>` : ''}
-                <button class="btn btn-primary btn-sm" type="button" data-id="${user.id}" data-action="edit">Modify</button>
-                <button class="btn btn-primary btn-sm" type="button" data-id="${user.id}" data-action="resetpass">Reset Password</button>
+                ${user.state === false ? `<button class="btn btn-outline-success btn-sm" type="button" data-id="${user.id}" data-action="activate">Activate</button>` : ''} 
+                ${user.state === true ? `<button class="btn btn-outline-warning btn-sm" type="button" data-id="${user.id}" data-action="suspend">Suspend</button>` : ''}
+                <button class="btn btn-outline-primary  btn-sm" type="button" data-id="${user.id}" data-action="edit">Modify</button>
+                <button class="btn btn-outline-warning  btn-sm" type="button" data-id="${user.id}" data-action="resetpass">Reset Password</button>
             </td>
         `;
         usersTable.appendChild(row);
@@ -88,7 +88,7 @@ function refreshSupportTable() {
             <td>${request.message}</td>
             <td>${request.state}</td>
             <td>
-                ${request.state === "Opened" ? `<button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
+                ${request.state === "Opened" ? `<button class="btn btn-outline-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
             </td>
         `;
         supportTable.appendChild(row);
@@ -112,7 +112,7 @@ function refreshRejectedSellerTable() {
             <td>${adminName.username}</td>
             <td>${request.date}</td>
             <td>
-                <button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
+                <button class="btn btn-outline-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
             </td>
         `;
         rejectedSellerRequestsTable.appendChild(row);
@@ -134,8 +134,8 @@ function renderSellerRequestsTable(){
             <td>${request.username}</td>
             <td>${request.date}</td>
             <td>
-                <button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
-                <button class="btn btn-danger btn-sm" type="button" data-id="${request.id}" data-action="reject">Reject</button>
+                <button class="btn btn-outline-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
+                <button class="btn btn-outline-danger btn-sm" type="button" data-id="${request.id}" data-action="reject">Reject</button>
             </td>
         `;
         sellerRequestsTable.appendChild(row);
@@ -270,6 +270,16 @@ if (window.location.pathname === '/Views/adminPanel.html') {
     const sellerRequestsTable = document.getElementById('sellerRequestsTable').getElementsByTagName("tbody")[0];
     const sellerRequests = Seller.getSellerRequests();
     sellerRequestsTable.innerHTML = ''; // Clear existing rows
+    if(sellerRequests.length === 0  ){
+        console.log('Empty')
+        const emptyRow = document.createElement('tr');
+        emptyRow.innerHTML=
+        `        
+        <tr>
+            <td colspan="7">No Seller Requests available</td>
+        </tr>`;
+        sellerRequestsTable.appendChild(emptyRow);
+    }else{
     sellerRequests.forEach(request => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -280,12 +290,14 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             <td>${request.username}</td>
             <td>${request.date}</td>
             <td>
-                <button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
-                <button class="btn btn-danger btn-sm" type="button" data-id="${request.id}" data-action="reject">Reject</button>
+                <button class="btn btn-outline-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
+                <button class="btn btn-outline-danger btn-sm" type="button" data-id="${request.id}" data-action="reject">Reject</button>
             </td>
         `;
         sellerRequestsTable.appendChild(row);
+    
     });
+}
     document.querySelector('#sellerRequestsTable').addEventListener('click', function(event) {
         if (event.target && event.target.classList.contains('btn')) {
             const requestId = event.target.getAttribute('data-id');
@@ -325,6 +337,16 @@ if (window.location.pathname === '/Views/adminPanel.html') {
     const rejectedSellerRequestsTable = document.getElementById('RejectedSellerRequests').getElementsByTagName("tbody")[0];
     const rejectedSellerRequests = Seller.getRejectedSellerRequests();
     rejectedSellerRequestsTable.innerHTML = ''; // Clear existing rows
+    if(rejectedSellerRequests.length === 0  ){
+        
+        const emptyRow = document.createElement('tr');
+        emptyRow.innerHTML=
+        `        
+        <tr>
+            <td colspan="8">No Seller Requests available</td>
+        </tr>`;
+        rejectedSellerRequestsTable.appendChild(emptyRow);
+    }else{
     rejectedSellerRequests.forEach(request => {
         const row = document.createElement('tr');
         const adminName = AdminModel.getAdminById(request.rejectedBy);
@@ -337,11 +359,11 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             <td>${adminName.username}</td>
             <td>${request.date}</td>
             <td>
-                <button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
+                <button class="btn btn-outline-success btn-sm" type="button" data-id="${request.id}" data-action="approve">Approve</button>
             </td>
         `;
         rejectedSellerRequestsTable.appendChild(row);
-    });
+    });}
     rejectedSellerRequestsTable.addEventListener('click', function(event) {
         event.preventDefault();
 
@@ -375,10 +397,10 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             <td>${seller.state}</td>
             
             <td>
-                <button class="btn btn-success btn-sm" type="button" data-id="${seller.id}" data-action="activate">Activate</button>
-                <button class="btn btn-danger btn-sm" type="button" data-id="${seller.id}" data-action="suspend">Suspend</button>
-                <button class="btn btn-primary btn-sm" type="button" data-id="${seller.id}" data-action="edit">Modify</button>
-                <button class="btn btn-primary btn-sm" type="button" data-id="${seller.id}" data-action="resetpass">Reset Password</button>
+                <button class="btn btn-outline-success btn-sm" type="button" data-id="${seller.id}" data-action="activate">Activate</button>
+                <button class="btn btn-outline-warning btn-sm" type="button" data-id="${seller.id}" data-action="suspend">Suspend</button>
+                <button class="btn btn-outline-primary btn-sm" type="button" data-id="${seller.id}" data-action="edit">Modify</button>
+                <button class="btn btn-outline-warning btn-sm" type="button" data-id="${seller.id}" data-action="resetpass">Reset Password</button>
             </td>
         `;
         sellersTable.appendChild(row);
@@ -462,10 +484,10 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             <td>${user.state}</td>
             
             <td>
-                ${user.state === false ? `<button class="btn btn-success btn-sm" type="button" data-id="${user.id}" data-action="activate">Activate</button>` : ''} 
-                ${user.state === true ? `<button class="btn btn-danger btn-sm" type="button" data-id="${user.id}" data-action="suspend">Suspend</button>` : ''}
-                <button class="btn btn-primary btn-sm" type="button" data-id="${user.id}" data-action="edit">Modify</button>
-                <button class="btn btn-primary btn-sm" type="button" data-id="${user.id}" data-action="resetpass">Reset Password</button>
+                ${user.state === false ? `<button class="btn btn-outline-success btn-sm" type="button" data-id="${user.id}" data-action="activate">Activate</button>` : ''} 
+                ${user.state === true ? `<button class="btn btn-outline-warning btn-sm" type="button" data-id="${user.id}" data-action="suspend">Suspend</button>` : ''}
+                <button class="btn btn-outline-primary btn-sm" type="button" data-id="${user.id}" data-action="edit">Modify</button>
+                <button class="btn btn-outline-warning btn-sm" type="button" data-id="${user.id}" data-action="resetpass">Reset Password</button>
             </td>
         `;
         usersTable.appendChild(row);
@@ -548,7 +570,7 @@ if (window.location.pathname === '/Views/adminPanel.html') {
             <td>${request.message}</td>
             <td>${request.state}</td>
             <td>
-                ${request.state === "Opened" ? `<button class="btn btn-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
+                ${request.state === "Opened" ? `<button class="btn btn-outline-success btn-sm" type="button" data-id="${request.id}" data-action="resolve">Resolve</button>` : ''}
             </td>
         `;
         supportTable.appendChild(row);
@@ -587,8 +609,8 @@ if (window.location.pathname === '/Views/adminPanel.html') {
         <td>${product.stock}</td>
         <td>${product.seller_id}</td>
         <td>
-            <button class="btn btn-primary btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
-            <button class="btn btn-danger btn-sm" type="button" data-id="${product.id}" data-action="remove">Remove Product</button>
+            <button class="btn btn-outline-warning btn-sm" type="button" data-id="${product.id}" data-action="edit">Edit</button>
+            <button class="btn btn-outline-danger btn-sm" type="button" data-id="${product.id}" data-action="remove">Remove</button>
         </td>
     `;
     productsTable.appendChild(row);
