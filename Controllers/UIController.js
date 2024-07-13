@@ -1,7 +1,6 @@
 class UIController {
   static welcomeUser(color) {
     let user = AuthController.getCurrentUser();
-
     const loggedUser = document.getElementById("logged-user");
     const wishlistLink = document.getElementById("wishlist-link");
 
@@ -77,49 +76,57 @@ class UIController {
           const product = Product.getProductById(item.id);
           const isInCart = UserController.isProductInCart(item.id);
           const isInWishlist = UserController.isProductInWishlist(item.id);
+          const isOutOfStock = product.stock === 0;
 
           const wishlistItem = `
        <!-- card start -->
        
     <div class="card col-12 col-xl-2">
       <img
-        src="${product.images[0]}"
-        class="wishlist-img card-img-top rounded-2 mt-3"
-        alt="${product.name}"
-      />
-      <div class="product-btns d-flex flex-column">
-       <a id="add-to-cart" class="btn rounded-5 mb-2 ${
-         isInCart ? "btn-success" : "btn-primary"
-       }" onclick="UserController.addToCart(${
+            src="${product.images[0]}"
+            class="card-img-top rounded-2 mt-3"
+            style="  height: 11rem;
+  object-fit: cover;"
+            alt="${product.name}"
+          />
+          <div class="product-btns d-flex flex-column">
+            <a id="add-to-cart" class="btn rounded-5 mb-2 ${
+              isInCart ? "btn-success" : "btn-primary"
+            }" onclick="UserController.addToCart(${
             product.id
-          }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
+          }, 1); UserController.changeIcon(this); UIController.updateCartIcon();" data-product-id="${
+            product.id
+          }">
               <i class="bi ${
                 isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
               }"></i>
             </a>
-            <a class="btn ${
+            <a id="wishlist-btn" class="btn ${
               isInWishlist ? "btn-danger" : "btn-secondary"
             } rounded-5" onclick="UserController.addToWishlist(${
             product.id
-          }); UserController.changeIcon(this); renderWishlist()">
+          }); UserController.changeIcon(this); UIController.renderWishlist()" >
               <i class="bi ${
                 isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
             </a>
-      </div>
-      <div class="card-body">
-        <h6 class="mb-3">${product.name}</h6>
-        <div class="d-flex flex-column align-items-start">
-          <h4 class="mb-3">
-            <span class="currency me-1">EGP</span>${product.price}
-          </h4>
-          <a
-            href="productDetails.html?id=${product.id}"
-            class="btn btn btn-outline-dark btn-sm"
-            >View Details</a
-          >
-        </div>
-      </div>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-3">${product.name}</h6>
+            <div class="d-flex flex-column align-items-start">
+              <h4 class="mb-3">
+                <span class="currency me-1">EGP</span>${product.price}
+              </h4>
+              ${
+                isOutOfStock
+                  ? '<span style="border-radius: 0;" class="badge bg-danger border-0 position-absolute end-0">Out of Stock</span>'
+                  : ""
+              }
+              <a href="productDetailsCustomer.html?id=${
+                product.id
+              }" class="btn btn btn-outline-dark btn-sm">View Details</a>
+            </div>
+          </div>
     </div>
     <!-- card end -->
       `;

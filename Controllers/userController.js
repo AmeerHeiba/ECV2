@@ -200,7 +200,7 @@ class UserController {
       const productID = button.getAttribute("data-product-id");
       const product = Product.getProductById(+productID);
 
-      if (product.stock !== 0) {
+      if (product && product.stock !== 0) {
         if (icon.classList.contains("bi-cart-plus-fill")) {
           icon.classList.remove("bi-cart-plus-fill");
           icon.classList.add("bi-cart-check-fill");

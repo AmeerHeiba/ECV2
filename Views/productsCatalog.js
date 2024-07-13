@@ -17,8 +17,8 @@ function createProductCard(product) {
             <a id="add-to-cart" class="btn rounded-5 mb-2 ${
               isInCart ? "btn-success" : "btn-primary"
             }" onclick="UserController.addToCart(${
-          product.id
-        }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
+    product.id
+  }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
               <i class="bi ${
                 isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
               }"></i>
@@ -26,8 +26,8 @@ function createProductCard(product) {
             <a id="wishlist-btn" class="btn ${
               isInWishlist ? "btn-danger" : "btn-secondary"
             } rounded-5" onclick="UserController.addToWishlist(${
-          product.id
-        }); UserController.changeIcon(this); ">
+    product.id
+  }); UserController.changeIcon(this); ">
               <i class="bi ${
                 isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
@@ -35,7 +35,9 @@ function createProductCard(product) {
           </div>
       <div class="card-body">
         <h5 class="mb-3">${product.name}</h5>
-                      <p class="card-text" style="color: #754114; margin-top: 1rem;">${product.category}</p>
+                      <p class="card-text" style="color: #754114; margin-top: 1rem;">${
+                        product.category
+                      }</p>
 
         <div class="d-flex flex-column align-items-start">
           <h4 class="mb-3">
