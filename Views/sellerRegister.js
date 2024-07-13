@@ -1,10 +1,11 @@
 const registrationFormSeller = document.getElementById(
-  "registration-form-Seller"
+  "registration-form-seller"
 );
 
 if (registrationFormSeller) {
   registrationFormSeller.addEventListener("submit", (event) => {
     event.preventDefault();
+    console.log("seller exists");
 
     // Extract the part after the last slash and before the first space or period
     const username = document.getElementById("usernameSReg").value;

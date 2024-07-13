@@ -19,7 +19,8 @@ cardContainer.innerHTML = `
             .map(
               (image, index) => `
             <div class="carousel-item ${index === 0 ? "active" : ""}">
-              <img src="${image}" class="img-fluid rounded-start carousel-image" alt="Product Image ${
+              <img style="  height: 18rem;
+               object-fit: cover;" src="${image}" class="img-fluid rounded-start carousel-image" alt="Product Image ${
                 index + 1
               }">
             </div>

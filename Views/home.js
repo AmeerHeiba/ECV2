@@ -93,7 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
                   ? '<span style="border-radius: 0;" class="badge bg-danger border-0 position-absolute end-0">Out of Stock</span>'
                   : ""
               }
-              <a href="productDetails.html?id=${
+              <a href="productDetailsCustomer.html?id=${
                 product.id
               }" class="btn btn btn-outline-dark btn-sm">View Details</a>
             </div>
