@@ -17,7 +17,7 @@ class UIController {
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
+          <div class="modal-content secondary-color text-white">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
               <button
@@ -52,7 +52,7 @@ class UIController {
                   <div class="form-group mb-2">
                     <a
                       href="customerRegister.html"
-                      class="btn text-secondary p-0"
+                      class="btn text-light p-0"
                       >Not a user? Register here</a
                     >
                   </div>
@@ -63,15 +63,15 @@ class UIController {
                     value="userLogin"
                     class="btn btn-info text-white mt-3"
                   >
-                    Login
+                    Customer Login
                   </button>
                   <button
                     type="submit"
                     name="submitBtn"
                     value="sellerLogin"
-                    class="btn btn-outline-info mt-3"
+                    class="btn btn-outline-info text-white mt-3"
                   >
-                    Login for Sellers
+                    Sellers Login
                   </button>
                 </form>
               </div>
