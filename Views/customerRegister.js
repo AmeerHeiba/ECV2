@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    if (document.getElementById('registration-form')) {
-        document.getElementById('registration-form').addEventListener('submit', (event) => {
+    if (document.getElementById('registration-form-Customer')) {
+        document.getElementById('registration-form-Customer').addEventListener('submit', (event) => {
             event.preventDefault();
 
             const form = event.target;
@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 //Password validation
                 //email correct and not repeated 
                 if (AuthController.validateUsername(username) === false){
-                    document.getElementById('usernameError').innerText = 'Invalid username. It should be 3-15 characters long and contain only alphanumeric characters and underscores.';
+                    alert('Invalid username. It should be 3-15 characters long and contain only alphanumeric characters and underscores.');
                 }else if (AuthController.validatePassword(password) === false) {
-                    document.getElementById('passwordError').innerText = 'Invalid password. It should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+                    alert('Invalid password. It should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
                 } else if (AuthController.validateEmail(email) === false) {
-                    document.getElementById('emailError').innerText = 'Invalid email format.';
+                    alert('Invalid email format.');
                 }else{
                     AuthController.register(username, password, email, 'customer', firstName,lastName,contact, addresses);
                 }
