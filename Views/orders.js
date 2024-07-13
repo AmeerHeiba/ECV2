@@ -15,6 +15,12 @@ function renderOrders() {
     orders.forEach((order) => {
       let orderTotal = 0;
       let orderItems = "";
+      const orderDate = new Date(order.orderDate);
+      let options = {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      };
 
       order.items.forEach((item) => {
         const product = Product.getProductById(item.id);
@@ -47,7 +53,13 @@ function renderOrders() {
                   }</span></p>
                   <p class="card-text small my-1">
                     <small class="text-muted">
-                      <i class="bi bi-box-seam-fill"></i> Delivered between ${deliveryDate.toLocaleDateString()} and ${expectedDeliveryDate.toLocaleDateString()}
+                      <i class="bi bi-box-seam-fill"></i> Delivered between ${deliveryDate.toLocaleDateString(
+                        "en-GB",
+                        options
+                      )} and ${expectedDeliveryDate.toLocaleDateString(
+          "en-GB",
+          options
+        )}
                     </small>
                   </p>
                   <p class="card-text small my-1"><strong>Quantity:</strong> ${
@@ -74,6 +86,10 @@ function renderOrders() {
           <h6 class="ms-1">Payment Method: <span class="fw-normal">${
             order.paymentMethod
           }</span></h6>
+          <h6 class="ms-1">Placed on: <span class="fw-normal">${orderDate.toLocaleDateString(
+            "en-GB",
+            options
+          )}</span></h6>
           ${orderItems}
         </div>
       `;

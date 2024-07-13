@@ -7,6 +7,8 @@ class UIController {
 
     if (!user || (user && user.role === "admin")) {
       wishlistLink.classList.add("d-none");
+      const registration = document.getElementById("register");
+      registration.classList.remove("d-none");
     } else {
       wishlistLink.classList.add("d-block");
     }
@@ -19,15 +21,15 @@ class UIController {
              <i class="bi bi-person-fill"> Hi ${firstName}!</i>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="userDashboard.html">Profile</a></li>
-              <li><a class="dropdown-item" href="orders.html">Orders</a></li>
-              <li class="d-flex justify-content-center mt-2"><button class="btn btn-info col-10" onclick="AuthController.logout()">Logout</button></li>
+              <li><a class="dropdown-item my-2" href="userDashboard.html"><i class="bi bi-person-circle"></i>&nbsp Profile</a></li>
+              <li><a class="dropdown-item mt-2 mb-3" href="orders.html"><i class="bi bi-basket2-fill"></i>&nbsp Orders</a></li>
+              <li class="d-flex justify-content-center mt-2"><button class="btn btn-info fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
             
             </ul>
           </div>
           `;
     } else if (user && user.role === "admin") {
-      let adminName = AuthController.getCurrentUser().fullName;
+      const adminName = AuthController.getCurrentUser().fullName;
 
       loggedUser.innerHTML = `
           <div class="dropdown nav-link p-0">

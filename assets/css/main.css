@@ -1,3 +1,44 @@
+/* colors */
+
+:root {
+  --main-color: #a99c8a;
+  --secondary-color: #2d4d5c;
+  --muted-color: #746b60;
+  --accent-color: #be8300;
+}
+
+.main-color {
+  background-color: var(--main-color);
+}
+
+.secondary-color {
+  background-color: var(--secondary-color);
+}
+
+.muted-color {
+  background-color: var(--muted-color);
+}
+
+.accent-color {
+  background-color: var(--accent-color);
+}
+
+.text-main {
+  color: var(--main-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-muted {
+  color: var(--muted-color);
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
 /* scrollbar */
 
 body {
@@ -17,15 +58,45 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: #ffc107;
+  background: var(--secondary-color);
 }
 
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover {
-  background-image: linear-gradient(to bottom, #0dcaf0, #ffc107);
+  background-image: linear-gradient(
+    to bottom,
+    var(--secondary-color),
+    var(--main-color)
+  );
 }
 
 /* navbar  */
+
+@media (max-width: 972px) {
+  .navbar-1 .navbar-collapse {
+    width: 100vw;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: var(--secondary-color) !important;
+    border-radius: 15px;
+  }
+  .navbar-1 .navbar-collapse ul {
+    gap: 10px;
+  }
+  .navbar-1 .navbar-collapse ul li {
+    padding: 9px;
+  }
+  .navbar-1 .navbar-collapse ul li:not(:last-child) {
+    border-bottom: 2px solid var(--secondary-color);
+  }
+  .navbar-1 .dropdown-menu {
+    background-color: var(--secondary-color);
+    border: none;
+  }
+  .navbar-1 .dropdown-menu a {
+    color: #fff;
+  }
+}
 
 .navbar-1 {
   z-index: 100;
@@ -41,13 +112,8 @@ body::-webkit-scrollbar-thumb:hover {
   color: white;
 }
 
-.input-group input:focus,
-.form-control:focus {
-  border-color: yellow; /* Change this color to your desired focus color */
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Optional: Add a box shadow for better visibility */
-}
-
-nav i {
+nav i,
+nav a {
   font-style: normal;
 
   font-size: 1.1rem;
@@ -146,14 +212,8 @@ h3::after {
   display: block;
   width: 5%;
   height: 2px;
-  background-color: #ffc107;
+  background-color: var(--accent-color);
   position: absolute;
   bottom: 0;
   left: 0;
-}
-
-/* sidebar */
-
-.sidebar h6:hover {
-  background-color: #ffc107;
 }
