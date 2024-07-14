@@ -565,32 +565,42 @@
       <!-- login & registeration modals end -->
 
       <!-- second navbar start -->
-      <nav class="navbar navbar-expand navbar-light bg-light">
+      <nav class="nav2 navbar navbar-expand navbar-light bg-light">
         <div
           class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
         >
-          <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-6 h-scroll-child">
-            <li class="nav-item border-end mx-2 col-4 col-xl-3">
-              <a class="nav-link active" href="productCatalog.html">
-                All Categories
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productCatalog.html">Living Room</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productCatalog.html">Bedroom</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productCatalog.html">Dining Room</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productCatalog.html">Office</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productCatalog.html">Outdoors</a>
-            </li>
-          </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-8 h-scroll-child">
+          <li class="nav-item border-end mx-2 col-4 col-xl-3">
+            <a class="nav-link active" href="productCatalog.html">
+              All Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=living-room"
+              >Living Room</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=Bedroom"
+              >Bedroom</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=dining-room"
+              >Dining Room</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=office"
+              >Office</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=outdoor"
+              >Outdoors</a
+            >
+          </li>
+        </ul>
         </div>
       </nav>
 
@@ -662,12 +672,12 @@
             <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
             <div class="card border-0 pe-3 border-end">
               <img
-                src="../assets/images/nightstand.png"
+                src="../assets/images/beanbag.png"
                 class="card-img-top p-2"
                 alt="..."
               />
               <div class="card-body">
-                <h6 class="card-title">Nightstands</h6>
+                <h6 class="card-title">Beanbags</h6>
               </div>
             </div>
             </a>
@@ -709,10 +719,10 @@
         <div
           class="position-absolute top-50 start-0 d-flex justify-content-between w-100 opacity-100"
         >
-          <button class="btn secondary-color text-white rounded-circle" id="scroll-btn-left">
+          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-left">
             <i class="bi bi-chevron-left"></i>
           </button>
-          <button class="btn secondary-color text-white rounded-circle" id="scroll-btn-right">
+          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-right">
             <i class="bi bi-chevron-right"></i>
           </button>
         </div>
@@ -814,9 +824,64 @@
       </section>
       <!-- promotion header end -->
 
-      <!-- products start -->
-      <!-- products end -->
+    <!-- products start -->
 
+    <section class="filtered-products container mt-5">
+      <div class="row">
+        <!-- First Column Spanning Two Rows -->
+        <div class="col-md-6">
+          <a href="filteredProducts.html?filter=500">
+            <div class="card text-bg-white span-two">
+              <img src="../assets/images/chair3.png" class="card-img first-img" alt="...">
+              <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                <h4 class="card-title text-center">Products less than 500 EGP</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+    
+        <!-- Second Column -->
+        <div class="col-md-3 mb-3">
+          <a href="filteredProducts.html?filter=Bedroom">
+            <div class="card text-bg-white mb-3">
+              <img src="../assets/images/bedroomx2.jpg" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Bedroom Products</h4>
+              </div>
+            </div>
+          </a>
+          <a href="filteredProducts.html?filter=living-room">
+            <div class="card text-bg-white">
+              <img src="../assets/images/sofa.png" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Living Room Products</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+    
+        <!-- Third Column -->
+        <div class="col-md-3 mb-3">
+          <a href="filteredProducts.html?filter=outdoor">
+            <div class="card text-bg-white mb-3">
+              <img src="../assets/images/beanbag.png" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Outdoor Products</h4>
+              </div>
+            </div>
+          </a>
+          <a href="filteredProducts.html?filter=dining-room">
+            <div class="card text-bg-white">
+              <img src="../assets/images/chair5.png" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Dining Room Products</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
       <!-- contact us modal start -->
 
 <!-- Modal -->
@@ -862,7 +927,7 @@
       <!-- contact us modal end -->
 
       <!-- footer start -->
-      <footer class="bg-dark text-white text-center mt-5">
+      <footer class="bg-dark text-white text-center mt-2">
         <div class="container py-5">
           <div class="row">
             <div class="col-lg-4 mb-4">

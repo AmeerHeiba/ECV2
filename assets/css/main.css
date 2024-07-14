@@ -177,7 +177,7 @@ nav a {
 }
 
 .featured .card {
-  box-shadow: 1px 1px 20px #eee;
+  box-shadow: 1px 1px 10px #eee;
 }
 
 .currency {
@@ -198,6 +198,22 @@ nav a {
   height: 12rem;
   width: 14rem;
   object-fit: cover;
+}
+
+/* navbar 2 */
+
+.nav2 .nav-link {
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+
+.nav2 .navbar-nav {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent the nav items from wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.nav2 .nav-item {
+  flex: 0 0 auto; /* Prevent flex items from shrinking */
 }
 
 /* headers */

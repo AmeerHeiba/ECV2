@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/orders.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <!-- first navbar start -->
+    <nav
+      class="navbar navbar-1 navbar-expand-xl bg-transparent w-100 border-body"
+    >
+      <div class="container my-2">
+        <a class="h1 navbar-brand fsize-1" href="./home.html">Tea.</a>
+        <form class="d-flex col col-lg-8 mx-lg-5" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="What are you looking for?"
+            aria-label="Search"
+            id="search-product"
+            onkeyup="getFilteredProducts()"
+          />
+        </form>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
+            <li class="nav-item" id="logged-user">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                data-bs-toggle="modal"
+                data-bs-target="#login"
+                ><i class="bi bi-person-fill">&nbsp Login</i></a
+              >
+            </li>
+
+            <li class="nav-item d-none" id="register">
+              <div class="dropdown nav-link p-0">
+                <button
+                  class="btn dropdown-toggle p-0 p-xl-2"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-person-plus-fill">&nbsp Register</i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      aria-current="page"
+                      data-bs-toggle="modal"
+                      data-bs-target="#registration"
+                      class="dropdown-item"
+                      >New Customer?</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      aria-current="page"
+                      data-bs-toggle="modal"
+                      data-bs-target="#seller-registration"
+                      class="dropdown-item"
+                      class="dropdown-item"
+                      >New Seller?</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li id="wishlist-link" class="nav-item">
+              <a class="nav-link active" href="wishlist.html"
+                ><i class="bi bi-bag-heart-fill">&nbsp Wishlist</i></a
+              >
+            </li>
+            <li id="cart-link" class="nav-item">
+              <a class="nav-link active" href="cart.html"
+                ><i class="bi bi-cart4"
+                  ><span
+                    id="notification"
+                    style="font-size: 0.6rem"
+                    class="position-absolute top-40 start-10 translate-middle badge rounded-circle"
+                  >
+                  </span
+                  >&nbsp Cart
+                </i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- first navbar end -->
+
+    <!-- second navbar start -->
+    <nav class="nav2 navbar navbar-expand navbar-light bg-light">
+      <div
+        class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
+      >
+        <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-8 h-scroll-child">
+          <li class="nav-item border-end mx-2 col-4 col-xl-3">
+            <a class="nav-link active" href="productCatalog.html">
+              All Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=living-room"
+              >Living Room</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=Bedroom"
+              >Bedroom</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=dining-room"
+              >Dining Room</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=office"
+              >Office</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=outdoor"
+              >Outdoors</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- second navbar end -->
+
+    <!-- products catalog start -->
+    <div class="container my-4 col-10 my-4">
+      <div class="d-flex">
+        <h3 id="title" class="my-4">Product Catalog</h3>
+        <!-- <div class="form-floating form-select-sm my-2">
+          <select class="form-select" id="productCategory">
+            <option value="">Filter By category</option>
+            <option value="living-room">Living Room</option>
+            <option value="bedroom">Bedroom</option>
+            <option value="dining-room">Dining Room</option>
+            <option value="office">Office</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+          <label for="productCategory">Category</label>
+        </div>
+        <div class="form-floating form-select-sm my-2">
+          <select class="form-select" id="priceFilter">
+            <option value="">Filter By Price</option>
+
+            <option value="ascending">From Low To High</option>
+            <option value="descending">From High To Low</option>
+          </select>
+          <label for="productPrice">Price</label>
+        </div> -->
+      </div>
+      <div id="product-wrapper" class="row gap-4"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../Models/adminModel.js"></script>
+    <script src="../Models/userModel.js"></script>
+    <script src="../Models/sellerModel.js"></script>
+
+    <script src="../Controllers/UIController.js"></script>
+    <script src="../Controllers/authController.js"></script>
+    <script src="../Models/productModel.js"></script>
+    <script src="../Controllers/userController.js"></script>
+    <script src="../Controllers/productsController.js"></script>
+    <!-- <script src="./productsCatalog.js"></script> -->
+
+    <script src="filteredProducts.js"></script>
+
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script> -->
+  </body>
+</html>

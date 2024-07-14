@@ -126,6 +126,73 @@ select:focus {
   transform: scale(1.2) rotate(5deg) translateX(20px);
 }
 
+/* fitered products */
+@media screen and (min-width: 780px) {
+  .filtered-products .span-two {
+    height: 77% !important;
+  }
+}
+
+.filtered-products .card {
+  height: 35vh;
+  border: none;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.filtered-products .card:hover {
+  transform: scale(1.05);
+}
+
+.filtered-products .card .first-img {
+  filter: opacity(1);
+  object-fit: contain;
+  height: 100%;
+}
+
+.filtered-products .card img {
+  height: 100%;
+  object-fit: cover;
+  filter: opacity(0.7);
+  transition: filter 0.3s ease;
+}
+
+.filtered-products .card:hover img {
+  filter: opacity(1);
+}
+
+.filtered-products .card .card-img-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.filtered-products .card .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.filtered-products .card .card-img-overlay h4 {
+  margin: 0;
+}
+
+.filtered-products .card.text-bg-warning {
+  background-color: #ffc107;
+}
+
+.filtered-products .card.text-bg-light {
+  background-color: #f8f9fa;
+}
+
+.filtered-products .card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 786px) {
   .carousel-item:nth-child(1) img,
   .carousel-item:nth-child(2) img {
