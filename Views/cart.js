@@ -243,6 +243,7 @@ function orderPlaced() {
 
       <div class="d-flex flex-column justify-content-center align-items-center">
         <h4>Order placed successfully</h4>
+        <p class="text-muted text-center">You're being redirected to you orders page</p>
         <i style="font-size: 6rem" class="bi bi-check-circle text-success"></i>
       </div> 
       <a href="../Views/orders.html" class="btn btn-primary mt-4">Go To Orders</a>    
@@ -290,12 +291,18 @@ function processCheckout() {
   });
 
   if (outOfStockProducts.length > 0) {
+    const outOfStockProductNames = outOfStockProducts
+      .map((item) => {
+        const product = allProducts.find((p) => p.id === item.id);
+        return product ? product.name : "";
+      })
+      .join(", ");
+
     alert(
-      "Some products in your cart are out of stock. Please remove them before proceeding."
+      `The following products in your cart are out of stock or have insufficient stock, Please remove them before proceeding. ${outOfStockProductNames}.`
     );
     return;
   }
-
   const addressSelect = document.getElementById("addresses");
   const paymentMethodSelect = document.getElementById("paymentMethod");
   const selectedAddressId = addressSelect.value;
@@ -331,46 +338,75 @@ function processCheckout() {
     };
   }
 
-  // Decrease product stock
-  const products = Product.getProducts();
-  cartItems.forEach((cartItem) => {
-    const product = products.find((p) => p.id === cartItem.id);
-    if (product) {
-      product.stock -= cartItem.quantity;
-      Product.updateProduct(product); // Assuming you have an update method in Product class
-    }
-  });
-
   const totalOrderPrice = calculateTotalOrderPrice(cartItems);
 
-  // Create order
-  const orderId = Number(`${user.id}${Date.now()}`);
-  const newOrder = {
-    id: orderId,
-    items: cartItems,
-    address: selectedAddress,
-    paymentMethod: selectedPaymentMethod,
-    total: totalOrderPrice,
-    orderDate: new Date().toISOString(),
-    status: "pending",
+  // Populate the confirmation modal with order details
+  const orderSummary = cartItems
+    .map((item) => {
+      const product = Product.getProductById(item.id);
+      return `
+      <div class="d-flex justify-content-between">
+        <span>${product.name} (x${item.quantity})</span>
+        <span>${(product.price * item.quantity).toFixed(2)} EGP</span>
+      </div>
+    `;
+    })
+    .join("");
+
+  document.getElementById("orderSummary").innerHTML = orderSummary;
+  document.getElementById("orderTotal").textContent =
+    totalOrderPrice.toFixed(2);
+
+  // Show the modal
+  const confirmationModal = new bootstrap.Modal(
+    document.getElementById("confirmationModal")
+  );
+  confirmationModal.show();
+
+  // Handle order confirmation
+  document.getElementById("confirmOrderButton").onclick = function () {
+    // Decrease product stock
+    const products = Product.getProducts();
+    cartItems.forEach((cartItem) => {
+      const product = products.find((p) => p.id === cartItem.id);
+      if (product) {
+        product.stock -= cartItem.quantity;
+        Product.updateProduct(product); // Assuming you have an update method in Product class
+      }
+    });
+
+    // Create order
+    const orderId = Number(`${user.id}${Date.now()}`);
+    const newOrder = {
+      id: orderId,
+      items: cartItems,
+      address: selectedAddress,
+      paymentMethod: selectedPaymentMethod,
+      total: totalOrderPrice,
+      orderDate: new Date().toISOString(),
+      status: "pending",
+    };
+
+    if (!user.orders) {
+      user.orders = [];
+    }
+
+    // Add order to user's orders
+    user.orders.push(newOrder);
+
+    // Save updated user data
+    User.saveUsers(users);
+
+    // Clear the cart
+    user.cart = [];
+    User.saveUsers(users);
+
+    confirmationModal.hide();
+    orderPlaced();
+    // document.getElementById("checkoutForm").reset();
+    // Wait 5 seconds before redirecting to the orders page
+    setTimeout(() => {
+      location.href = "orders.html";
+    }, 7000);
   };
-
-  if (!user.orders) {
-    user.orders = [];
-  }
-
-  // Add order to user's orders
-  user.orders.push(newOrder);
-
-  // Save updated user data
-  User.saveUsers(users);
-
-  // Clear the cart
-  user.cart = [];
-  User.saveUsers(users);
-
-  orderPlaced();
-  // Optionally redirect to order confirmation page or clear form fields
-  document.getElementById("checkoutForm").reset();
-  location.href = "orders.html";
 }
