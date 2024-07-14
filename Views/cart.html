@@ -185,7 +185,8 @@
                   Checkout
                   <i class="bi bi-arrow-right-short"></i>
                 </button>
-                <!-- Modal -->
+
+                <!-- Checkout Modal -->
                 <div
                   class="modal fade"
                   id="checkout"
@@ -283,6 +284,51 @@
         </div>
       </div>
     </section>
+
+    <!-- Confirmation Modal -->
+    <div
+      class="modal fade secondary-color"
+      id="confirmationModal"
+      tabindex="-1"
+      aria-labelledby="confirmationModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmationModalLabel">
+              Confirm Your Order
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="orderSummary"></div>
+            <h5 class="mt-2">Total: <span id="orderTotal"></span> EGP</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="confirmOrderButton"
+            >
+              Confirm Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- cart end -->
     <script src="../Models/productModel.js"></script>
