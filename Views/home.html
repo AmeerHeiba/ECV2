@@ -816,6 +816,50 @@
       <!-- products start -->
       <!-- products end -->
 
+      <!-- contact us modal start -->
+
+<!-- Modal -->
+<div class="modal fade" id="supportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Contact Us</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body secondary-color text-white">
+        
+        <form id="contactSupportForm">
+          <div class="form-group">
+              <label class="mb-1" for="fullName">Full Name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group mt-2">
+              <label class="mb-1" for="emailAddress">Email Address</label>
+              <input type="email" class="form-control" id="emailAddress" placeholder="Enter your email address" required>
+          </div>
+          <div class="form-group mt-2">
+              <label class="mb-1" for="phoneNumber">Phone Number</label>
+              <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" required>
+          </div>
+          <div class="form-group mt-2">
+              <label class="mb-1" for="subject">Subject</label>
+              <input type="text" class="form-control" id="subject" placeholder="Enter the subject" required>
+          </div>
+          <div class="form-group mt-2 mb-4">
+              <label class="mb-1" for="message">Message</label>
+              <textarea class="form-control" id="message" rows="5" placeholder="Type your message here" required></textarea>
+          </div>
+          
+          <button id="sbmt" type="submit" class="col-4 btn btn-outline-light btn-block">Submit</button>
+      </form>
+  
+      </div>
+ 
+    </div>
+  </div>
+</div>
+      <!-- contact us modal end -->
+
       <!-- footer start -->
       <footer class="bg-dark text-white text-center mt-5">
         <div class="container py-5">
@@ -864,6 +908,7 @@
                 <li>Email: example@example.com</li>
                 <li>Phone: +1234567890</li>
                 <li>Address: 123 Street, City, Country</li>
+                <li><a class="btn"></a></li>
               </ul>
             </div>
           </div>
@@ -872,11 +917,18 @@
       <!-- Footer end -->
     </section>
 
+    <div class="support-button">
+      <button data-bs-toggle="modal" data-bs-target="#supportModal">Need help?</button>
+  </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../Models/adminModel.js"></script>
     <script src="../Models/userModel.js"></script>
     <script src="../Models/sellerModel.js"></script>
+    <script src="../Models/supportModel.js"></script>
 
+
+    <script src="../Views/support.js"></script>
     <script src="../Views/Login.js"></script>
     <script src="../Views/customerRegister.js"></script>
     <script src="../Views/sellerRegister.js"></script>
