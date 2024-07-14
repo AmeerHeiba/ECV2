@@ -5,6 +5,22 @@ class ProductController {
   welcome.innerText=`welcome ${currentSeller.username} !`
   
   }
+  static logoutSeller() {
+    // Open the modal
+    var logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+    logoutModal.show();
+
+    // Handle confirmation
+    document.getElementById('confirmLogout').addEventListener('click', () => {
+      AuthController.logout();
+      logoutModal.hide(); // Hide the modal after logout
+    });
+
+    // Optionally handle cancel action if needed
+    document.getElementById('cancelLogout').addEventListener('click', () => {
+      logoutModal.hide(); // Just hide the modal
+    });
+  }
   // Function to display products from local storage
   static displayProducts() {
     const tableBody = document.getElementById("productTableBody");
@@ -14,6 +30,7 @@ class ProductController {
     const sellerId = currentUser.id;
     if (products.length > 0) {
       tableBody.innerHTML = "";
+      noProductMessage.style.display = "none";
 
       products.forEach((product, index) => {
         if (product.seller_id === sellerId) {
@@ -54,6 +71,8 @@ class ProductController {
   static displayOrders() {
     const tableBody = document.getElementById("orderTableBody");
     tableBody.innerHTML = "";
+    const noOrderMessage = document.getElementById("no-order");
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const sellerId = currentUser.id;
@@ -76,6 +95,8 @@ class ProductController {
             });
   
             if (totalQuantity > 0) {
+              noOrderMessage.style.display = "none";
+
               const row = document.createElement("tr");
               row.innerHTML = `
                 <td>${order.id}</td>
@@ -104,6 +125,10 @@ class ProductController {
                 ProductController.updateOrderStatus(orderId, newStatus);
                 row.querySelector(".order-status").textContent = newStatus;
               });
+            }
+            else{
+              tableBody.innerHTML = "";
+              noOrderMessage.style.display = "block";
             }
           });
         }
@@ -214,6 +239,7 @@ class ProductController {
     const filter = input.value.trim().toUpperCase();
     const table = document.getElementById("orderTableBody");
     const rows = table.getElementsByTagName("tr");
+    const noOrderMessage = document.getElementById("no-order");
 
     for (let i = 0; i < rows.length; i++) {
       const td1 = rows[i].getElementsByTagName("td")[0];
@@ -223,8 +249,11 @@ class ProductController {
 
         if (txtValue1.toUpperCase().indexOf(filter) > -1) {
           rows[i].style.display = "";
+          noOrderMessage.style.display = "none";
+
         } else {
           rows[i].style.display = "none";
+              noOrderMessage.style.display = "block";
         }
       }
     }
@@ -447,6 +476,7 @@ class ProductController {
     const filter = input.value.toUpperCase();
     const table = document.getElementById("myTable");
     const rows = table.getElementsByTagName("tr");
+    const noProductMessage = document.getElementById("no-product");
 
     for (let i = 0; i < rows.length; i++) {
       const td1 = rows[i].getElementsByTagName("td")[2];
@@ -464,8 +494,12 @@ class ProductController {
           txtValue3.toUpperCase().indexOf(filter) > -1
         ) {
           rows[i].style.display = "";
+          noProductMessage.style.display = "none";
+
         } else {
           rows[i].style.display = "none";
+          
+          noProductMessage.style.display = "block";
         }
       }
     }

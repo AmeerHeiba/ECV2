@@ -45,10 +45,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" onclick="AuthController.logout()">
+          <a class="nav-link" href="#" onclick="ProductController.logoutSeller()">
             <i class="fas fa-sign-out-alt"></i> Logout
           </a>
         </li>
+
+
       </ul>
     </div>
     <div class="content">
@@ -57,7 +59,7 @@
           <input
             type="text"
             class="form-control w-50 mr-2 "
-            placeholder="Search"
+            placeholder="Search for product"
             id="searchProduct"
             onkeyup="ProductController.filterProducts()"
             style="  margin-right: 10px;
@@ -107,7 +109,23 @@
             </div>
           </div>
         </div>
-
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                <button type="button" class="btn-close" id="cancelLogout" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to logout?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelLogout">Cancel</button>
+                <button type="button" class="btn btn-custom" id="confirmLogout">Logout</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
       <div id="analytics" style="display: none">
@@ -123,7 +141,7 @@
           <input
             type="text"
             class="form-control w-50 mr-2 "
-            placeholder="Search"
+            placeholder="Search for order"
             id="searchOrder"
             onkeyup="ProductController.filterOrders()"
 
@@ -150,6 +168,7 @@
             </tbody>
           </table>
         </div>
+        <h3 id="no-order" style="display: none;   text-align: center; margin: 150px auto;color: gainsboro;">No orders exist</h3>
       </div>
     </div>
   </div>
