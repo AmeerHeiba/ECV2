@@ -1,23 +1,24 @@
 class ProductController {
-  static welcomeSeller(){
+  static welcomeSeller() {
     const welcome = document.getElementById("welcome-seller");
-    const currentSeller= JSON.parse(localStorage.getItem("currentUser"));
-  welcome.innerText=`welcome ${currentSeller.username} !`
-  
+    const currentSeller = JSON.parse(localStorage.getItem("currentUser"));
+    welcome.innerText = `welcome ${currentSeller.username} !`;
   }
   static logoutSeller() {
     // Open the modal
-    var logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+    var logoutModal = new bootstrap.Modal(
+      document.getElementById("logoutModal")
+    );
     logoutModal.show();
 
     // Handle confirmation
-    document.getElementById('confirmLogout').addEventListener('click', () => {
+    document.getElementById("confirmLogout").addEventListener("click", () => {
       AuthController.logout();
       logoutModal.hide(); // Hide the modal after logout
     });
 
     // Optionally handle cancel action if needed
-    document.getElementById('cancelLogout').addEventListener('click', () => {
+    document.getElementById("cancelLogout").addEventListener("click", () => {
       logoutModal.hide(); // Just hide the modal
     });
   }
@@ -55,19 +56,27 @@ class ProductController {
                 <td>${product.name}</td>
         <td>${product.description}</td>
         <td>${product.category}</td>
-        <td>${product.stock}</td>
+        <td style="color:${product.stock == 0 ? "red" : "green"}">${
+      product.stock == 0 ? "out of stock" : product.stock
+    }</td>
         <td>${product.price} $</td>
         <td>${product.date}</td>
         <td class="action">
-          <i class="fa fa-pencil-alt edit-eye-icon" onclick="ProductController.editeProduct(${product.id})"></i>
-          <i class="fa fa-trash-alt delete-icon" onclick="ProductController.deleteProduct(${product.id})"></i>
-          <i class="fa-solid fa-eye edit-eye-icon" onclick="ProductController.showProductDetails(${product.id})"></i>
+          <i class="fa fa-pencil-alt edit-eye-icon" onclick="ProductController.editeProduct(${
+            product.id
+          })"></i>
+          <i class="fa fa-trash-alt delete-icon" onclick="ProductController.deleteProduct(${
+            product.id
+          })"></i>
+          <i class="fa-solid fa-eye edit-eye-icon" onclick="ProductController.showProductDetails(${
+            product.id
+          })"></i>
 
         </td>
       `;
     return row;
   }
-  
+
   static displayOrders() {
     const tableBody = document.getElementById("orderTableBody");
     tableBody.innerHTML = "";
@@ -76,24 +85,25 @@ class ProductController {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const sellerId = currentUser.id;
-  
+
     if (users.length > 0) {
       users.forEach((user) => {
         const userOrders = user.orders;
-  
+
         if (userOrders && userOrders.length > 0) {
           userOrders.forEach((order) => {
             let totalQuantity = 0;
             let totalPrice = 0;
-  
+
             order.items.forEach((item) => {
               const product = Product.getProductById(item.id);
               if (product && product.seller_id == sellerId) {
                 totalQuantity += parseFloat(item.quantity);
-                totalPrice += parseFloat(item.quantity) * parseFloat(product.price);
+                totalPrice +=
+                  parseFloat(item.quantity) * parseFloat(product.price);
               }
             });
-  
+
             if (totalQuantity > 0) {
               noOrderMessage.style.display = "none";
 
@@ -101,23 +111,29 @@ class ProductController {
               row.innerHTML = `
                 <td>${order.id}</td>
                 <td>${totalQuantity}</td>
-                <td>${totalPrice.toFixed(2)}</td>
-                <td class="order-status">${order.status}</td>
-                <td>${order.orderDate}</td>
+                <td class="order-price">${totalPrice.toFixed(2)}</td>
+                <td class="order-status" style="color:${order.status=== "pending"?"red":"green"}">${order.status}</td>
+                <td class="order-date">${order.orderDate}</td>
                 <td class="action">
                   <select
                     class="form-select order-status-select"
                     data-order-id="${order.id}"
                     aria-label="Select status"
                   >
-                    <option value="pending" ${order.status === "pending" ? "selected" : ""}>pending</option>
-                    <option value="inProgress" ${order.status === "inProgress" ? "selected" : ""}>inProgress</option>
-                    <option value="completed" ${order.status === "completed" ? "selected" : ""}>completed</option>
+                    <option value="pending" ${
+                      order.status === "pending" ? "selected" : ""
+                    }>pending</option>
+                    <option value="inProgress" ${
+                      order.status === "inProgress" ? "selected" : ""
+                    }>inProgress</option>
+                    <option value="completed" ${
+                      order.status === "completed" ? "selected" : ""
+                    }>completed</option>
                   </select>
                 </td>
               `;
               tableBody.appendChild(row);
-  
+
               const selectElement = row.querySelector("select");
               selectElement.addEventListener("change", (event) => {
                 const newStatus = event.target.value;
@@ -125,8 +141,7 @@ class ProductController {
                 ProductController.updateOrderStatus(orderId, newStatus);
                 row.querySelector(".order-status").textContent = newStatus;
               });
-            }
-            else{
+            } else {
               tableBody.innerHTML = "";
               noOrderMessage.style.display = "block";
             }
@@ -135,7 +150,6 @@ class ProductController {
       });
     }
   }
-  
 
   // Function to update order status in local storage
   static updateOrderStatus(orderId, newStatus) {
@@ -154,85 +168,154 @@ class ProductController {
     localStorage.setItem("users", JSON.stringify(users));
   }
   static createCharts() {
+    // Fetch orders from your table
+    const tableRows = document.querySelectorAll("#orderTableBody tr");
+    const orders = [];
+
+    tableRows.forEach((row) => {
+      const statusCell = row.querySelector(".order-status");
+      const priceCell = row.querySelector(".order-price");
+      const dateCell = row.querySelector(".order-date");
+
+      const order = {
+        status: statusCell.textContent.trim(),
+        price: parseFloat(priceCell.textContent.trim()),
+        date: dateCell.textContent.trim(),
+      };
+
+      orders.push(order);
+    });
+
+    // Now you have the 'orders' array populated with data from your table
     const counts = {
-        inProgress: countOrdersByStatus("inProgress"),
-        pending: countOrdersByStatus("pending"),
-        completed: countOrdersByStatus("completed")
+      inProgress: countOrdersByStatus("inProgress"),
+      pending: countOrdersByStatus("pending"),
+      completed: countOrdersByStatus("completed"),
     };
 
+    const totalPriceCompleted = calculateTotalPrice("completed");
+
     function countOrdersByStatus(status) {
-        const tableRows = document.querySelectorAll("#orderTableBody tr");
-        let count = 0;
-        tableRows.forEach(row => {
-            const statusCell = row.querySelector(".order-status");
-            if (statusCell.textContent.trim() === status) {
-                count++;
-            }
-        });
-        return count;
+      let count = 0;
+      orders.forEach((order) => {
+        if (order.status === status) {
+          count++;
+        }
+      });
+      return count;
     }
 
-    const ctxMyChart = document.getElementById('myChart').getContext('2d');
+    function calculateTotalPrice(status) {
+      let totalPrice = 0;
+      orders.forEach((order) => {
+        if (order.status === status) {
+          totalPrice += order.price;
+        }
+      });
+      return totalPrice;
+    }
+
+    // Function to calculate profit growth rate (total price of completed orders) each month
+    function calculateMonthlyProfitGrowth(orders) {
+      const monthlyProfit = {};
+
+      orders.forEach((order) => {
+        const month = order.date.substring(0, 7);
+        if (order.status === "completed") {
+          if (!monthlyProfit[month]) {
+            monthlyProfit[month] = 0;
+          }
+          monthlyProfit[month] += order.price;
+        }
+      });
+
+      const months = Object.keys(monthlyProfit).sort();
+      const profitData = months.map((month) => monthlyProfit[month]);
+
+      return { months, profitData };
+    }
+
+    const { months, profitData } = calculateMonthlyProfitGrowth(orders);
+
+    const ctxMyChart = document.getElementById("myChart").getContext("2d");
     new Chart(ctxMyChart, {
-        type: 'bar',
-        data: {
-            labels: ['In Progress', 'Pending', 'Completed'],
-            datasets: [{
-                label: 'Orders by Status',
-                data: [counts.inProgress, counts.pending, counts.completed],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
+      type: "bar",
+      data: {
+        labels: ["In Progress", "Pending", "Completed"],
+        datasets: [
+          {
+            label: "Orders by Status",
+            data: [counts.inProgress, counts.pending, counts.completed],
+            backgroundColor: ["#754114", "rgb(202, 162, 130)", "#6fe04c"],
+            borderColor: ["#754114", "rgb(202, 162, 130)", "#6fe04c"],
+            borderWidth: 1,
+          },
+          {
+            label: "Total Price of Completed Orders",
+            data: [0, 0, totalPriceCompleted],
+            backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+            borderColor: ["rgba(255, 99, 132, 1)"],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            stacked: true,
+          },
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+      },
     });
 
-    
-    const ctxPendingReq = document.getElementById('pendingReq').getContext('2d');
-    new Chart(ctxPendingReq, {
-        type: 'pie',
-        data: {
-            labels: ['Pending', 'Completed'],
-            datasets: [{
-                label: 'Pending Requests',
-                data: [counts.pending, counts.completed],
-                backgroundColor: [
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
+    const profit = document.getElementById("profit").getContext("2d");
+    new Chart(profit, {
+      type: "line",
+      data: {
+        labels: months,
+        datasets: [
+          {
+            label: "Profit Growth Rate (Total Price of Completed Orders)",
+            data: profitData,
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+            pointBackgroundColor: "rgba(75, 192, 192, 1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(75, 192, 192, 1)",
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Profit ($)",
+              font: {
+                size: 14,
+                weight: "bold",
+              },
+            },
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Month",
+              font: {
+                size: 14,
+                weight: "bold",
+              },
+            },
+          },
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+      },
     });
-
-   
-}
+  }
 
   static filterOrders() {
     const input = document.getElementById("searchOrder");
@@ -250,10 +333,9 @@ class ProductController {
         if (txtValue1.toUpperCase().indexOf(filter) > -1) {
           rows[i].style.display = "";
           noOrderMessage.style.display = "none";
-
         } else {
           rows[i].style.display = "none";
-              noOrderMessage.style.display = "block";
+          noOrderMessage.style.display = "block";
         }
       }
     }
@@ -495,10 +577,9 @@ class ProductController {
         ) {
           rows[i].style.display = "";
           noProductMessage.style.display = "none";
-
         } else {
           rows[i].style.display = "none";
-          
+
           noProductMessage.style.display = "block";
         }
       }

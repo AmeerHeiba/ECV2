@@ -14,11 +14,11 @@
       auth.protectPage('seller');
   </script>
   <style>
-    .chartCon{
+    /* .chartCon{
             width: 25vw;
           display: flex;
           justify-content: space-around;
-        }
+        } */
   </style>
 </head>
 <body>
@@ -130,11 +130,27 @@
       </div>
       <div id="analytics" style="display: none">
         <h2 style="text-align: center; margin-bottom: 50px;">Analytics</h2>
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <h2 style="text-align: center;">orders summary</h2>
+            <div class="card">
+              <div class="card-body">
+                <canvas id="myChart" ></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h2 style="text-align: center;"> profit growth</h2>
 
-        <div class="chartCon" >
-          <canvas id="myChart" ></canvas>
-          <canvas id="pendingReq"  ></canvas>
-      </div>
+            <div class="card">
+              <div class="card-body">
+                <canvas id="profit"  ></canvas>
+
+              </div>
+            </div>
+          </div>
+        </div>
+          
       </div>
       <div id="orders" style="display: none">
         <div class="search-container">
