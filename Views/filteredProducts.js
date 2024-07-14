@@ -151,9 +151,9 @@ function displayFilteredProducts() {
 // document
 //   .getElementById("priceFilter")
 //   .addEventListener("change", displayFilteredProducts);
-document
-  .getElementById("search-product")
-  .addEventListener("input", displayFilteredProducts);
+// document
+//   .getElementById("search-product")
+//   .addEventListener("input", displayFilteredProducts);
 // document
 //   .getElementById("productCategory")
 //   .addEventListener("change", displayFilteredProducts);
