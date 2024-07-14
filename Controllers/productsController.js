@@ -1,9 +1,14 @@
 class ProductController {
+  static welcomeSeller(){
+    const welcome = document.getElementById("welcome-seller");
+    const currentSeller= JSON.parse(localStorage.getItem("currentUser"));
+  welcome.innerText=`welcome ${currentSeller.username} !`
+  
+  }
   // Function to display products from local storage
   static displayProducts() {
     const tableBody = document.getElementById("productTableBody");
     const noProductMessage = document.getElementById("no-product");
-
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const sellerId = currentUser.id;
@@ -45,7 +50,7 @@ class ProductController {
       `;
     return row;
   }
-
+  
   static displayOrders() {
     const tableBody = document.getElementById("orderTableBody");
     tableBody.innerHTML = "";

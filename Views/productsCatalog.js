@@ -6,6 +6,8 @@ UIController.updateCartIcon();
 function createProductCard(product) {
   const isInCart = UserController.isProductInCart(product.id);
   const isInWishlist = UserController.isProductInWishlist(product.id);
+  const isOutOfStock = product.stock === 0;
+
   return `
            <div class="card col-12 col-xl-2">
       <img
@@ -13,12 +15,14 @@ function createProductCard(product) {
         class="wishlist-img card-img-top rounded-2 mt-3"
         alt="${product.name}"
       />
-      <div class="product-btns d-flex flex-column">
+       <div class="product-btns d-flex flex-column">
             <a id="add-to-cart" class="btn rounded-5 mb-2 ${
               isInCart ? "btn-success" : "btn-primary"
             }" onclick="UserController.addToCart(${
-    product.id
-  }, 1); UserController.changeIcon(this); UIController.updateCartIcon();">
+          product.id
+        }, 1); UserController.changeIcon(this); UIController.updateCartIcon();" data-product-id="${
+          product.id
+        }">
               <i class="bi ${
                 isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
               }"></i>
@@ -26,8 +30,8 @@ function createProductCard(product) {
             <a id="wishlist-btn" class="btn ${
               isInWishlist ? "btn-danger" : "btn-secondary"
             } rounded-5" onclick="UserController.addToWishlist(${
-    product.id
-  }); UserController.changeIcon(this); ">
+          product.id
+        }); UserController.changeIcon(this);" >
               <i class="bi ${
                 isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
@@ -42,7 +46,12 @@ function createProductCard(product) {
         <div class="d-flex flex-column align-items-start">
           <h4 class="mb-3">
             <span class="currency me-1">EGP</span>${product.price}
-          </h4>
+          </h4> 
+          ${
+            isOutOfStock
+              ? '<span style="border-radius: 0;" class="badge bg-danger border-0 position-absolute end-0">Out of Stock</span>'
+              : ""
+          }          
           <a
             href="productDetailsCustomer.html?id=${product.id}"
             class="btn btn btn-outline-dark btn-sm"
