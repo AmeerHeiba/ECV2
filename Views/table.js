@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  ProductController.welcomeSeller()
+
     ProductController.displayProducts();
     ProductController.displayOrders()
     ProductController.createCharts()

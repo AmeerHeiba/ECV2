@@ -77,6 +77,7 @@ cardContainer.innerHTML = `
                 isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
               }"></i>
             </a>
+            
             <a id="wishlist-btn" class="btn ${
               isInWishlist ? "btn-danger" : "btn-secondary"
             } " onclick="UserController.addToWishlist(${
@@ -86,9 +87,15 @@ cardContainer.innerHTML = `
                 isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
             </a>
+    <button class="btn btn-custom" onclick="backCatalog()" style="margin-left:14px"> <i class="fa-solid fa-arrow-left"></i> Back</button>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 `;
+function backCatalog(){
+  window.location.href = `productCatalog.html`;
+
+}
