@@ -119,11 +119,11 @@ class UIController {
               <h4 class="mb-3">
                 <span class="currency me-1">EGP</span>${product.price}
               </h4>
-              ${
-                isOutOfStock
-                  ? '<span style="border-radius: 0;" class="badge bg-danger border-0 position-absolute end-0">Out of Stock</span>'
-                  : ""
-              }
+             ${
+               isOutOfStock
+                 ? '<span style="border-radius: 0; top:30px;" class="badge bg-danger border-0 position-absolute start-0">Out of Stock</span>'
+                 : ""
+             }
               <a href="productDetailsCustomer.html?id=${
                 product.id
               }" class="btn btn btn-outline-dark btn-sm">View Details</a>
