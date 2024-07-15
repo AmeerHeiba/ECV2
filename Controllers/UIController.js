@@ -38,10 +38,12 @@ class UIController {
           <div class="dropdown nav-link p-0">
             <button class="btn text-white dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
              <i class="bi bi-person-fill"> Hi ${adminName}!</i>
+             
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item mt-2 mb-3" href="adminPanel.html"><i class="bi bi-person-fill-gear"></i> Admin Panel</a></li>
-              <li class="d-flex justify-content-center mt-2"><button class="btn btn-light secondary-color col-10" onclick="AuthController.logout()">Logout</button></li>
+              <li><a class="dropdown-item my-1 py-2" href="adminPanel.html"><i class="bi bi-person-fill-gear"></i> Admin Panel</a></li>
+              <hr>
+              <li class="d-flex justify-content-center mt-2"><button class="btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
             
             </ul>
           </div>
