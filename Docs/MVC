@@ -1,0 +1,49 @@
+                            +-------------------+
+                            |      Views        |
+                            |-------------------|
+                            | - Home Page View  |
+                            | - Product Catalog |
+                            | - Product Details |
+                            | - Shopping Cart   |
+                            | - Checkout View   |
+                            | - Seller Dashboard|
+                            | - Admin Panel     |
+                            | - User Dashboard  |
+                            +---------+---------+
+                                      |
+                                      |
+                                      V
+                            +-------------------+
+                            |    Controllers    |
+                            |-------------------|
+                            | - User Controller |
+                            | - Product         |
+                            | - Cart Controller |
+                            | - Order Controller|
+                            | - Seller          |
+                            | - Admin Controller|
+                            +---------+---------+
+                                      |
+                                      |
+                                      V
+                            +-------------------+
+                            |      Models       |
+                            |-------------------|
+                            | - User Model      |
+                            | - Product Model   |
+                            | - Cart Model      |
+                            | - Order Model     |
+                            | - Seller Request  |
+                            +-------------------+
+                                      |
+                                      |
+                                      V
+                            +-------------------+
+                            | Local Storage     |
+                            |-------------------|
+                            | - User Data       |
+                            | - Products Data   |
+                            | - Cart Data       |
+                            | - Order Data      |
+                            | - Seller Requests |
+                            +-------------------+

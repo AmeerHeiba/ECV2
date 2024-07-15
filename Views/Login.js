@@ -17,7 +17,7 @@ if (loginForm) {
         
 
         const formData = new FormData(this);
-        formData.append('submitBtn', clickedButtonValue); // Append the clicked button's value manually
+        formData.append('submitBtn', clickedButtonValue); 
 
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;

@@ -1,24 +1,51 @@
-const registrationformCustomer = document.getElementById(
-  "registration-form-Customer"
-);
+
+import { showCustomModal } from '../Views/alertModalView.js';
+
+const registrationformCustomer = document.getElementById("registration-form-Customer");
 
 if (registrationformCustomer) {
   registrationformCustomer.addEventListener("submit", (event) => {
-    console.log(event);
     event.preventDefault();
 
-    // Get the pathname
-    // Extract the part after the last slash and before the first space or period
-    const username = document.getElementById("usernameReg").value;
-    const password = document.getElementById("passwordReg").value;
-    const email = document.getElementById("emailReg").value;
-    const firstName = document.getElementById("firstNameReg").value;
-    const lastName = document.getElementById("lastNameReg").value;
-    const contact = document.getElementById("contactReg").value;
-    const addressName = document.getElementById("titleReg").value;
-    const addressText = document.getElementById("addressReg").value;
-    const city = document.getElementById("cityReg").value;
-    const zipCode = document.getElementById("zipReg").value;
+    // Get form values
+    const username = document.getElementById("usernameReg").value.trim();
+    const password = document.getElementById("passwordReg").value.trim();
+    const email = document.getElementById("emailReg").value.trim();
+    const firstName = document.getElementById("firstNameReg").value.trim();
+    const lastName = document.getElementById("lastNameReg").value.trim();
+    const contact = document.getElementById("contactReg").value.trim();
+    const addressName = document.getElementById("titleReg").value.trim();
+    const addressText = document.getElementById("addressReg").value.trim();
+    const city = document.getElementById("cityReg").value.trim();
+    const zipCode = document.getElementById("zipReg").value.trim();
+
+    // Validation
+    const errors = [];
+    
+    if (!username) errors.push("Username is required.");
+    if (!password || password.length < 6) errors.push("Password is required and must be at least 6 characters.");
+    if (!email || !/\S+@\S+\.\S+/.test(email)) errors.push("Valid email is required.");
+    if (!firstName) errors.push("First name is required.");
+    if (!lastName) errors.push("Last name is required.");
+    if (!contact || !/^(011|012|010|015)\d{8}$/.test(contact)) errors.push("Valid contact number is required. It should start with 011, 012, 010, or 015 followed by 8 digits.");
+    if (!addressName) errors.push("Address name is required.");
+    if (!addressText) errors.push("Address details are required.");
+    if (!city) errors.push("City is required.");
+    if (!zipCode || !/^\d{5}(-\d{4})?$/.test(zipCode)) errors.push("Valid ZIP code is required.");
+
+    if (errors.length > 0) {
+      showCustomModal(
+        'Validation Error',
+        errors.join("\n"),
+        'OK',
+        'Cancel',
+        () => { console.log('User confirmed the error modal'); },
+        () => { console.log('User canceled the error modal'); }
+      );
+      return;
+    }
+
+    // Address object
     const address = {
       id: 1,
       title: addressName,
@@ -28,6 +55,7 @@ if (registrationformCustomer) {
     };
     const addresses = [address];
 
+    // Register the user
     AuthController.register(
       username,
       password,
@@ -39,35 +67,12 @@ if (registrationformCustomer) {
       addresses
     );
 
-    // if (filename === "customerRegister") {
-    //   // const email = document.getElementById('email').value;
-
-    //   //Validation
-    //   // user name not empty, not repeated, not
-    //   //Password validation
-    //   //email correct and not repeated
-    //   if (AuthController.validateUsername(username) === false) {
-    //     alert(
-    //       "Invalid username. It should be 3-15 characters long and contain only alphanumeric characters and underscores."
-    //     );
-    //   } else if (AuthController.validatePassword(password) === false) {
-    //     alert(
-    //       "Invalid password. It should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
-    //     );
-    //   } else if (AuthController.validateEmail(email) === false) {
-    //     alert("Invalid email format.");
-    //   } else {
-    //     AuthController.register(
-    //       username,
-    //       password,
-    //       email,
-    //       "customer",
-    //       firstName,
-    //       lastName,
-    //       contact,
-    //       addresses
-    //     );
-    //   }
-    // }
+    showCustomModal(
+      '"Registration successful!"',
+      'OK',
+      'Cancel',
+    );
+    // alert("Registration successful!");
+    registrationformCustomer.reset();
   });
 }
