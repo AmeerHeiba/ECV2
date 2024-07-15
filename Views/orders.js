@@ -76,8 +76,8 @@ function renderOrders() {
 
       // Render order details
       ordersContainer.innerHTML += `
-        <div class="order-wrapper card text-bg-light my-3 col-12 col-xl-7 p-3">
-          <span class="badge text-bg-info col-xl-4 text-light">Order ID: ${
+        <div class="order-wrapper card text-bg-light col-12 col-xl-8 mb-4 p-3">
+          <span class="badge secondary-color col-xl-4 text-light">Order ID: ${
             order.id
           }</span>
           <h6 class="mt-3 ms-1">Total Price: <span class="fw-normal">${orderTotal.toFixed(
@@ -93,7 +93,6 @@ function renderOrders() {
           ${orderItems}
         </div>
       `;
-
     });
   } else {
     bodyContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888" class="text-center mt-5">You have made no orders yet.</h5><i style="font-size: 17rem; color: #eee" class="bi bi-cart-x"></i></div>`;

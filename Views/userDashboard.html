@@ -13,13 +13,15 @@
     />
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
   </head>
-  <body>
+  <body class="bg-light">
     <!-- first navbar start -->
     <nav
-      class="navbar navbar-1 navbar-expand-xl bg-transparent w-100 border-body"
+      class="navbar navbar-1 navbar-expand-xl secondary-color text-white w-100 border-body"
     >
-      <div class="container my-2">
-        <a class="h1 navbar-brand fsize-1" href="./home.html">Tea.</a>
+      <div class="container mt-1">
+        <a class="h1 navbar-brand fsize-1 text-white" href="./home.html"
+          >Tea.</a
+        >
         <form class="d-flex col col-lg-8 mx-lg-5" role="search">
           <input
             class="form-control me-2"
@@ -48,19 +50,21 @@
                 aria-current="page"
                 data-bs-toggle="modal"
                 data-bs-target="#login"
-                ><i class="bi bi-person-fill">&nbsp Login</i></a
+                ><i class="bi bi-person-fill text-white">&nbsp Login</i></a
               >
             </li>
 
             <li class="nav-item d-none" id="register">
               <div class="dropdown nav-link p-0">
                 <button
-                  class="btn dropdown-toggle p-0 p-xl-2"
+                  class="btn dropdown-toggle p-0 p-xl-2 text-white"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i class="bi bi-person-plus-fill">&nbsp Register</i>
+                  <i class="bi bi-person-plus-fill text-white"
+                    >&nbsp Register</i
+                  >
                 </button>
                 <ul class="dropdown-menu">
                   <li>
@@ -88,12 +92,14 @@
 
             <li id="wishlist-link" class="nav-item">
               <a class="nav-link active" href="wishlist.html"
-                ><i class="bi bi-bag-heart-fill">&nbsp Wishlist</i></a
+                ><i class="bi bi-bag-heart-fill text-white"
+                  >&nbsp Wishlist</i
+                ></a
               >
             </li>
             <li id="cart-link" class="nav-item">
               <a class="nav-link active" href="cart.html"
-                ><i class="bi bi-cart4"
+                ><i class="bi bi-cart4 text-white"
                   ><span
                     id="notification"
                     style="font-size: 0.6rem"
@@ -111,7 +117,7 @@
     <!-- first navbar end -->
 
     <!-- second navbar start -->
-    <nav class="nav2 navbar navbar-expand navbar-light bg-light">
+    <nav class="nav2 navbar navbar-expand navbar-light bg-light border-bottom">
       <div
         class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
       >
@@ -153,27 +159,40 @@
     <!-- second navbar end -->
 
     <!-- sidebar start -->
-
-    <div class="container my-4 p-4">
+    <div class="container-fluid my-4 p-4">
       <div class="row">
         <section
-          class="sidebar col-10 col-xl-2 py-4 mx-auto bg-light rounded-4 shadow-sm h-100"
+          class="sidebar col-10 col-xl-2 py-4 mx-auto border border-white border-3 rounded-4 shadow h-100"
         >
-          <div class="mx-auto text-center">
+          <div class="mx-auto text-center rounded-3">
             <i class="bi bi-person-circle fs-1"></i>
             <h4 id="user-name"></h4>
-            <p id="user-email"></p>
-            <hr />
-            <div class="my-5 text-start">
-              <h6 id="profile-info" class="p-2 rounded my-4">
-                <i class="bi bi-file-earmark-person"></i> Profile Information
-              </h6>
-              <h6 id="orders" class="my-4 p-2 rounded">
-                <i class="bi bi-list-check"></i> Orders
-              </h6>
-              <h6 id="wishlist" class="my-4 p-2 rounded">
-                <i class="bi bi-bookmark-heart"></i> WishList
-              </h6>
+            <p id="handle" class="text-muted mt-1"></p>
+            <p id="user-email" class="m-0 fw-lighter"></p>
+            <div class="text-start">
+              <ul class="list-group list-group-flush">
+                <hr />
+
+                <li
+                  id="profile-info"
+                  class="list-group-item rounded secondary-color text-white my-2"
+                >
+                  <i class="bi bi-person-lines-fill ms-2"></i>&nbsp Profile
+                  Information
+                </li>
+                <li
+                  id="orders"
+                  class="list-group-item rounded secondary-color text-white my-2"
+                >
+                  <i class="bi bi-clipboard-check-fill ms-2"></i>&nbsp Orders
+                </li>
+                <li
+                  id="wishlist"
+                  class="list-group-item rounded secondary-color text-white my-2"
+                >
+                  <i class="bi bi-bookmark-heart-fill ms-2"></i>&nbsp WishList
+                </li>
+              </ul>
             </div>
           </div>
         </section>
@@ -182,9 +201,12 @@
 
         <!-- personal details start -->
 
-        <section id="profile-card" class="container my-4 col-12 col-xl-9">
+        <section id="profile-card" class="container my-4 col-12 col-xl-8">
           <div class="row gap-4">
-            <div id="profile-container" class="card col-12 col-xl-5 p-4"></div>
+            <div
+              id="profile-container"
+              class="card col-12 col-xl-5 p-4 bg-light"
+            ></div>
 
             <!-- personal details end -->
 
@@ -211,8 +233,8 @@
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
-                    <form class="row">
+                  <div class="modal-body secondary-color text-white">
+                    <form class="row p-3">
                       <div class="form-group col-6 mb-4">
                         <label for="firstName" class="mb-2">First Name</label>
                         <input
@@ -260,10 +282,10 @@
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer secondary-color">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      class="btn btn-white text-white"
                       data-bs-dismiss="modal"
                     >
                       Close
@@ -271,7 +293,7 @@
                     <button
                       type="button"
                       id="update-user-btn"
-                      class="btn btn-info text-white"
+                      class="btn btn-light shadow-sm text-dark"
                     >
                       Save changes
                     </button>
@@ -283,11 +305,15 @@
             <!-- personal details modal end -->
 
             <!-- address card start -->
-            <div id="addresses-container" class="card col-12 col-xl-5 p-4">
-              <h4 class="my-4">Address Details</h4>
+            <div
+              id="addresses-container"
+              class="card col-12 col-xl-5 p-4 bg-light"
+            >
+              <h4>Address Details</h4>
+              <hr class="mb-4" />
 
               <button
-                class="btn btn-info text-white align-self-end"
+                class="btn btn-light secondary-color text-white align-self-end"
                 data-bs-toggle="modal"
                 data-bs-target="#address-modal"
               >
@@ -315,7 +341,7 @@
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body secondary-color text-white">
                       <form class="row p-4">
                         <div class="form-group col-12 mb-3">
                           <label for="title" class="mb-2">Title</label>
@@ -359,10 +385,10 @@
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer secondary-color">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-white text-white"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -370,7 +396,7 @@
                       <button
                         id="saveAddressBtn"
                         type="button"
-                        class="btn btn-info text-white"
+                        class="btn btn-light"
                       >
                         Save changes
                       </button>
@@ -401,7 +427,7 @@
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body secondary-color text-white p-4">
                       <form id="update-address-form">
                         <div class="mb-3">
                           <label for="update-title" class="form-label"
@@ -452,7 +478,10 @@
                           />
                         </div>
                         <input type="hidden" id="address-id" name="addressId" />
-                        <button type="submit" class="btn btn-primary">
+                        <button
+                          type="submit"
+                          class="btn btn-light shadow-sm my-3"
+                        >
                           Update Address
                         </button>
                       </form>
@@ -474,14 +503,13 @@
           </div>
         </section>
 
-        <section id="orders-card" class="orders container my-4 col-9 d-none">
-          <h3>Your Orders</h3>
+        <section id="orders-card" class="orders container my-4 col-8 d-none">
           <div class="row">
             <div class="row" id="orders-container"></div>
           </div>
         </section>
 
-        <section id="wishlist-card" class="container p-4 featured col-9 d-none">
+        <section id="wishlist-card" class="container p-4 featured col-8 d-none">
           <div
             id="wishlist-wrapper"
             class="row d-flex justify-content-center justify-content-lg-start gap-4"

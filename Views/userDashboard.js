@@ -9,12 +9,16 @@ UIController.updateCartIcon();
 
 function renderUserDetails() {
   const user = UserController.getUser();
-  document.querySelector("#user-name").textContent = `Hi ${user.firstName}`;
+  document.querySelector(
+    "#user-name"
+  ).textContent = `${user.firstName} ${user.lastName}`;
   document.querySelector("#user-email").textContent = `${user.email}`;
+  document.querySelector("#handle").textContent = `@${user.username}`;
 
   const profileContainer = document.getElementById("profile-container");
   const userDetails = `
-              <h4 class="my-4">Personal Details</h4>
+              <h4>Personal Details</h4>
+              <hr class="mb-4">
               <form class="row">
                 <div class="form-group col-6 mb-4">
                   <label for="firstName" class="mb-2">First Name</label>
@@ -73,7 +77,7 @@ function renderUserDetails() {
                 </div>
 
                 <div class="form-group">
-                  <button type="button" class="btn btn-info text-white"  data-bs-toggle="modal"
+                  <button type="button" class="col-12 btn btn-light secondary-color text-white shadow"  data-bs-toggle="modal"
               data-bs-target="#exampleModal">
                     Update Profile
                   </button>
@@ -168,15 +172,15 @@ function updateUserDetails() {
         return;
       }
 
-      if (usernameExists) {
+      if (usernameExists || !username) {
         alert("Username already exists. Please choose a different username.");
         return;
       }
-      if (emailExists) {
+      if (emailExists || !email) {
         alert("Email already exists. Please choose a different email.");
         return;
       }
-      if (contactExists) {
+      if (contactExists || !contact) {
         alert("Phone number already exists. Please choose a different number.");
         return;
       }
@@ -210,13 +214,13 @@ function renderUserAddresses() {
                     <div class="col-12 p-2 position-relative">
                
                       <ul class="list-group">
-                        <li class="list-group-item bg-dark text-white fw-semibold">Title: ${address.title}</li>
+                        <li class="list-group-item secondary-color text-white fw-semibold">Title: ${address.title}</li>
                         <li class="list-group-item">Address: ${address.address}</li>
                         <li class="list-group-item">City: ${address.city}</li>
                         <li class="list-group-item">Zip Code: ${address.zipCode}</li>
                         <li class="list-group-item">
                         <div class="col-4">
-                     <button class="btn btn-sm btn-info text-white update-address-btn"
+                     <button class="btn btn-sm btn-light secondary-color text-white update-address-btn"
                     data-bs-toggle="modal" data-bs-target="#update-address-modal"
                     data-address-id="${address.id}">
                     <i class="bi bi-pencil-square"></i>

@@ -41,11 +41,64 @@ class UserController {
 
   static addToCart(id) {
     const product = Product.getProductById(id);
-    if (product.stock === 0) {
+    const cartItems = User.getCartItems();
+    const item = cartItems.find((item) => item.id === id);
+    const stock = product.stock;
+    // product out of stock >> alert
+    // in stock and not in cart >>
+    if (product.stock <= 0) {
       alert("Product is out of stock");
-    } else {
+    } else if (!item || (item && item.quantity < 9 && item.quantity < stock)) {
       User.addCartItem(id);
+    } else {
+      alert("You have exceeded the allowed quantity for this item");
+      return;
     }
+  }
+
+  // change cart and wishlist icon
+
+  static changeIcon(button) {
+    if (AuthController.getCurrentUser()) {
+      const icon = button.querySelector("i.bi");
+      const productID = button.getAttribute("data-product-id");
+      const product = Product.getProductById(+productID);
+      const cartItems = User.getCartItems();
+      const item = cartItems.find((item) => item.id === +productID);
+
+      if (product && product.stock !== 0) {
+        if (icon.classList.contains("bi-cart-plus-fill")) {
+          icon.classList.remove("bi-cart-plus-fill");
+          icon.classList.add("bi-cart-check-fill");
+          button.classList.remove("btn-primary");
+          button.classList.add("btn-success");
+        } else {
+          icon.classList.remove("bi-cart-check-fill");
+          icon.innerHTML = `<span class="fw-bold count">+${item.quantity}</span>`;
+        }
+      }
+
+      if (icon.classList.contains("bi-bag-heart")) {
+        icon.classList.remove("bi-bag-heart");
+        icon.classList.add("bi-bag-heart-fill");
+        button.classList.remove("btn-secondary");
+        button.classList.add("btn-danger");
+      } else if (icon.classList.contains("bi-bag-heart-fill")) {
+        icon.classList.remove("bi-bag-heart-fill");
+        icon.classList.add("bi-bag-heart");
+        button.classList.remove("btn-danger");
+        button.classList.add("btn-secondary");
+      }
+    }
+  }
+
+  static isProductInCart(productId) {
+    const currentUser = AuthController.getCurrentUser();
+    if (currentUser) {
+      const cartItems = User.getCartItems();
+      return cartItems.some((item) => item.id === productId);
+    }
+    return false;
   }
 
   static removeUserAddress(addressId) {
@@ -174,15 +227,6 @@ class UserController {
     }
   }
 
-  static isProductInCart(productId) {
-    const currentUser = AuthController.getCurrentUser();
-    if (currentUser) {
-      const cartItems = User.getCartItems();
-      return cartItems.some((item) => item.id === productId);
-    }
-    return false;
-  }
-
   static isProductInWishlist(productId) {
     const currentUser = AuthController.getCurrentUser();
     if (currentUser) {
@@ -190,36 +234,5 @@ class UserController {
       return wishlist.some((item) => item.id === productId);
     }
     return false;
-  }
-
-  // change cart and wishlist icon
-
-  static changeIcon(button) {
-    if (AuthController.getCurrentUser()) {
-      const icon = button.querySelector("i.bi");
-      const productID = button.getAttribute("data-product-id");
-      const product = Product.getProductById(+productID);
-
-      if (product && product.stock !== 0) {
-        if (icon.classList.contains("bi-cart-plus-fill")) {
-          icon.classList.remove("bi-cart-plus-fill");
-          icon.classList.add("bi-cart-check-fill");
-          button.classList.remove("btn-primary");
-          button.classList.add("btn-success");
-        }
-      }
-
-      if (icon.classList.contains("bi-bag-heart")) {
-        icon.classList.remove("bi-bag-heart");
-        icon.classList.add("bi-bag-heart-fill");
-        button.classList.remove("btn-secondary");
-        button.classList.add("btn-danger");
-      } else if (icon.classList.contains("bi-bag-heart-fill")) {
-        icon.classList.remove("bi-bag-heart-fill");
-        icon.classList.add("bi-bag-heart");
-        button.classList.remove("btn-danger");
-        button.classList.add("btn-secondary");
-      }
-    }
   }
 }

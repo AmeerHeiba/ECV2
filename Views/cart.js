@@ -233,7 +233,7 @@ function orderPlaced() {
 
       <button
         type="button"
-        class="btn p-1 ms-auto"
+        class="btn p-1 ms-auto text-white"
         data-bs-dismiss="modal"
       >
         <i class="bi bi-x-lg"></i>
@@ -243,10 +243,10 @@ function orderPlaced() {
 
       <div class="d-flex flex-column justify-content-center align-items-center">
         <h4>Order placed successfully</h4>
-        <p class="text-muted text-center">You're being redirected to you orders page</p>
+        <p class="text-white text-center">You're being redirected to you orders page</p>
         <i style="font-size: 6rem" class="bi bi-check-circle text-success"></i>
       </div> 
-      <a href="../Views/orders.html" class="btn btn-primary mt-4">Go To Orders</a>    
+      <a href="../Views/orders.html" class="btn btn-light mt-4 mb-5">Go To Orders</a>    
   `;
 }
 
@@ -338,17 +338,19 @@ function processCheckout() {
     };
   }
 
-  const totalOrderPrice = calculateTotalOrderPrice(cartItems);
+  let totalOrderPrice = calculateTotalOrderPrice(cartItems);
+  totalOrderPrice = totalOrderPrice * 1.14;
 
   // Populate the confirmation modal with order details
   const orderSummary = cartItems
     .map((item) => {
       const product = Product.getProductById(item.id);
       return `
-      <div class="d-flex justify-content-between">
-        <span>${product.name} (x${item.quantity})</span>
+      <div class="d-flex justify-content-between mb-1">
+        <span class="list-group-item">${product.name} (x${item.quantity})</span>
         <span>${(product.price * item.quantity).toFixed(2)} EGP</span>
       </div>
+      <hr>
     `;
     })
     .join("");

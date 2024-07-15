@@ -2,13 +2,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize animations
   AOS.init();
 
-  // const wishlistLink = document.getElementById("wishlist-link");
-  // if (!AuthController.getCurrentUser()) {
-  //   wishlistLink.classList.add("d-none");
-  // } else {
-  //   wishlistLink.classList.add("d-block");
-  // }
-
   // Welcome user
   UIController.welcomeUser("white");
 
@@ -54,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const isOutOfStock = product.stock === 0;
         const productCard = `
         <!-- card start -->
-        <div class="card me-4">
+        <div class="card me-4 bg-light">
           <img
             src="${product.images[0]}"
             class="card-img-top rounded-2 mt-3"

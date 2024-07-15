@@ -3,8 +3,11 @@
 :root {
   --main-color: #a99c8a;
   --secondary-color: #2d4d5c;
+  --complementary-color: #1f3a4b;
+  --complementary-color2: #3a5c6c;
   --muted-color: #746b60;
-  --accent-color: #be8300;
+  --accent-color: #ffb400;
+  --accent-color2: #c70039;
 }
 
 .main-color {
@@ -13,6 +16,11 @@
 
 .secondary-color {
   background-color: var(--secondary-color) !important;
+  background-image: linear-gradient(
+    to left,
+    var(--secondary-color),
+    var(--complementary-color2)
+  );
 }
 
 .muted-color {
@@ -23,19 +31,19 @@
   background-color: var(--accent-color) !important;
 }
 
-.text-main {
+.main-text {
   color: var(--main-color) !important;
 }
 
-.text-secondary {
+.secondary-text {
   color: var(--secondary-color) !important;
 }
 
-.text-muted {
+.muted-text {
   color: var(--muted-color) !important;
 }
 
-.text-accent {
+.accent-text {
   color: var(--accent-color) !important;
 }
 
@@ -72,7 +80,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* navbar  */
 
-@media (max-width: 972px) {
+@media (max-width: 1200px) {
   .navbar-1 .navbar-collapse {
     width: 100vw;
     padding: 20px;
@@ -106,12 +114,6 @@ body::-webkit-scrollbar-thumb:hover {
   z-index: 200;
 }
 
-.dropdown-menu a:active,
-.dropdown-menu a:focus {
-  background-color: #0dcaf0;
-  color: white;
-}
-
 nav i,
 nav a {
   font-style: normal;
@@ -122,11 +124,6 @@ nav a {
 
 .navbar-1 {
   background-color: #fff;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: #754015;
 }
 
 .currency {
@@ -203,24 +200,36 @@ nav a {
 /* navbar 2 */
 
 .nav2 .nav-link {
-  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  white-space: nowrap;
 }
 
 .nav2 .navbar-nav {
   display: flex;
-  flex-wrap: nowrap; /* Prevent the nav items from wrapping */
-  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .nav2 .nav-item {
-  flex: 0 0 auto; /* Prevent flex items from shrinking */
+  flex: 0 0 auto;
+}
+
+/* dropdown */
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:hover {
+  background-color: #2d4d5c;
+  color: #fff;
+}
+
+.dropdown-menu .dropdown-item.active {
+  background-color: #2d4d5c;
+  color: #fff;
 }
 
 /* headers */
 
 h3 {
   position: relative;
-  padding-bottom: 20px; /* Adjust the padding as needed */
+  padding-bottom: 20px;
 }
 
 h3::after {
@@ -228,7 +237,7 @@ h3::after {
   display: block;
   width: 5%;
   height: 2px;
-  background-color: var(--accent-color);
+  background-color: var(--main-color);
   position: absolute;
   bottom: 0;
   left: 0;

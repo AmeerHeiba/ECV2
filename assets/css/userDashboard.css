@@ -1,5 +1,16 @@
-h6 {
+.sidebar li {
   cursor: pointer;
+  transition: all 0.7s ease-in-out;
+}
+
+.sidebar li:hover {
+  box-shadow: 1px 2px 3px #aaa;
+  transform: scale(1.05);
+}
+
+.sidebar li:active {
+  background-color: white !important;
+  color: #2d4d5c !important;
 }
 
 #address-cards {
