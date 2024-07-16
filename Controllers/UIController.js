@@ -92,7 +92,7 @@ class UIController {
             src="${product.images[0]}"
             class="card-img-top rounded-2 mt-3"
             style="  height: 13rem;
-  object-fit: cover;"
+            object-fit: cover;"
             alt="${product.name}"
           />
           <div class="product-btns d-flex flex-column">

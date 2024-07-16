@@ -13,7 +13,7 @@ function createProductCard(product) {
            <div class="card col-12 col-xl-2">
       <img
             src="${product.images[0]}"
-            class="card-img-top rounded-2 mt-3"
+            class="card-img-top wishlist-img rounded-2 mt-3"
             alt="${product.name}"
           />
           <div class="product-btns d-flex flex-column">

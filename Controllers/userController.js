@@ -43,9 +43,14 @@ class UserController {
     const product = Product.getProductById(id);
     const cartItems = User.getCartItems();
     const item = cartItems.find((item) => item.id === id);
+    const currentUser = AuthController.getCurrentUser();
     const stock = product.stock;
     // product out of stock >> alert
     // in stock and not in cart >>
+    if (currentUser.role === "admin") {
+      alert("Please login using a customer account to add items to cart");
+      return;
+    }
     if (product.stock <= 0) {
       alert("Product is out of stock");
     } else if (!item || (item && item.quantity < 9 && item.quantity < stock)) {
@@ -59,7 +64,13 @@ class UserController {
   // change cart and wishlist icon
 
   static changeIcon(button) {
-    if (AuthController.getCurrentUser()) {
+    const currentUser = AuthController.getCurrentUser();
+
+    if (currentUser.role === "admin") {
+      return;
+    }
+
+    if (currentUser) {
       const icon = button.querySelector("i.bi");
       const productID = button.getAttribute("data-product-id");
       const product = Product.getProductById(+productID);
