@@ -246,8 +246,8 @@ class ProductController {
           {
             label: "Orders by Status",
             data: [counts.inProgress, counts.pending, counts.completed],
-            backgroundColor: ["#754114", "rgb(202, 162, 130)", "#6fe04c"],
-            borderColor: ["#754114", "rgb(202, 162, 130)", "#6fe04c"],
+            backgroundColor: ["#2d4d5c", "rgb(202, 162, 130)", "#6fe04c"],
+            borderColor: ["#2d4d5c", "rgb(202, 162, 130)", "#6fe04c"],
             borderWidth: 1,
           },
           {
