@@ -392,7 +392,7 @@ class ProductController {
     <div class="col-md-8">
       <div class="card-body">
         <h2 class="card-title">${product.name}</h2>
-        <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${
+        <h6 class="card-text" style="color:var(--secondary-color) !important; margin-top: 1rem;">${
           product.category
         }</h6>
         <p class="card-text" style="margin-top: 1rem">${product.description}</p>
@@ -406,7 +406,7 @@ class ProductController {
           <small class="text-body-secondary" > Added in ${product.date} </small>
         </p>
         <div class="d-flex align-items-center ">
-          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: #754114" onclick="ProductController.editeProduct(${
+          <button class="btn btn-primary me-2" style="background-color: #e4e3e3;border:0; color: var(--secondary-color) !important" onclick="ProductController.editeProduct(${
             product.id
           })"> <i class="fa fa-pencil-alt me-1"></i> Edit</button>
         <button class="btn btn-danger me-2" style="background-color:#e4e3e3; border:0 ;color:red " onclick="ProductController.deleteProduct(${

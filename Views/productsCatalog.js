@@ -39,7 +39,7 @@ function createProductCard(product) {
           </div>
       <div class="card-body">
         <h5 class="mb-3">${product.name}</h5>
-                      <p class="card-text" style="color: #754114; margin-top: 1rem;">${
+                      <p class="card-text" style="color: var(--secondary-color) !important; margin-top: 1rem;">${
                         product.category
                       }</p>
 

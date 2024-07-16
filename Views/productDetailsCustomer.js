@@ -47,7 +47,7 @@ cardContainer.innerHTML = `
       <div class="col-md-8">
         <div class="card-body">
           <h2 class="card-title">${product.name}</h2>
-          <h6 class="card-text" style="color: #754114; margin-top: 1rem;">${
+          <h6 class="card-text" style="color: var(--secondary-color) !important; margin-top: 1rem;">${
             product.category
           }</h6>
           <p class="card-text" style="margin-top: 1rem">${
@@ -87,7 +87,7 @@ cardContainer.innerHTML = `
                 isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
               }"></i>
             </a>
-    <button class="btn btn-custom" onclick="backCatalog()" style="margin-left:14px"> <i class="fa-solid fa-arrow-left"></i> Back</button>
+    <button class="btn btn-custom" onclick="backCatalog()" style="margin-left:14px"> <i class="fa-solid fa-arrow-left"></i>  Back</button>
 
           </div>
         </div>

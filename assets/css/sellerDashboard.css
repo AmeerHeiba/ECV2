@@ -13,7 +13,7 @@ body {
 }
 .sidebar {
   min-width: 250px;
-  background-color: #754114;
+  background-color: var(--secondary-color) !important;
   color: white;
 }
 .sidebar .nav-link {
@@ -43,16 +43,16 @@ td img {
 }
 .btn-custom {
   width: 130px;
-  background-color: #754114;
+  background-color:var(--secondary-color) !important;
   border: 0;
   color: white; 
 }
 .btn-custom:hover {
-  background-color: rgba(202, 162, 130, 0.192);
-  color: #754114;
+  background-color: var(--main-color) !important;
+  color: white;
 }
 .btn-custom:active {
-  background-color: #754114;
+  background-color: var(--secondary-color) !important;
   color: white;
 }
 .logo {
@@ -68,11 +68,11 @@ td img {
   border-radius: 100%;
 }
 .edit-eye-icon:hover {
-  color: #754114;
+  color: var(--secondary-color) !important;
 
 }
 .delete-icon:hover {
-  color: red;
+  color: var( --accent-color2) !important;
 }
 @media (max-width: 767.98px) {
   .table thead {
@@ -116,4 +116,52 @@ td img {
   display: none;
   max-width: 100%;
   margin-top: 10px;
+}
+.upload__img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.upload__img-box {
+  width: 150px;
+  padding: 0 10px;
+  position: relative;
+}
+.upload__img-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  z-index: 1;
+  cursor: pointer;
+}
+.upload__img-close::after {
+  content: '\2716';
+  font-size: 14px;
+  color: white;
+}
+.img-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 100%;
+}
+.custom-card {
+  width: 90%;
+  border: 0
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+background-color: black;
+border-radius: 50%;
+
+}
+.carousel-image {
+ width: 100%;
+ height: 300px; 
+ object-fit: cover;
 }
