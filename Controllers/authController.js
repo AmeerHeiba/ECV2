@@ -113,7 +113,6 @@ class AuthController {
       dateOfRequest
     ); // r(id, username, password, email, role, date, contact, fullName)
     Seller.requestAccount(newSellerReq);
-    alert("Your request was submitted please wait for email confirmation");
     // window.location.href = "home.html";
   }
 
