@@ -25,7 +25,7 @@ class UIController {
       
               <li><a class="dropdown-item py-2" href="orders.html"><i class="bi bi-basket2-fill"></i>&nbsp Orders</a></li>
               <hr>
-              <li class="d-flex justify-content-center"><button class="d-none d-lg-block btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
+              <li class="d-flex justify-content-center"><button class="btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
             
             </ul>
           </div>
