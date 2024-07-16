@@ -25,16 +25,40 @@ class SupportRequest{
         this.savesupportRequests(reqs);
     }
 
+    static getSupportRequestById(id){
+        const supportReqs = this.getSupportRequests();
+        return supportReqs.find(sr => sr.id === id);
+    }
 
-    static closeRequest(id){
+
+    static closeRequest(id,remarks,resolveDate){
         const reqs = this.getSupportRequests()
         const reqIndex = reqs.findIndex(req => req.id === id);
       
 
         if (reqIndex !== -1) {
             reqs[reqIndex].state = "Closed"
+            reqs[reqIndex].resolvedBy = AuthController.getCurrentUser().id;
+            reqs[reqIndex].remarks = remarks;
+            reqs[reqIndex].resolveDate = resolveDate;
             this.savesupportRequests(reqs);
-            alert('Request details updated successfully.');
+        } else {
+            alert('User not found.');
+        }
+
+    }
+
+
+    static ReOpenRequest(id,remarks,reopenDate){
+        const reqs = this.getSupportRequests()
+        const reqIndex = reqs.findIndex(req => req.id === id);
+      
+
+        if (reqIndex !== -1) {
+            reqs[reqIndex].state = "Reopened"
+            reqs[reqIndex].ReOpenRemarks = remarks;
+            reqs[reqIndex].ReopenDate = reopenDate;
+            this.savesupportRequests(reqs);
         } else {
             alert('User not found.');
         }

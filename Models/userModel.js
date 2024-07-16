@@ -40,11 +40,7 @@ class User {
 
     if (userIndex !== -1) {
       users[userIndex] = { ...users[userIndex], ...newData };
-      this.saveUsers(users);
-      alert("Account details updated successfully.");
-    } else {
-      alert("User not found.");
-    }
+      this.saveUsers(users);}
   }
 
   static getCurrentUser() {
@@ -170,4 +166,27 @@ class User {
       return;
     }
   }
+
+         // Activate a User by ID
+         static activateUser(id) {
+          let users = this.getUsers();
+          const userIndex = users.findIndex(u => u.id == id);
+          if (userIndex !== -1) {
+            users[userIndex].state = true;
+              this.saveUsers(users);
+          }
+      }
+  
+  
+             // Suspend a User by ID
+          static suspendUser(id) {
+            let users = this.getUsers();
+            const userIndex = users.findIndex(u => u.id == id);
+            if (userIndex !== -1) {
+              users[userIndex].state = false;
+                this.saveUsers(users);
+            }
+          }
+      
+  
 }
