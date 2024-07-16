@@ -71,6 +71,14 @@ if (registrationFormSeller) {
       addresses
     );
 
+    
+    showCustomModal(
+      '"Registration successful!"',
+      "Please wait for a confirmation email soon",
+      'OK',
+      'Cancel',
+      'light' 
+    );
     registrationFormSeller.reset();
   });
 }

@@ -1,45 +1,9 @@
 class AdminController {
 
 
-    static approveSellerRequest(request){
-        
-        //addSeller(seller)
-        const id = request.id;
-        Seller.addSeller(request);
-        Seller. removeSellerRequest(id);
-    }
-    static rejectSellerRequest(request,reason){
-        const adminID = User.getCurrentUser().id;
-        console.log(adminID)
-        const targetUserID = request.id;
-        const title = 'Rejected Account';
-        // const reason = 'Test';
-        const subject = `Dear Valued Customer your account was rejected due to ${reason}`;
-        request.rejectedBy = adminID;
-        Seller.addSellerRequestToRejected(request);
-        notificationsController.sendNotification(targetUserID, adminID, title, subject);
-        Seller.removeSellerRequest(request.id);
 
-        location.reload();
-    }
 
-    static approveRejectedSellerRequest(request){
 
-                //addSeller(seller)
-                const id = User.getUsers().length+1;
-                const addresses = request.addresses;
-                const contact = request.contact;
-                const firstName = request.firstName;
-                const lastName = request.lastName;
-                const username = request.username;
-                const password = request.password;
-                const email = request.email;
-                const newUser = new User(id, username, password, email, 'seller', firstName,lastName,contact, addresses);
-                User.addUser(newUser);
-                Seller.removeRejectedSellerRequest(request.id);
-                location.reload();
-
-    }
 
     static registerAdmin(adminUser,adminPassword,adminEmail,role='admin',adminContact,adminName){
 

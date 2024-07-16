@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Tracker</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .complaint-details {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Search for Complaint</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="complaintNumber" placeholder="Enter Complaint Number">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+            </div>
+        </div>
+
+        <div class="complaint-details card">
+            <div class="card-body">
+                <h5 class="card-title">Complaint Details</h5>
+                <p><strong>ID:</strong> <span id="complaintId"></span></p>
+                <p><strong>Subject:</strong> <span id="complaintSubject"></span></p>
+                <p><strong>Customer Message:</strong> <span id="complaintMessage"></span></p>
+                <p><strong>State:</strong> <span id="complaintState"></span></p>
+                <p><strong>Resolve Date:</strong> <span id="complaintResolveDate"></span></p>
+                <p><strong>Resolve Remarks:</strong> <span id="complaintResolveRemarks"></span></p>
+                <button class="btn btn-warning" id="reopenButton">Reopen Complaint</button>
+            </div>
+        </div>
+
+        <div class="alert alert-danger mt-3" id="errorMessage" style="display: none;">
+            Complaint not found. Please check the complaint number and try again.
+        </div>
+
+
+        <div class="modal fade" id="Reopen_Reason" tabindex="-1" aria-labelledby="Reopen_ReasonLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Reopen_ReasonLabel">Reopen Remarks</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="Reopen_Reasoninput" class="form-label">Please provide Reopen Reason:</label>
+                        <input type="text" class="form-control" id="Reopen_Reasoninput">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="confirmReOpenButton">Confirm Resolve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../Views/followUp.js"></script>
+    <script src="../Models/supportModel.js"></script>
+    

@@ -69,8 +69,10 @@ if (registrationformCustomer) {
 
     showCustomModal(
       '"Registration successful!"',
+      "Please Login",
       'OK',
       'Cancel',
+      'light'
     );
     // alert("Registration successful!");
     registrationformCustomer.reset();

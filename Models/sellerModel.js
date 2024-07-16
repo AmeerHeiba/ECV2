@@ -20,6 +20,11 @@ class Seller {
         return JSON.parse(localStorage.getItem('users')).filter(seller => seller.role === 'seller') || [];
     }
 
+    static getSellerById(id){
+        const seller = this.getSeller();
+        return seller.find(seller =>seller.id === id);
+    }
+
     static getRejectedSellerRequests() {
         const rejected =  localStorage.getItem('rejectedsellersRequests');
         return rejected ? JSON.parse(rejected) : [];
@@ -91,6 +96,18 @@ class Seller {
 
     }
 
+    
+    static approveRejectedSellerRequest(request,approvalDate){
+        request.approvalDate = approvalDate;
+        const adminID = User.getCurrentUser().id;
+        request.approvedBy = adminID;
+        User.addUser(request);
+        Seller.removeRejectedSellerRequest(request.id);
+       
+
+}
+
+
     static addSeller(seller) {
         const users = User.getUsers();
         users.push(seller);
@@ -111,14 +128,67 @@ class Seller {
     }
 
 
-    static updateSeller(updatedSeller) {
+    static updateSeller(sellerId, newDetails) {
         const sellers = this.getSeller();
-        const index = sellers.findIndex(s => s.id == updatedSeller.id);
-        if (index !== -1) {
-            sellers[index] = updatedSeller;
-            localStorage.setItem('users', JSON.stringify(sellers));
+        const sellerIndex = sellers.findIndex((sellers) => sellers.id === sellerId);
+    
+        if (sellerIndex !== -1) {
+            sellers[sellerIndex] = { ...sellers[sellerIndex], ...newDetails };
+            User.saveUsers(sellers);
+          alert("Account details updated successfully.");
+        } else {
+          alert("User not found.");
+        }
+      }
+
+    static approveSellerRequest(id, approvalDate){
+        
+        const sellerRequest = this.getSellerRequestById(id);
+        const adminID = User.getCurrentUser().id;
+        sellerRequest.approvedBy = adminID;
+        sellerRequest.approvalDate = approvalDate;
+        this.addSeller(sellerRequest);
+        this. removeSellerRequest(id);
+    }
+
+    static rejectSellerRequest(id,reason, rejectionDate){
+
+        const request = this.getSellerRequestById(id);
+        const adminID = User.getCurrentUser().id;
+        const targetUserID = request.id;
+        const title = 'Rejected Account';
+       
+        const subject = `Dear Valued Customer your account was rejected due to ${reason}`;
+        request.rejectedBy = adminID;
+        request.rejectionDate = rejectionDate;
+        Seller.addSellerRequestToRejected(request);
+        notificationsController.sendNotification(targetUserID, adminID, title, subject);
+        Seller.removeSellerRequest(request.id);
+
+        
+    }
+
+       // Activate a seller by ID
+    static activateSeller(id) {
+        let sellers = this.getSeller();
+        const sellerIndex = sellers.findIndex(s => s.id == id);
+        if (sellerIndex !== -1) {
+            sellers[sellerIndex].state = true;
+            User.saveUsers(sellers);
         }
     }
+
+
+           // Suspend a seller by ID
+        static suspendSeller(id) {
+            let sellers = this.getSeller();
+            const sellerIndex = sellers.findIndex(s => s.id == id);
+            if (sellerIndex !== -1) {
+                sellers[sellerIndex].state = false;
+                User.saveUsers(sellers);
+            }
+        }
+    
 
     
 }

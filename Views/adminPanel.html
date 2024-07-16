@@ -56,6 +56,28 @@
         .accordion-body {
             background-color: #3e444a;
         }
+
+        .image-wrapper {
+            position: relative;
+        }
+
+        .delete-image-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: red;
+            font-size: 1.5em;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .delete-image-btn:hover {
+            color: darkred;
+        }
+
     </style>
 </head>
 <body>
@@ -291,11 +313,11 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">User ID</th>
+                                                <th scope="col">Customer Name</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Contact</th>
+                                                <th scope="col">Request Type</th>
                                                 <th scope="col">Message</th>
-                                                <th scope="col">Date</th>
+                                                <th scope="col">State</th>
                                                 <th scope="col">Actions</th>
                                             </tr>
                                         </thead>
@@ -343,10 +365,6 @@
                                 <label for="editSellerUsername" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="editSellerUsername" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="editSellerState" class="form-label">State</label>
-                                <input type="text" class="form-control" id="editSellerState" required>
-                            </div>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
@@ -385,10 +403,6 @@
                                 <label for="editUserUsername" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="editUserUsername" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="editUserState" class="form-label">State</label>
-                                <input type="text" class="form-control" id="editUserState" required>
-                            </div>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
@@ -403,18 +417,21 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
                     </div>
                     <div class="modal-body">
                         <form id="editProductForm">
                             <input type="hidden" id="editProductId">
+                            <div class="form-group">
+                                <label for="productImagesContainer">Images</label>
+                                <div id="productImagesContainer" class="d-flex flex-wrap">
+                                  <!-- Images will be appended here -->
+                                </div>
                             <div class="mb-3">
                                 <label for="editProductDescription" class="form-label">Description</label>
                                 <input type="text" class="form-control" id="editProductDescription" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="editProductImage" class="form-label">Image URL</label>
-                                <input type="url" class="form-control" id="editProductImage" required>
-                            </div>
+                              </div>
                             <div class="mb-3">
                                 <label for="editProductName" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="editProductName" required>
@@ -428,8 +445,8 @@
                                 <input type="number" class="form-control" id="editProductStock" required>
                             </div>
                             <div class="mb-3">
-                                <label for="editProductSellerId" class="form-label">Seller ID</label>
-                                <input type="number" class="form-control" id="editProductSellerId" required>
+                                <label for="editProductCategory" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="editProductCategory" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
@@ -440,22 +457,60 @@
 
 
 <!-- Rejection Reason Modal -->
-<div class="modal fade" id="Rejection_Reason" tabindex="-1" aria-labelledby="rejectionReasonLabel" aria-hidden="true">
+<div class="modal fade" id="Rejection_Reason" tabindex="-1" aria-labelledby="RejectionReasonLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content bg-dark text-light">
             <div class="modal-header">
-                <h5 class="modal-title" id="rejectionReasonLabel">Rejection Reason</h5>
+                <h5 class="modal-title" id="RejectionReasonLabel">Rejection Reason</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label for="rejectionReasoninput" class="form-label">Reason</label>
-                    <input type="text" class="form-control" id="rejectionReasoninput">
-                </div>
+                <label for="rejectionReasoninput" class="form-label">Please provide a reason for rejection:</label>
+                <input type="text" class="form-control" id="rejectionReasoninput">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                <button type="button" class="btn btn-primary" id="confirmRejectionButton">Confirm Rejection</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Resolve Remarks Modal -->
+
+<div class="modal fade" id="Resolve_Reason" tabindex="-1" aria-labelledby="Resolve_ReasonLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Resolve_ReasonLabel">Resolve Remarks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="Resolve_Reasoninput" class="form-label">Please provide Resolve Remarks:</label>
+                <input type="text" class="form-control" id="Resolve_Reasoninput">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="confirmResolveButton">Confirm Resolve</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Delete Product Modal -->
+<div class="modal fade" id="Delete_Product" tabindex="-1" aria-labelledby="Delete_ProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Delete_ProductLabel">Delete Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             Are You Sure You want to delete this product ? 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Confirm Delete</button>
             </div>
         </div>
     </div>
@@ -465,6 +520,7 @@
     
 
     <!-- JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../Views/adminPanel.js"></script>
     <script src="../models/userModel.js"></script>

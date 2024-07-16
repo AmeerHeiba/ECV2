@@ -26,12 +26,13 @@ function createCustomModal() {
   document.body.appendChild(modalContainer);
 }
 
-function showCustomModal(title, bodyText, confirmText, cancelText, confirmCallback, cancelCallback) {
+function showCustomModal(title, bodyText, confirmText, cancelText, confirmCallback, cancelCallback, theme = 'light') {
   if (!document.getElementById('customModal')) {
     createCustomModal();
   }
 
   const modalElement = document.getElementById('customModal');
+  const modalContent = modalElement.querySelector('.modal-content');
   const modalTitle = modalElement.querySelector('.modal-title');
   const modalBody = modalElement.querySelector('.modal-body');
   const confirmButton = modalElement.querySelector('#customModalConfirm');
@@ -50,16 +51,28 @@ function showCustomModal(title, bodyText, confirmText, cancelText, confirmCallba
   // Add new event listeners
   confirmButton.addEventListener('click', () => {
     confirmCallback();
-    $(modalElement).modal('hide');
+    modalElement.querySelector('[data-bs-dismiss="modal"]').click();
   });
 
   cancelButton.addEventListener('click', () => {
     if (cancelCallback) cancelCallback();
-    $(modalElement).modal('hide');
+    modalElement.querySelector('[data-bs-dismiss="modal"]').click();
   });
 
+  // Set theme
+  if (theme === 'dark') {
+    modalContent.classList.add('bg-dark', 'text-white');
+    confirmButton.classList.add('btn-outline-primary');
+    cancelButton.classList.add('btn-outline-danger');
+  } else {
+    modalContent.classList.remove('bg-dark', 'text-white');
+    confirmButton.classList.remove('btn-outline-primary');
+    cancelButton.classList.remove('btn-outline-danger');
+  }
+
   // Show the modal
-  $(modalElement).modal('show');
+  const bootstrapModal = new bootstrap.Modal(modalElement);
+  bootstrapModal.show();
 }
 
 // Export the function for use in other scripts
