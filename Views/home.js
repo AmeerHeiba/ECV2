@@ -2,6 +2,10 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize animations
   AOS.init();
 
+  //render Navbar
+
+  UIController.renderNavbar();
+
   // Welcome user
   UIController.welcomeUser("white");
 

@@ -176,7 +176,7 @@ select:focus {
 }
 
 .filtered-products .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .filtered-products .card .first-img {

@@ -1,4 +1,106 @@
 class UIController {
+  static renderNavbar() {
+    const navBar1 = document.getElementById("navbar-1");
+
+    if (navBar1) {
+      navBar1.innerHTML = ` <div class="container my-2">
+          <a class="h1 navbar-brand text-light fsize-1" href="./home.html"
+            >Tea.</a
+          >
+          <form class="d-flex col col-lg-8 mx-lg-5" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="What are you looking for?"
+              aria-label="Search"
+              onclick="window.location.href = 'productCatalog.html'"
+            />
+          </form>
+          <button
+            class="navbar-toggler navbar-dark"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon navbar-dark"></span>
+          </button>
+          <div class="collapse navbar-collapse col" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
+              <li class="nav-item" id="logged-user">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  data-bs-toggle="modal"
+                  data-bs-target="#login"
+                  ><i class="bi bi-person-fill text-light">&nbsp Login</i></a
+                >
+              </li>
+
+              <li class="nav-item d-none" id="register">
+                <div class="dropdown nav-link p-0">
+                  <button
+                    class="btn text-white dropdown-toggle p-0 p-xl-2"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-person-plus-fill">&nbsp Register</i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        aria-current="page"
+                        data-bs-toggle="modal"
+                        data-bs-target="#registration"
+                        class="dropdown-item"
+                        >New Customer?</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        aria-current="page"
+                        data-bs-toggle="modal"
+                        data-bs-target="#seller-registration"
+                        class="dropdown-item"
+                        class="dropdown-item"
+                        >New Seller?</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li id="wishlist-link" class="nav-item">
+                <a class="nav-link active" href="wishlist.html"
+                  ><i class="bi bi-bag-heart-fill text-light"
+                    >&nbsp Wishlist</i
+                  ></a
+                >
+              </li>
+              <li id="cart-link" class="nav-item">
+                <a class="nav-link active" href="cart.html"
+                  ><i class="bi bi-cart4 text-light"
+                    ><span
+                      id="notification"
+                      style="font-size: 0.6rem"
+                      class="position-absolute top-40 start-10 translate-middle badge rounded-circle"
+                    >
+                    </span
+                    >&nbsp Cart
+                  </i>
+                </a>
+              </li>
+
+            
+            </ul>
+          </div>
+        </div>`;
+    }
+  }
+
   static welcomeUser(color) {
     let user = AuthController.getCurrentUser();
     const loggedUser = document.getElementById("logged-user");
@@ -129,12 +231,10 @@ class UIController {
           const wishlistItem = `
        <!-- card start -->
        
-    <div class="card col-12 col-md-5 col-xl-2">
+    <div class="card col-5 col-md-5 col-xl-3 mx-auto">
       <img
             src="${product.images[0]}"
-            class="card-img-top rounded-2 mt-3"
-            style="  height: 13rem;
-            object-fit: cover;"
+            class="card-img-top card-img rounded-2 mt-3"
             alt="${product.name}"
           />
           <div class="product-btns d-flex flex-column">
