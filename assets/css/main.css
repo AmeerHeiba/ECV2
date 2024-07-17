@@ -198,7 +198,7 @@ nav a {
 
 @media screen and (max-width: 756px) {
   .card-img {
-    height: 25vh;
+    height: 19rem;
     object-fit: cover;
   }
 }

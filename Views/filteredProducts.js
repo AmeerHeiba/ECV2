@@ -15,11 +15,11 @@ function createProductCard(product) {
   const isOutOfStock = product.stock === 0;
 
   return `
-           <div class="card col-5 col-xl-2" data-aos="zoom-out-up"  
+           <div class="card col-12 col-xl-2" data-aos="zoom-out-up"  
 >
       <img
             src="${product.images[0]}"
-            class="card-img-top wishlist-img rounded-2 mt-3"
+            class="card-img-top card-img rounded-2 mt-3"
             alt="${product.name}"
           />
           <div class="product-btns d-flex flex-column">

@@ -231,7 +231,7 @@ class UIController {
           const wishlistItem = `
        <!-- card start -->
        
-    <div class="card col-5 col-md-5 col-xl-3 mx-auto">
+    <div class="card col-12 col-md-5 col-xl-3 mx-auto">
       <img
             src="${product.images[0]}"
             class="card-img-top card-img rounded-2 mt-3"
