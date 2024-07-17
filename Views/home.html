@@ -185,11 +185,393 @@
                   </i>
                 </a>
               </li>
+
+            
             </ul>
           </div>
         </div>
       </nav>
       <!-- first navbar end -->
+
+      <!-- second navbar start -->
+      <nav class="nav2 navbar navbar-expand navbar-light bg-light">
+        <div
+          class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
+        >
+        <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-8 h-scroll-child">
+          <li class="nav-item border-end mx-2 col-4 col-xl-3">
+            <a class="nav-link active" href="productCatalog.html">
+              All Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=living-room"
+              >Living Room</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=Bedroom"
+              >Bedroom</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=dining-room"
+              >Dining Room</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=office"
+              >Office</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="filteredProducts.html?filter=outdoor"
+              >Outdoors</a
+            >
+          </li>
+        </ul>
+        </div>
+      </nav>
+
+      <!-- second navbar end -->
+
+      <!-- products start -->
+      <section class="container h-scroll-parent products my-5">
+        <h3 class="small-line">Shop By Category</h3>
+        <div
+          class="row flex-nowrap overflow-auto row-cols-1 row-cols-md-3 g-4 m-2 h-scroll-child"
+        >
+          <div class="col-6 col-xl-2">
+            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
+            <div class="card border-0 pe-5 border-end">
+              <img
+                src="../assets/images/wardrobe.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Organization & storage</h6>
+              </div>
+            </div>
+          </a>
+          </div>
+          <div class="col-6 col-xl-2">
+            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/chair.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Furniture</h6>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-6 col-xl-2">
+            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/lamp.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Lighting</h6>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-6 col-xl-2">
+            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/table.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Tables</h6>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-6 col-xl-2">
+            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
+            <div class="card border-0 pe-3 border-end">
+              <img
+                src="../assets/images/beanbag.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Beanbags</h6>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-6 col-xl-2">
+            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
+            <div class="card border-0">
+              <img
+                src="../assets/images/desk.png"
+                class="card-img-top p-2"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">Desks</h6>
+              </div>
+            </div>
+            </a>
+          </div>
+        </div>
+        <hr />
+      </section>
+      <!-- products end -->
+
+      <!-- featured products start -->
+      <section
+        class="container featured mb-4 h-scroll-parent"
+        data-aos="fade-left"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="1000"
+        data-aos-duration="2000"
+        scrollable-content
+      >
+        <h3>Featured Products</h3>
+
+        <div
+          id="featured-products"
+          class="row my-4 justify-content-start flex-nowrap p-2 h-scroll-child scrollable-content"
+        ></div>
+        <div
+          class="position-absolute top-50 start-0 d-flex justify-content-between w-100 opacity-100"
+        >
+          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-left">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-right">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+        <hr />
+      </section>
+
+      <!-- featured products end -->
+
+      <!-- promotion header row start -->
+      <section class="container my-5 px-3 pt-4 overflow-hidden">
+        <div class="row justify-content-around">
+          <div class="my-5 col-12 col-lg-3">
+            <img
+              style="object-fit: cover; object-position: 20% 70%; height: 30vh"
+              class="rounded-5 w-100 shadow-sm"
+              src="../assets/images/header-2.jpg"
+              alt=""
+              data-aos="fade-right"
+              data-aos-duration="2500"
+            />
+            <h1 class="text-center mt-4" style="font-size: 2rem">
+              Affordable Luxury
+            </h1>
+          </div>
+          <!-- promotion header end -->
+
+          <!-- promotion header start -->
+          <div class="my-3 col-12 col-lg-3">
+            <img
+              style="object-fit: cover; object-position: 10% 75%; height: 30vh"
+              class="rounded-5 w-100 shadow-sm"
+              src="../assets/images/promo-1.jpg"
+              alt=""
+              data-aos="fade-down"
+              data-aos-duration="2500"
+            />
+            <h1 class="text-center mt-4" style="font-size: 2rem">
+              Unmatched Quality
+            </h1>
+          </div>
+          <!-- promotion header end -->
+
+          <!-- promotion header start -->
+          <div class="my-5 col-12 col-lg-3">
+            <img
+              style="object-fit: cover; object-position: 10% 75%; height: 30vh"
+              class="rounded-5 w-100 shadow-sm"
+              src="../assets/images/product6.jpg"
+              alt=""
+              data-aos="fade-left"
+              data-aos-duration="2500"
+            />
+            <h1 class="text-center mt-4" style="font-size: 2rem">
+              Timeless Pieces
+            </h1>
+          </div>
+          <!-- promotion header end -->
+        </div>
+        <hr class="col-3 ms-auto" />
+        <hr class="col-3 me-auto" />
+      </section>
+      <!-- promotion header row end -->
+
+      <!-- promotion header start -->
+      <section class="promotion container-fluid w-100 overflow-x-hidden">
+        <div class="row position-relative">
+          <div class="d-flex justify-contents-center">
+            <div
+              style="width: 20rem; height: 20rem; background-image: url(../assets/images/bg-circle.jpg);"
+              class="circle bg-warning rounded-circle position-absolute start-50 shadow-sm"
+            >
+              <!-- <h1
+              class="d-inline position-absolute top-50 start-50 translate-middle"
+            >
+              Crafted<br />for You
+            </h1> -->
+            </div>
+
+            <img
+              src="../assets/images/chair-2.png"
+              class="mx-auto"
+              style="width: 20rem"
+              alt=""
+            />
+            <!-- <h1 class="position-absolute top-50 start-0 translate-middle">
+              Modern
+            </h1>
+            <h1 class="position-absolute top-50 end-0 translate-middle">
+              Elegant
+            </h1> -->
+          </div>
+        </div>
+        <h4 style="background-image: url(../assets/images/bg-circle.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;" class="h3 p-2 mt-2 text-center text-bg-warning">
+          Revitalize Your Living Space Designs
+      </h4>
+        <h4 style="background-image: url(../assets/images/bg-circle.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;" class="h3 p-2 text-center text-bg-warning">
+          with Our Contemporary Furniture!
+        </h4>
+      </section>
+      <!-- promotion header end -->
+
+    <!-- products start -->
+
+    <section class="filtered-products container mt-5">
+      <div class="row">
+        <!-- First Column Spanning Two Rows -->
+        <div class="col-md-6">
+          <a href="filteredProducts.html?filter=500">
+            <div class="card text-bg-white span-two">
+              <img src="../assets/images/chair3.png" class="card-img first-img" alt="...">
+              <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                <h4 class="card-title text-center">Products less than 500 EGP</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+    
+        <!-- Second Column -->
+        <div class="col-md-3 mb-3">
+          <a href="filteredProducts.html?filter=Bedroom">
+            <div class="card text-bg-white mb-3">
+              <img src="../assets/images/bedroomx2.jpg" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Bedroom Products</h4>
+              </div>
+            </div>
+          </a>
+          <a href="filteredProducts.html?filter=living-room">
+            <div class="card text-bg-white">
+              <img src="../assets/images/sofa.png" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Living Room Products</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+    
+        <!-- Third Column -->
+        <div class="col-md-3 mb-3">
+          <a href="filteredProducts.html?filter=outdoor">
+            <div class="card text-bg-white mb-3">
+              <img src="../assets/images/beanbag.png" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Outdoor Products</h4>
+              </div>
+            </div>
+          </a>
+          <a href="filteredProducts.html?filter=dining-room">
+            <div class="card text-bg-white">
+              <img src="../assets/images/chair5.png" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h4 class="card-title">Dining Room Products</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+
+      <!-- footer start -->
+      <footer class="bg-dark text-white text-center mt-2">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-4 mb-4">
+              <h5>About Us</h5>
+              <p class="text-muted">
+                Tea Furniture Co. offers stylish, high-quality furniture to
+                enhance any space. Our timeless designs and craftsmanship ensure
+                both comfort and elegance, perfect for every home.
+              </p>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <h5>Categories</h5>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="filteredProducts.html?filter=living-room" class="text-decoration-none text-warning"
+                    >Living Room</a
+                  >
+                </li>
+                <li>
+                  <a href="filteredProducts.html?filter=Bedroom" class="text-decoration-none text-warning"
+                    >Bedroom</a
+                  >
+                </li>
+                <li>
+                  <a href="filteredProducts.html?filter=dining-room" class="text-decoration-none text-warning"
+                    >Dining Room</a
+                  >
+                </li>
+                <li>
+                  <a href="filteredProducts.html?filter=office" class="text-decoration-none text-warning"
+                    >Office</a
+                  >
+                </li>
+                <li>
+                  <a href="filteredProducts.html?filter=outdoor" class="text-decoration-none text-warning"
+                    >Outdoors</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <h5>Contact Us</h5>
+              <ul class="list-unstyled">
+                <li>Email: example@example.com</li>
+                <li>Phone: +1234567890</li>
+                <li>Address: 123 Street, City, Country</li>
+                <li><a class="btn"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer end -->
+    </section>
+
+    <div class="support-button">
+      <button data-bs-toggle="modal" data-bs-target="#supportModal">Need help?</button>
+  </div>
 
       <!-- login & registeration modals start -->
 
@@ -568,327 +950,9 @@
      
       <!-- login & registeration modals end -->
 
-      <!-- second navbar start -->
-      <nav class="nav2 navbar navbar-expand navbar-light bg-light">
-        <div
-          class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
-        >
-        <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-8 h-scroll-child">
-          <li class="nav-item border-end mx-2 col-4 col-xl-3">
-            <a class="nav-link active" href="productCatalog.html">
-              All Categories
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=living-room"
-              >Living Room</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=Bedroom"
-              >Bedroom</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=dining-room"
-              >Dining Room</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=office"
-              >Office</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=outdoor"
-              >Outdoors</a
-            >
-          </li>
-        </ul>
-        </div>
-      </nav>
+            <!-- contact us modal start -->
 
-      <!-- second navbar end -->
-
-      <!-- products start -->
-      <section class="container h-scroll-parent products my-5">
-        <h3 class="small-line">Shop By Category</h3>
-        <div
-          class="row flex-nowrap overflow-auto row-cols-1 row-cols-md-3 g-4 m-2 h-scroll-child"
-        >
-          <div class="col-6 col-xl-2">
-            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
-            <div class="card border-0 pe-5 border-end">
-              <img
-                src="../assets/images/wardrobe.png"
-                class="card-img-top p-2"
-                alt="..."
-              />
-              <div class="card-body">
-                <h6 class="card-title">Organization & storage</h6>
-              </div>
-            </div>
-          </a>
-          </div>
-          <div class="col-6 col-xl-2">
-            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
-            <div class="card border-0 pe-3 border-end">
-              <img
-                src="../assets/images/chair.png"
-                class="card-img-top p-2"
-                alt="..."
-              />
-              <div class="card-body">
-                <h6 class="card-title">Furniture</h6>
-              </div>
-            </div>
-            </a>
-          </div>
-          <div class="col-6 col-xl-2">
-            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
-            <div class="card border-0 pe-3 border-end">
-              <img
-                src="../assets/images/lamp.png"
-                class="card-img-top p-2"
-                alt="..."
-              />
-              <div class="card-body">
-                <h6 class="card-title">Lighting</h6>
-              </div>
-            </div>
-            </a>
-          </div>
-          <div class="col-6 col-xl-2">
-            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
-            <div class="card border-0 pe-3 border-end">
-              <img
-                src="../assets/images/table.png"
-                class="card-img-top p-2"
-                alt="..."
-              />
-              <div class="card-body">
-                <h6 class="card-title">Tables</h6>
-              </div>
-            </div>
-            </a>
-          </div>
-          <div class="col-6 col-xl-2">
-            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
-            <div class="card border-0 pe-3 border-end">
-              <img
-                src="../assets/images/beanbag.png"
-                class="card-img-top p-2"
-                alt="..."
-              />
-              <div class="card-body">
-                <h6 class="card-title">Beanbags</h6>
-              </div>
-            </div>
-            </a>
-          </div>
-          <div class="col-6 col-xl-2">
-            <a href="productCatalog.html" style="text-decoration: none; color: inherit;">
-            <div class="card border-0">
-              <img
-                src="../assets/images/desk.png"
-                class="card-img-top p-2"
-                alt="..."
-              />
-              <div class="card-body">
-                <h6 class="card-title">Desks</h6>
-              </div>
-            </div>
-            </a>
-          </div>
-        </div>
-        <hr />
-      </section>
-      <!-- products end -->
-
-      <!-- featured products start -->
-      <section
-        class="container featured mb-4 h-scroll-parent"
-        data-aos="fade-left"
-        data-aos-anchor="#example-anchor"
-        data-aos-offset="1000"
-        data-aos-duration="2000"
-        scrollable-content
-      >
-        <h3>Featured Products</h3>
-
-        <div
-          id="featured-products"
-          class="row my-4 justify-content-start flex-nowrap p-2 h-scroll-child scrollable-content"
-        ></div>
-        <div
-          class="position-absolute top-50 start-0 d-flex justify-content-between w-100 opacity-100"
-        >
-          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-left">
-            <i class="bi bi-chevron-left"></i>
-          </button>
-          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-right">
-            <i class="bi bi-chevron-right"></i>
-          </button>
-        </div>
-        <hr />
-      </section>
-
-      <!-- featured products end -->
-
-      <!-- promotion header row start -->
-      <section class="container my-5 px-3 pt-4 overflow-hidden">
-        <div class="row justify-content-around">
-          <div class="my-5 col-12 col-lg-3">
-            <img
-              style="object-fit: cover; object-position: 20% 70%; height: 30vh"
-              class="rounded-5 w-100 shadow-sm"
-              src="../assets/images/header-2.jpg"
-              alt=""
-              data-aos="fade-right"
-              data-aos-duration="2500"
-            />
-            <h1 class="text-center mt-4" style="font-size: 2rem">
-              Affordable Luxury
-            </h1>
-          </div>
-          <!-- promotion header end -->
-
-          <!-- promotion header start -->
-          <div class="my-3 col-12 col-lg-3">
-            <img
-              style="object-fit: cover; object-position: 10% 75%; height: 30vh"
-              class="rounded-5 w-100 shadow-sm"
-              src="../assets/images/promo-1.jpg"
-              alt=""
-              data-aos="fade-down"
-              data-aos-duration="2500"
-            />
-            <h1 class="text-center mt-4" style="font-size: 2rem">
-              Unmatched Quality
-            </h1>
-          </div>
-          <!-- promotion header end -->
-
-          <!-- promotion header start -->
-          <div class="my-5 col-12 col-lg-3">
-            <img
-              style="object-fit: cover; object-position: 10% 75%; height: 30vh"
-              class="rounded-5 w-100 shadow-sm"
-              src="../assets/images/product6.jpg"
-              alt=""
-              data-aos="fade-left"
-              data-aos-duration="2500"
-            />
-            <h1 class="text-center mt-4" style="font-size: 2rem">
-              Timeless Pieces
-            </h1>
-          </div>
-          <!-- promotion header end -->
-        </div>
-        <hr class="col-3 ms-auto" />
-        <hr class="col-3 me-auto" />
-      </section>
-      <!-- promotion header row end -->
-
-      <!-- promotion header start -->
-      <section class="promotion container-fluid w-100 overflow-x-hidden">
-        <div class="row position-relative">
-          <div class="d-flex justify-contents-center">
-            <div
-              style="width: 20rem; height: 20rem; background-image: url(../assets/images/bg-circle.jpg);"
-              class="circle bg-warning rounded-circle position-absolute start-50 shadow-sm"
-            >
-              <!-- <h1
-              class="d-inline position-absolute top-50 start-50 translate-middle"
-            >
-              Crafted<br />for You
-            </h1> -->
-            </div>
-
-            <img
-              src="../assets/images/chair-2.png"
-              class="mx-auto"
-              style="width: 20rem"
-              alt=""
-            />
-            <!-- <h1 class="position-absolute top-50 start-0 translate-middle">
-              Modern
-            </h1>
-            <h1 class="position-absolute top-50 end-0 translate-middle">
-              Elegant
-            </h1> -->
-          </div>
-        </div>
-        <h4 style="background-image: url(../assets/images/bg-circle.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;" class="h3 p-2 mt-2 text-center text-bg-warning">
-          Revitalize Your Living Space Designs
-      </h4>
-        <h4 style="background-image: url(../assets/images/bg-circle.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;" class="h3 p-2 text-center text-bg-warning">
-          with Our Contemporary Furniture!
-        </h4>
-      </section>
-      <!-- promotion header end -->
-
-    <!-- products start -->
-
-    <section class="filtered-products container mt-5">
-      <div class="row">
-        <!-- First Column Spanning Two Rows -->
-        <div class="col-md-6">
-          <a href="filteredProducts.html?filter=500">
-            <div class="card text-bg-white span-two">
-              <img src="../assets/images/chair3.png" class="card-img first-img" alt="...">
-              <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                <h4 class="card-title text-center">Products less than 500 EGP</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-    
-        <!-- Second Column -->
-        <div class="col-md-3 mb-3">
-          <a href="filteredProducts.html?filter=Bedroom">
-            <div class="card text-bg-white mb-3">
-              <img src="../assets/images/bedroomx2.jpg" class="card-img" alt="...">
-              <div class="card-img-overlay">
-                <h4 class="card-title">Bedroom Products</h4>
-              </div>
-            </div>
-          </a>
-          <a href="filteredProducts.html?filter=living-room">
-            <div class="card text-bg-white">
-              <img src="../assets/images/sofa.png" class="card-img" alt="...">
-              <div class="card-img-overlay">
-                <h4 class="card-title">Living Room Products</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-    
-        <!-- Third Column -->
-        <div class="col-md-3 mb-3">
-          <a href="filteredProducts.html?filter=outdoor">
-            <div class="card text-bg-white mb-3">
-              <img src="../assets/images/beanbag.png" class="card-img" alt="...">
-              <div class="card-img-overlay">
-                <h4 class="card-title">Outdoor Products</h4>
-              </div>
-            </div>
-          </a>
-          <a href="filteredProducts.html?filter=dining-room">
-            <div class="card text-bg-white">
-              <img src="../assets/images/chair5.png" class="card-img" alt="...">
-              <div class="card-img-overlay">
-                <h4 class="card-title">Dining Room Products</h4>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-    
-      <!-- contact us modal start -->
-
-<!-- Modal -->
+<!-- Contact Modal -->
 <div class="modal fade" id="supportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
@@ -921,6 +985,7 @@
           </div>
           
           <button id="sbmt" type="submit" class="col-4 btn btn-light btn-block">Submit</button>
+          <button class="col-6 btn text-white btn-block" data-bs-target="#followupModal" data-bs-toggle="modal">Follow up on a request</button>
       </form>
   
       </div>
@@ -930,67 +995,73 @@
 </div>
       <!-- contact us modal end -->
 
-      <!-- footer start -->
-      <footer class="bg-dark text-white text-center mt-2">
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-lg-4 mb-4">
-              <h5>About Us</h5>
-              <p class="text-muted">
-                Tea Furniture Co. offers stylish, high-quality furniture to
-                enhance any space. Our timeless designs and craftsmanship ensure
-                both comfort and elegance, perfect for every home.
-              </p>
-            </div>
-            <div class="col-lg-4 mb-4">
-              <h5>Categories</h5>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="filteredProducts.html?filter=living-room" class="text-decoration-none text-warning"
-                    >Living Room</a
-                  >
-                </li>
-                <li>
-                  <a href="filteredProducts.html?filter=Bedroom" class="text-decoration-none text-warning"
-                    >Bedroom</a
-                  >
-                </li>
-                <li>
-                  <a href="filteredProducts.html?filter=dining-room" class="text-decoration-none text-warning"
-                    >Dining Room</a
-                  >
-                </li>
-                <li>
-                  <a href="filteredProducts.html?filter=office" class="text-decoration-none text-warning"
-                    >Office</a
-                  >
-                </li>
-                <li>
-                  <a href="filteredProducts.html?filter=outdoor" class="text-decoration-none text-warning"
-                    >Outdoors</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-4 mb-4">
-              <h5>Contact Us</h5>
-              <ul class="list-unstyled">
-                <li>Email: example@example.com</li>
-                <li>Phone: +1234567890</li>
-                <li>Address: 123 Street, City, Country</li>
-                <li><a class="btn"></a></li>
-              </ul>
-            </div>
+      <!-- follow up modal -->
+<div class="modal fade" id="followupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Contact Us</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body secondary-color text-white px-5 py-4">
+        
+        <div class="container mt-2">
+          <h3 class="mb-4">Search for Complaint</h3>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control no-focus-outline" id="complaintNumber" placeholder="Enter Complaint Number">
+            <button class="btn btn-light border-start-0 rounded-end" type="button" id="searchButton">Search</button>
           </div>
-        </div>
-      </footer>
-      <!-- Footer end -->
-    </section>
-    
-
-    <div class="support-button">
-      <button data-bs-toggle="modal" data-bs-target="#supportModal">Need help?</button>
+          
+  
+          <div class="complaint-details card text-muted">
+              <div class="card-body">
+                  <h5 class="card-title">Complaint Details</h5>
+                  <hr>
+                  <p><strong>ID:</strong> <span id="complaintId"></span></p>
+                  <p><strong>Subject:</strong> <span id="complaintSubject"></span></p>
+                  <p><strong>Customer Message:</strong> <span id="complaintMessage"></span></p>
+                  <p><strong>State:</strong> <span id="complaintState"></span></p>
+                  <p><strong>Resolve Date:</strong> <span id="complaintResolveDate"></span></p>
+                  <p><strong>Resolve Remarks:</strong> <span id="complaintResolveRemarks"></span></p>
+                  <button class="btn secondary-color text-white" id="reopenButton">Reopen Complaint</button>
+              </div>
+          </div>
+  
+          <div class="alert alert-danger mt-3" id="errorMessage" style="display: none;">
+              Complaint not found. Please check the complaint number and try again.
+          </div>
+  
+  
+          <div class="modal fade" id="Reopen_Reason" tabindex="-1" aria-labelledby="Reopen_ReasonLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title text-dark" id="Reopen_ReasonLabel">Reopen Remarks</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body secondary-color text-white">
+                          <label for="Reopen_Reasoninput" class="form-label">Please provide Reopen Reason:</label>
+                          <input type="text" class="form-control" id="Reopen_Reasoninput">
+                      </div>
+                      <div class="modal-footer secondary-color text-white">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-outline-light" id="confirmReOpenButton">Confirm Resolve</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+  
+      </div>
+ 
+    </div>
   </div>
+</div>
+      <!-- follow up modal end -->
+
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../Models/adminModel.js"></script>
@@ -1000,6 +1071,7 @@
 
 
     <script src="../Views/support.js"></script>
+    <script src="../Views/followUp.js"></script>
     <script src="../Views/Login.js"></script>
     <script type="module" src="../Views/customerRegister.js"></script>
     <script type="module" src="../Views/sellerRegister.js"></script>

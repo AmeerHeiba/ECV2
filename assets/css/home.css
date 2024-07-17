@@ -4,23 +4,26 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  box-shadow: 0 0 0 0.15rem white !important; /* Change the color and shadow as desired */
+  box-shadow: 0 0 0 0.1rem #e8f1f5 !important;
 }
 
 input:focus {
-  border-color: var(--main-color) !important; /* Change this color as desired */
+  outline: none;
+  border-color: var(--secondary-color) !important;
 }
 
 textarea:focus {
-  border-color: var(
-    --primary-color
-  ) !important; /* Change this color as desired */
+  outline: none;
+  border-color: var(--primary-color) !important;
 }
 
 select:focus {
-  border-color: var(
-    --primary-color
-  ) !important; /* Change this color as desired */
+  border-color: var(--primary-color) !important;
+}
+
+.no-focus-outline:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* support button */
@@ -41,11 +44,12 @@ select:focus {
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .support-button button:hover {
-  background-color: #0056b3;
+  background-color: var(--complementary-color);
+  transform: scale(1.04);
 }
 
 /* products categories */

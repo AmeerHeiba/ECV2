@@ -41,16 +41,18 @@ class UserController {
 
   static addToCart(id) {
     const product = Product.getProductById(id);
-    const cartItems = User.getCartItems();
-    const item = cartItems.find((item) => item.id === id);
     const currentUser = AuthController.getCurrentUser();
     const stock = product.stock;
     // product out of stock >> alert
     // in stock and not in cart >>
-    if (currentUser.role === "admin") {
+    if (!currentUser || currentUser.role === "admin") {
       alert("Please login using a customer account to add items to cart");
       return;
     }
+
+    const cartItems = User.getCartItems();
+    const item = cartItems.find((item) => item.id === id);
+
     if (product.stock <= 0) {
       alert("Product is out of stock");
     } else if (!item || (item && item.quantity < 9 && item.quantity < stock)) {
@@ -66,7 +68,7 @@ class UserController {
   static changeIcon(button) {
     const currentUser = AuthController.getCurrentUser();
 
-    if (currentUser.role === "admin") {
+    if (!currentUser || currentUser.role === "admin") {
       return;
     }
 
