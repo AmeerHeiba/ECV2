@@ -109,6 +109,36 @@ select:focus {
   font-size: 1.5rem;
 }
 
+@media screen and (max-width: 480px) {
+  .carousel-caption h5 {
+    color: black;
+    font-size: 2.4rem !important;
+    transform: translateY(-25px);
+  }
+  .carousel-caption p {
+    transform: translateY(-25px);
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .carousel-item:nth-child(1) img,
+  .carousel-item:nth-child(2) img {
+    height: 80vh;
+    object-fit: cover;
+    object-position: 90% 60%;
+  }
+
+  .carousel-caption h5 {
+    font-size: 3rem;
+    text-align: left;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
 /* promotion section */
 
 .promotion div {
@@ -195,23 +225,4 @@ select:focus {
 .filtered-products .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-}
-
-@media screen and (max-width: 786px) {
-  .carousel-item:nth-child(1) img,
-  .carousel-item:nth-child(2) img {
-    height: 80vh;
-    object-fit: cover;
-    object-position: 90% 60%;
-  }
-
-  .carousel-caption h5 {
-    font-size: 3rem;
-    text-align: left;
-  }
-
-  .carousel-caption p {
-    font-size: 1rem;
-    text-align: left;
-  }
 }
