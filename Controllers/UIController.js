@@ -3,6 +3,7 @@ class UIController {
     let user = AuthController.getCurrentUser();
     const loggedUser = document.getElementById("logged-user");
     const wishlistLink = document.getElementById("wishlist-link");
+    const cartLink = document.getElementById("cart-link");
 
     if (!user) {
       wishlistLink.classList.add("d-none");
@@ -12,24 +13,33 @@ class UIController {
       wishlistLink.classList.add("d-block");
     }
 
-    if (user && user.role !== "admin") {
+    if (user && user.role !== "admin" && user.role !== "seller") {
       let firstName = user.firstName;
 
       loggedUser.innerHTML = `
           <div class="dropdown nav-link p-0">
-            <button class="btn text-white dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+            <button class="btn text-white dropdown-toggle p-0 p-xl-2 " type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
              <i class="bi bi-person-fill"> Hi ${firstName}!</i>
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item my-1 py-2" href="userDashboard.html"><i class="bi bi-person-circle"></i>&nbsp Profile</a></li>
       
               <li><a class="dropdown-item py-2" href="orders.html"><i class="bi bi-basket2-fill"></i>&nbsp Orders</a></li>
-              <hr>
-              <li class="d-flex justify-content-center"><button class="btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
+              <hr >
+
+              
+              <li class="d-flex justify-content-center"><button class="d-none d-xl-block btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
+              
             
             </ul>
           </div>
           `;
+
+      cartLink.insertAdjacentHTML(
+        "afterend",
+        `  <hr >
+         <li class="d-flex justify-content-center"><button class="d-block d-xl-none btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>`
+      );
     } else if (user && user.role === "admin") {
       const adminName = user.fullName;
       wishlistLink.classList.add("d-none");
@@ -43,11 +53,43 @@ class UIController {
             <ul class="dropdown-menu">
               <li><a class="dropdown-item my-1 py-2" href="adminPanel.html"><i class="bi bi-person-fill-gear"></i> Admin Panel</a></li>
               <hr>
-              <li class="d-flex justify-content-center mt-2"><button class="btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
+              <li class="d-flex justify-content-center mt-2"><button class="d-none d-xl-block btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
             
             </ul>
           </div>
           `;
+
+      cartLink.insertAdjacentHTML(
+        "afterend",
+        `  <hr >
+             <li class="d-flex justify-content-center"><button class="d-block d-xl-none btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>`
+      );
+    } else if (user && user.role == "seller") {
+      let firstName = user.firstName;
+
+      loggedUser.innerHTML = `
+          <div class="dropdown nav-link p-0">
+            <button class="btn text-white dropdown-toggle p-0 p-xl-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+             <i class="bi bi-person-fill"> Hi ${firstName}!</i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item my-1 py-2" href="sellerDashboard.html"><i class="bi bi-shop"></i>&nbsp Dashboard</a></li>
+
+              <li><a class="dropdown-item my-1 py-2" href="userDashboard.html"><i class="bi bi-person-circle"></i>&nbsp Profile</a></li>
+      
+              <li><a class="dropdown-item py-2" href="orders.html"><i class="bi bi-basket2-fill"></i>&nbsp Orders</a></li>
+              <hr>
+              <li class="d-flex justify-content-center"><button class="d-none d-xl-block btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
+            
+            </ul>
+          </div>
+          `;
+
+      cartLink.insertAdjacentHTML(
+        "afterend",
+        `  <hr >
+                 <li class="d-flex justify-content-center"><button class="d-block d-xl-none btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>`
+      );
     }
   }
 
