@@ -203,7 +203,7 @@
 
       <!-- featured products start -->
       <section
-        class="container featured mb-4 h-scroll-parent"
+        class="container px-3 mb-4 h-scroll-parent"
         data-aos="fade-left"
         data-aos-anchor="#example-anchor"
         data-aos-offset="1000"
@@ -213,19 +213,19 @@
         <h3>Featured Products</h3>
 
         <div
-          id="featured-products"
-          class="row my-4 justify-content-start flex-nowrap p-2 h-scroll-child scrollable-content"
-        ></div>
-        <div
-          class="position-absolute top-50 start-0 d-flex justify-content-between w-100 opacity-100"
-        >
-          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-left">
-            <i class="bi bi-chevron-left"></i>
-          </button>
-          <button class="btn bg-light shadow-sm rounded-circle" id="scroll-btn-right">
-            <i class="bi bi-chevron-right"></i>
-          </button>
-        </div>
+        id="products-container"
+        class="card-container d-flex gap-4 h-scroll-child scrollable-content px-2"
+      ></div>
+
+  
+      <button class="btn border-0 bg-light shadow-sm rounded-circle position-absolute top-50 start-0" id="scroll-btn-left">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <button class="btn border-0 bg-light shadow-sm rounded-circle position-absolute end-0 top-50" id="scroll-btn-right">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+
+     
         <hr />
       </section>
 

@@ -83,7 +83,7 @@ class UserController {
         if (icon.classList.contains("bi-cart-plus-fill")) {
           icon.classList.remove("bi-cart-plus-fill");
           icon.classList.add("bi-cart-check-fill");
-          button.classList.remove("btn-primary");
+          button.classList.remove("card-btn-main");
           button.classList.add("btn-success");
         } else {
           icon.classList.remove("bi-cart-check-fill");

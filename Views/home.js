@@ -37,6 +37,17 @@ window.addEventListener("DOMContentLoaded", () => {
     return array;
   }
 
+  function getFeaturedProduct() {
+    const products = Product.getProducts();
+    let featuredProducts = products.slice(0, 8); // get the first 8 products
+    featuredProducts = shuffleArray(featuredProducts);
+    featuredProducts.forEach((product) => {
+      UIController.renderProductCard(product);
+    });
+  }
+
+  getFeaturedProduct();
+
   // Load featured products on home page
   function renderProducts() {
     if (document.getElementById("featured-products")) {
@@ -59,7 +70,7 @@ window.addEventListener("DOMContentLoaded", () => {
             alt="${product.name}"
           />
           <div class="product-btns d-flex flex-column">
-            <a id="add-to-cart" class="btn rounded-5 mb-2 ${
+            <a id="add-to-cart" class="btn border-0 rounded-5 mb-2 ${
               isInCart ? "btn-success" : "btn-primary"
             }" onclick="UserController.addToCart(${
           product.id
