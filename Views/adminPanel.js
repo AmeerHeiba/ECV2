@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-if (window.location.pathname === '/Views/adminPanel.html') {
+if (window.location.pathname === '/Views/adminPanel.html' || window.location.pathname === '/views/adminpanel') {
 
             // Initialize charts and tables
             initCharts();

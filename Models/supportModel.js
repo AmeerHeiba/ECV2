@@ -1,8 +1,8 @@
 class SupportRequest{
-    constructor(id,fullName,emailAdress,phoneNumber,subject,message){
+    constructor(id,fullName,emailAddress,phoneNumber,subject,message){
         this.id = id;
         this.fullName = fullName;
-        this.emailAdress = emailAdress;
+        this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.subject = subject;
         this.message = message;

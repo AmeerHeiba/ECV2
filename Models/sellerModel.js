@@ -16,9 +16,17 @@ class Seller {
         
     }
 
+    // static getSeller() {
+    //     return JSON.parse(localStorage.getItem('users')).filter(seller => seller.role === 'seller') || [];
+    // }
+
     static getSeller() {
-        return JSON.parse(localStorage.getItem('users')).filter(seller => seller.role === 'seller') || [];
+        return JSON.parse(localStorage.getItem('sellers'))|| [];
     }
+
+    static saveSellers(sellers) {
+        localStorage.setItem("sellers", JSON.stringify(sellers));
+      }
 
     static getSellerById(id){
         const seller = this.getSeller();
@@ -101,7 +109,7 @@ class Seller {
         request.approvalDate = approvalDate;
         const adminID = User.getCurrentUser().id;
         request.approvedBy = adminID;
-        User.addUser(request);
+        this.addSeller(request);
         Seller.removeRejectedSellerRequest(request.id);
        
 
@@ -109,9 +117,9 @@ class Seller {
 
 
     static addSeller(seller) {
-        const users = User.getUsers();
-        users.push(seller);
-        User.saveUsers(users);
+        const sellers = this.getSeller();
+        sellers.push(seller);
+        this.saveSellers(sellers);
     }
 
     static authenticate(username, password) {
@@ -134,7 +142,7 @@ class Seller {
     
         if (sellerIndex !== -1) {
             sellers[sellerIndex] = { ...sellers[sellerIndex], ...newDetails };
-            User.saveUsers(sellers);
+            this.saveSellers(sellers);
           alert("Account details updated successfully.");
         } else {
           alert("User not found.");
@@ -174,7 +182,7 @@ class Seller {
         const sellerIndex = sellers.findIndex(s => s.id == id);
         if (sellerIndex !== -1) {
             sellers[sellerIndex].state = true;
-            User.saveUsers(sellers);
+            this.saveSellers(sellers);
         }
     }
 
@@ -185,7 +193,7 @@ class Seller {
             const sellerIndex = sellers.findIndex(s => s.id == id);
             if (sellerIndex !== -1) {
                 sellers[sellerIndex].state = false;
-                User.saveUsers(sellers);
+                this.saveSellers(sellers);
             }
         }
     
