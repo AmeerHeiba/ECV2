@@ -269,11 +269,7 @@ class UIController {
           >see details</a
         >
 
-           ${
-             isOutOfStock
-               ? '<span class="badge bg-danger rounded-0 opacity-75 position-absolute w-100 bottom-50 mb-5 py-2 fs-6">Out of Stock</span>'
-               : ""
-           }
+       
 
         <div class="position-absolute end-0 m-3 d-flex flex-column gap-2">
           <button id="add-to-cart" class="btn border-0 card-btn rounded-circle text-light ${
@@ -306,6 +302,11 @@ class UIController {
           <h5 class="card-title">${productName}</h5>
           <p class="badge text-bg-light">${product.category}</p>
           <p class="badge bg-success">free shipping</p>
+              ${
+                isOutOfStock
+                  ? '<span class="badge bg-danger rounded-0 position-absolute w-50 bottom-100 end-0">Out of Stock</span>'
+                  : ""
+              }
        
           <hr />
           <h4 class="fw-bold"><span class="currency">EGP</span> ${

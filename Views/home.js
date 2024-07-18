@@ -13,6 +13,26 @@ window.addEventListener("DOMContentLoaded", () => {
   // Update cart icon in the navbar
   UIController.updateCartIcon();
 
+  // transition
+
+  function promoTransition() {
+    const promotionSection = document.querySelector(".promotion");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          promotionSection.classList.add("show");
+        } else {
+          promotionSection.classList.remove("show");
+        }
+      });
+    });
+
+    observer.observe(promotionSection);
+  }
+
+  promoTransition();
+
   // Scroll buttons
   document
     .getElementById("scroll-btn-right")

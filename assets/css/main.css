@@ -23,6 +23,18 @@
   );
 }
 
+.complementary-color {
+  background-color: var(--complementary-color);
+}
+
+.complementary-color2 {
+  background-color: var(--complementary-color2);
+}
+
+.accent-color2 {
+  background-color: var(--accent-color2);
+}
+
 .muted-color {
   background-color: var(--muted-color) !important;
 }
@@ -47,6 +59,26 @@
   color: var(--accent-color) !important;
 }
 
+.complementary-text {
+  color: var(--complementary-color);
+}
+
+.complementary-text2 {
+  color: var(--complementary-color2);
+}
+
+.accent-text2 {
+  color: var(--accent-color2);
+}
+
+.accent-text2:hover {
+  color: white;
+}
+
+.bg-danger {
+  background-color: var(--accent-color2) !important;
+}
+
 /* scrollbar */
 
 body {
@@ -66,15 +98,15 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
+  background: var(--complementary-color);
 }
 
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover {
   background-image: linear-gradient(
     to bottom,
-    var(--secondary-color),
-    var(--main-color)
+    var(--accent-color2),
+    var(--complementary-color)
   );
 }
 
@@ -244,6 +276,7 @@ nav a {
 h3 {
   position: relative;
   padding-bottom: 20px;
+  color: var(--complementary-color);
 }
 
 h3::after {

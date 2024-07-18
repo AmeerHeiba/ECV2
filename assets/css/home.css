@@ -141,31 +141,84 @@ select:focus {
 
 /* promotion section */
 
+@keyframes fadeX {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .promotion div {
   transform: translate(-50px, -25px);
 }
 
-.promotion:hover .circle {
-  transform: scale(0.7) translateX(-50px);
-  color: white;
-}
-
 .promotion img,
 .promotion .circle {
-  transform: scale(1);
-  transition: all 3s ease-in-out;
+  transition: all 3.5s ease-in-out;
 }
 
-.promotion:hover img {
-  transform: scale(1.2) rotate(5deg) translateX(20px);
+.promotion .circle {
+  transform: scale(1) translateX(-200%);
+}
+.promotion .circle h2 {
+  opacity: 0;
 }
 
+.promotion img {
+  transform: scale(1) translateX(200%);
+}
+
+.promotion.show .circle {
+  transform: scale(0.9) translateX(-50px);
+  color: white;
+}
+.promotion.show .circle h2 {
+  opacity: 1;
+  animation-name: fadeX;
+  animation-duration: 4.3s;
+}
+
+.promotion.show img {
+  transform: scale(1.2) rotate(5deg) translateX(75%);
+}
+
+@media screen and (max-width: 768px) {
+  .promotion .circle {
+    transform: scale(1) translateX(-200%);
+  }
+
+  .promotion.show .circle h2 {
+    opacity: 1;
+    animation-name: fadeX;
+    animation-duration: 3.15s;
+  }
+
+  .promotion img {
+    transform: scale(1) translateX(200%);
+  }
+
+  .promotion.show .circle {
+    transform: scale(0.9) translateX(-50px);
+    color: white;
+  }
+
+  .promotion.show img {
+    margin-top: 20px;
+    transform: scale(1.2) rotate(5deg) translateX(29%);
+  }
+}
 /* fitered products */
-@media screen and (min-width: 780px) {
+/* @media screen and (min-width: 780px) {
   .filtered-products .span-two {
     height: 77% !important;
   }
-}
+} */
 
 .filtered-products .card {
   height: 35vh;
@@ -181,23 +234,25 @@ select:focus {
 
 .filtered-products .card .first-img {
   filter: opacity(1);
-  object-fit: contain;
   height: 100%;
 }
 
 .filtered-products .card img {
   height: 100%;
   object-fit: cover;
-  filter: opacity(0.7);
-  transition: filter 0.3s ease;
+  transition: filter 0.2s ease;
 }
 
 .filtered-products .card:hover img {
-  filter: opacity(1);
+  filter: blur(10px);
+}
+
+.filtered-products .card:hover .card-img-overlay {
+  background: rgba(31, 58, 75, 0.8);
 }
 
 .filtered-products .card .card-img-overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(31, 58, 75, 0.1);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -214,13 +269,13 @@ select:focus {
   margin: 0;
 }
 
-.filtered-products .card.text-bg-warning {
+/* .filtered-products .card.text-bg-warning {
   background-color: #ffc107;
-}
+} */
 
-.filtered-products .card.text-bg-light {
+/* .filtered-products .card.text-bg-light {
   background-color: #f8f9fa;
-}
+} */
 
 .filtered-products .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
