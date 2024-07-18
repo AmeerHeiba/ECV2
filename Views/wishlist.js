@@ -1,3 +1,6 @@
+//render navbar
+UIController.renderNavbar();
+
 //welcome user
 UIController.welcomeUser("dark");
 

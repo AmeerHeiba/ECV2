@@ -1,5 +1,7 @@
-//welcome user
+//render navbar
+UIController.renderNavbar();
 
+//welcome user
 UIController.welcomeUser("dark");
 
 // update cart icon notification

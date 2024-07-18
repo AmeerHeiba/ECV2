@@ -28,8 +28,8 @@
             type="search"
             placeholder="What are you looking for?"
             aria-label="Search"
-            onclick="window.location.href = `productCatalog.html`"
-          />
+            id="search-product"
+            onkeyup="getFilteredProducts()"          />
         </form>
         <button
           class="navbar-toggler"
