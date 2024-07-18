@@ -7,20 +7,42 @@ class AdminController {
 
     static registerAdmin(adminUser,adminPassword,adminEmail,role='admin',adminContact,adminName){
 
-        console.log(adminName, adminContact, adminPassword, adminUser)
-        if (this.validateAdminEmail(adminEmail) === false) {
-            alert('Email already exist please try another one');
-        }else if(this.validateAdminUsername(adminUser) === false){
-            alert('User already exist please try another one');
-        }else if(AuthController.validatePassword(adminPassword) === false){
-            alert('Invalid password. It should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.')
-        }else{
 
+    const modal = new CustomModal();
+    // Validation
+    const errors = [];
+
+        if (!adminUser) errors.push("Username is required.");
+        if ((AdminModel.getAdmins().find((A) => A.username === adminUser))) errors.push("Username is already used.");
+        if (!adminPassword || adminPassword.length < 6) errors.push("Password is required and must be at least 6 characters.");
+        if (!adminEmail || !/\S+@\S+\.\S+/.test(adminEmail)) errors.push("Valid email is required.");
+        if ((AdminModel.getAdmins().find((A) => A.email === adminEmail))) errors.push("Email is already used.");
+        
+        if (errors.length > 0) {
+            
+            modal.showCustomModal(
+              'Validation Error',
+              errors.join("\n"),
+              'OK',
+              'Cancel',
+              () => { console.log('User confirmed the error modal'); },
+              () => { console.log('User canceled the error modal'); }
+            );
+            return;
+          }
             const newAdmin = new AdminModel(AdminController.getAllAdmins().length +1,adminUser,adminPassword,adminEmail,role,adminContact,adminName);
             AdminModel.addAdmin(newAdmin);
-            alert('Admin Added!');
+            
+            modal.showCustomModal(
+              'Success',
+              "Admin was added",
+              'OK',
+              'Cancel',
+              () => { console.log('User confirmed the error modal'); },
+              () => { console.log('User canceled the error modal'); }
+            );
 
-        }
+        
 
 
     }
@@ -28,10 +50,8 @@ class AdminController {
 
     static adminLogin(username, password) {
         const admin = AdminModel.authenticateAdmin(username, password);
-        console.log(admin)
         if (admin) {
             AuthController.setCurrentUser(admin);
-            // localStorage.setItem('currentUser', JSON.stringify(user));
             window.location.href = 'adminPanel.html';
         } else {
             alert('Invalid username or password');
@@ -40,39 +60,6 @@ class AdminController {
 
     static getAllAdmins(){
         return AdminModel.getAdmins();
-    }
-
-    static validateAdminUsername(username) {
-        // Username should be between 3 and 15 characters and contain only alphanumeric characters and underscores
-        const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
-        const users = AdminModel.getAdmins();
-        const user = users.find(user => user.username === username);
-
-        if(user){
-            alert('duplicate user name')
-            return false;
-        };
-        if (!usernameRegex.test(username)) {
-            return false;
-        }
-        return true;
-    }
-    
-    static validateAdminEmail(email) {
-        // Basic email validation pattern
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const users = AdminModel.getAdmins();
-        const user = users.find(user => user.email === email);
-
-        if(user){
-            alert('already regestered ')
-            return false;
-        };
-        if (!emailRegex.test(email)) {
-            // alert('Invalid email format.');
-            return false;
-        }
-        return true;
     }
 
 

@@ -1,10 +1,11 @@
 
 class AuthController {
   static setCurrentUser(user) {
+    const modal = new CustomModal();
     if (!AuthController.getCurrentUser()) {
       localStorage.setItem("currentUser", JSON.stringify(user));
     } else {
-      showCustomModal(
+      modal.showCustomModal(
         'Error',
         "You are Already Logged In",
         'OK',
@@ -29,8 +30,8 @@ class AuthController {
           "Your account was susbend please contact support for help",
           'OK',
           'Cancel',
-          () => { window.location.href = "home.html"; },
-          () => { console.log('User canceled the error modal'); }
+          () => {},
+          () => {window.location.href = "home.html"; }
         );
         
       }
@@ -41,13 +42,14 @@ class AuthController {
         "Wrong login Data",
         'OK',
         'Cancel',
-        () => { window.location.href = "home.html"; },
-        () => { console.log('User canceled the error modal'); }
+        () => {},
+        () => { window.location.href = "home.html"; }
       );
     }
   }
 
   static sellerLogin(username, password) {
+    const modal = new CustomModal();
     const seller = Seller.authenticate(username, password);
     if (seller) {
       if (seller.state === true) {
