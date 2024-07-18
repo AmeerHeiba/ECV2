@@ -10,71 +10,13 @@ UIController.updateCartIcon();
 
 AOS.init();
 
-function createProductCard(product) {
-  const isInCart = UserController.isProductInCart(product.id);
-  const isInWishlist = UserController.isProductInWishlist(product.id);
-  const isOutOfStock = product.stock === 0;
-
-  return `
-           <div class="card col-12 col-xl-2" data-aos="zoom-out-up"  
->
-      <img
-            src="${product.images[0]}"
-            class="card-img-top card-img rounded-2 mt-3"
-            alt="${product.name}"
-          />
-          <div class="product-btns d-flex flex-column">
-            <a id="add-to-cart" class="btn rounded-5 mb-2 ${
-              isInCart ? "btn-success" : "btn-primary"
-            }" onclick="UserController.addToCart(${
-    product.id
-  }, 1); UserController.changeIcon(this); UIController.updateCartIcon();" data-product-id="${
-    product.id
-  }">
-              <i class="bi ${
-                isInCart ? "bi-cart-check-fill" : "bi-cart-plus-fill"
-              }"></i>
-            </a>
-            <a id="wishlist-btn" class="btn ${
-              isInWishlist ? "btn-danger" : "btn-secondary"
-            } rounded-5" onclick="UserController.addToWishlist(${
-    product.id
-  }); UserController.changeIcon(this);" >
-              <i class="bi ${
-                isInWishlist ? "bi-bag-heart-fill" : "bi-bag-heart"
-              }"></i>
-            </a>
-          </div>
-          <div class="card-body">
-            <h6 class="mb-3">${product.name}</h6>
-            <div class="d-flex flex-column align-items-start">
-              <h4 class="mb-3">
-                <span class="currency me-1">EGP</span>${product.price}
-              </h4>
-              ${
-                isOutOfStock
-                  ? '<span style="border-radius: 0; top:30px;" class="badge bg-danger border-0 position-absolute start-0">Out of Stock</span>'
-                  : ""
-              }
-              <a href="productDetailsCustomer.html?id=${
-                product.id
-              }" class="btn btn btn-outline-dark btn-sm">View Details</a>
-            </div>
-          </div>
-    </div>
-    `;
-}
-
 function renderProducts(products) {
-  const productList = document.getElementById("product-wrapper");
-  productList.innerHTML = "";
-
   if (products.length === 0) {
-    productList.innerHTML =
+    productsContainer.innerHTML =
       '<h2 style="text-align: center;color: rgb(202, 194, 194);margin: 110px auto">No products match.</h2>';
   } else {
     products.forEach((product) => {
-      productList.innerHTML += createProductCard(product);
+      UIController.renderProductCard(product);
     });
   }
 }

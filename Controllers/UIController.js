@@ -136,7 +136,7 @@ class UIController {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="filteredProducts.html?filter=outdoor"
-              >Outdoors</a
+              >Outdoor</a
             >
           </li>
         </ul>
@@ -250,8 +250,6 @@ class UIController {
           ? product.name.substring(0, 18) + "..."
           : product.name;
 
-      console.log(productName);
-
       return (productsContainer.innerHTML += ` 
         
         <div
@@ -349,10 +347,10 @@ class UIController {
         wishlistItems.forEach((item) => {
           let product = Product.getProductById(item.id);
           UIController.renderProductCard(product);
-          const wishlistBtn = document.getElementById(
-            `wishlist-btn-${product.id}`
-          );
-          wishlistBtn.addEventListener("click", UIController.renderWishlist);
+          const wishlistBtn = document.querySelectorAll(".wishlist-btn");
+          Array.from(wishlistBtn).forEach((btn) => {
+            btn.addEventListener("click", UIController.renderWishlist);
+          });
         });
       } else {
         productsContainer.innerHTML = `<div class="d-flex flex-column align-items-center"><h5 style="color: #888"; class='text-center mt-5 '>You haven't added any items to your wishlist.</h5> <i style='font-size: 17rem; color: #eee'; class='bi bi-heart'></i></div>`;
