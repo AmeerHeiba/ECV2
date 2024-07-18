@@ -24,15 +24,22 @@
 }
 
 .complementary-color {
-  background-color: var(--complementary-color);
+  background-color: var(--complementary-color) !important;
+}
+.complementary-color3 {
+  background-image: linear-gradient(
+    to right,
+    rgba(238, 238, 238, 0.1),
+    rgba(41, 104, 143, 0.1)
+  ) !important;
 }
 
 .complementary-color2 {
-  background-color: var(--complementary-color2);
+  background-color: var(--complementary-color2) !important;
 }
 
 .accent-color2 {
-  background-color: var(--accent-color2);
+  background-color: var(--accent-color2) !important;
 }
 
 .muted-color {

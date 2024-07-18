@@ -253,7 +253,7 @@ class UIController {
       return (productsContainer.innerHTML += ` 
         
         <div
-        class="col-12 card product-card border-0 text-dark shadow my-5 rounded-5 position-relative p-0 "
+        class="col-12 complementary-color3 card product-card border-0 text-dark shadow-sm my-5 rounded-5 position-relative p-0 "
         
       >
       
