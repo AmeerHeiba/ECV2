@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //render Navbar
 
   UIController.renderNavbar();
+  UIController.renderNavbar2();
 
   // Welcome user
   UIController.welcomeUser("white");
