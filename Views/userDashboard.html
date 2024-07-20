@@ -47,26 +47,36 @@
             <div class="text-start">
               <ul class="list-group list-group-flush">
                 <hr />
+                <a href="#profile-card" class="text-decoration-none text-white">
+                  <li
+                    id="profile-info"
+                    class="list-group-item shadow-sm rounded secondary-color text-white my-2 highlighted"
+                  >
+                    <i class="bi bi-person-lines-fill ms-2"></i>
+                    &nbsp Profile Information
+                  </li>
+                </a>
 
-                <li
-                  id="profile-info"
-                  class="list-group-item shadow-sm rounded secondary-color text-white my-2 highlighted"
+                <a
+                  href="#wishlist-card"
+                  class="text-decoration-none text-white"
                 >
-                  <i class="bi bi-person-lines-fill ms-2"></i>&nbsp Profile
-                  Information
-                </li>
-                <li
-                  id="orders"
-                  class="list-group-item shadow-sm rounded secondary-color text-white my-2"
-                >
-                  <i class="bi bi-clipboard-check-fill ms-2"></i>&nbsp Orders
-                </li>
-                <li
-                  id="wishlist"
-                  class="list-group-item shadow-sm rounded secondary-color text-white my-2"
-                >
-                  <i class="bi bi-bookmark-heart-fill ms-2"></i>&nbsp WishList
-                </li>
+                  <li
+                    id="wishlist"
+                    class="list-group-item shadow-sm rounded secondary-color text-white my-2"
+                  >
+                    <i class="bi bi-bookmark-heart-fill ms-2"></i>&nbsp WishList
+                  </li>
+                </a>
+
+                <a href="#orders-card" class="text-decoration-none text-white">
+                  <li
+                    id="orders"
+                    class="list-group-item shadow-sm rounded secondary-color text-white my-2"
+                  >
+                    <i class="bi bi-clipboard-check-fill ms-2"></i>&nbsp Orders
+                  </li>
+                </a>
               </ul>
             </div>
           </div>
@@ -120,10 +130,13 @@
 
         <section
           id="orders-card"
-          class="orders container my-4 col-8 d-none mt-5"
+          class="orders container col-11 col-lg-8 justify-content-center d-none mt-5"
         >
           <div class="row mt-4">
-            <div class="row justify-content-center" id="orders-container"></div>
+            <div
+              class="row justify-content-center mx-auto"
+              id="orders-container"
+            ></div>
           </div>
         </section>
 
