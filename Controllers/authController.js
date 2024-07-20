@@ -88,11 +88,12 @@ class AuthController {
     contact,
     addresses
   ) {
+    const modal = new CustomModal();
     const users = User.getUsers();
     const newUser = new User(
       users.length + 1,
       username,
-      password,
+      Encryption.encrypt(password),
       email,
       role,
       firstName,
@@ -138,12 +139,11 @@ class AuthController {
     const year = now.getFullYear(); // Get full year
 
     const dateOfRequest = `${day}/${month}/${year}`;
-    console.log(dateOfRequest);
     const sellerReqs = Seller.getSellerRequests();
     const newSellerReq = new Seller(
       sellerReqs.length + 1,
       username,
-      password,
+      Encryption.encrypt(password),
       email,
       firstName,
       lastName,

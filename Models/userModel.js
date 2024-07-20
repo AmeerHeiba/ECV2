@@ -66,9 +66,10 @@ class User {
   }
 
   static authenticate(username, password) {
+    
     const users = User.getUsers();
     return users.find(
-      (user) => user.username === username && user.password === password
+      (user) => user.username === username && Encryption.decrypt(user.password) === password
     );
   }
 

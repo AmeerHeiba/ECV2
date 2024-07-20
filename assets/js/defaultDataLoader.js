@@ -25,6 +25,16 @@
         const products = await productsResponse.json();
         const support = await supportDataResponse.json();
         const super_admin = await superAdminDataResponse.json();
+
+        //Encrypt Passwords before saving 
+
+        customers.forEach(customer => {
+          customer.password = Encryption.encrypt(customer.password);
+        });
+  
+        sellers.forEach(seller => {
+          seller.password = Encryption.encrypt(seller.password);
+        });
   
         // Set data in local storage
         localStorage.setItem("sellersRequests", JSON.stringify(sellers));

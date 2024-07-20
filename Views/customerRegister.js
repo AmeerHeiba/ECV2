@@ -19,6 +19,7 @@ if (registrationformCustomer) {
     const zipCode = document.getElementById("zipReg").value.trim();
 
     // Validation
+
     const errors = [];
     
     if (!username) errors.push("Username is required.");
@@ -46,7 +47,8 @@ if (registrationformCustomer) {
       );
       return;
     }
-
+    else{
+      const modal = new CustomModal();
     // Address object
     const address = {
       id: 1,
@@ -68,15 +70,17 @@ if (registrationformCustomer) {
       contact,
       addresses
     );
-
-    showCustomModal(
+    
+    modal.showCustomModal(
       '"Registration successful!"',
       "Please Login",
       'OK',
       'Cancel',
       'light'
     );
-    // alert("Registration successful!");
+    
     registrationformCustomer.reset();
+  }
   });
+  
 }

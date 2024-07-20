@@ -123,8 +123,9 @@ class Seller {
     }
 
     static authenticate(username, password) {
+        
         const sellers = Seller.getSeller();
-        return sellers.find(seller =>seller.role === 'seller'&& seller.username === username && seller.password === password);
+        return sellers.find(seller =>seller.role === 'seller'&& seller.username === username && Encryption.decrypt(seller.password) === password);
     }
 // register a seller account request to be validated by the available admin then to be approved or rejected 
     static requestAccount(sellerRequest){
