@@ -1,20 +1,21 @@
-//render navbar
 UIController.renderNavbar();
 UIController.renderNavbar2();
 
-//welcome user
 UIController.welcomeUser("dark");
 
 // update cart icon notification
 UIController.updateCartIcon();
+AOS.init();
 
-// apply animation
-AOS.init()
+
+
 function renderProducts(products) {
+  const productsContainer = document.getElementById("products-container");
   if (products.length === 0) {
     productsContainer.innerHTML =
       '<h2 style="text-align: center;color: rgb(202, 194, 194);margin: 110px auto">No products match.</h2>';
   } else {
+    productsContainer.innerHTML = '';
     products.forEach((product) => {
       UIController.renderProductCard(product);
     });
