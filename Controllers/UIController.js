@@ -4,7 +4,7 @@ class UIController {
 
     if (navBar1) {
       navBar1.innerHTML = ` <div class="container my-1">
-          <a class="h1 navbar-brand text-light fsize-1" href="./home.html"
+          <a class="h1 navbar-brand text-light fsize-1 my-auto" href="./home.html" 
             >Tea.</a
           >
           
