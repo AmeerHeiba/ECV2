@@ -105,7 +105,7 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: var(--complementary-color);
+  background: var(--complementary-color2);
 }
 
 /* Handle on hover */
@@ -113,7 +113,7 @@ body::-webkit-scrollbar-thumb:hover {
   background-image: linear-gradient(
     to bottom,
     var(--complementary-color),
-    var(--accent-color2)
+    var(--complementary-color2)
   );
 }
 

@@ -166,14 +166,14 @@ class UIController {
             <button class="btn text-white dropdown-toggle p-0 p-xl-2 " type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
              <i class="bi bi-person-fill"> Hi ${firstName}!</i>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu py-xl-2">
               <li><a class="dropdown-item my-1 py-2" href="userDashboard.html"><i class="bi bi-person-circle"></i>&nbsp Profile</a></li>
       
               <li><a class="dropdown-item py-2" href="orders.html"><i class="bi bi-basket2-fill"></i>&nbsp Orders</a></li>
               <hr >
 
               
-              <li class="d-flex justify-content-center"><button class="d-none d-xl-block btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
+              <li class="d-flex justify-content-center d-none d-xl-flex"><button class=" btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>
               
             
             </ul>
@@ -183,7 +183,7 @@ class UIController {
       cartLink.insertAdjacentHTML(
         "afterend",
         `  <hr >
-         <li class="d-flex justify-content-center"><button class="d-block d-xl-none btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>`
+         <li class="d-flex justify-content-center d-flex d-xl-none"><button class="btn btn-light secondary-color fw-semibold text-white col-10" onclick="AuthController.logout()">Logout</button></li>`
       );
     } else if (user && user.role === "admin") {
       const adminName = user.fullName;
