@@ -105,7 +105,7 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: var(--complementary-color2);
+  background: var(--secondary-color);
 }
 
 /* Handle on hover */

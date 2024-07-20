@@ -285,8 +285,8 @@ class UIController {
           </button>
           <button id="wishlist-btn-${
             product.id
-          }" class="btn wishlist-btn card-btn btn-secondary rounded-circle text-light ${
-        isInWishlist ? "btn-danger" : "btn-secondary"
+          }" class="btn wishlist-btn card-btn btn-secondary border-0 rounded-circle text-light ${
+        isInWishlist ? "accent-color2" : "btn-secondary"
       }"  onclick="UserController.addToWishlist(${
         product.id
       }); UserController.changeIcon(this);">
@@ -304,7 +304,7 @@ class UIController {
           <p class="badge bg-success">free shipping</p>
               ${
                 isOutOfStock
-                  ? '<span class="badge bg-danger rounded-0 position-absolute w-100 bottom-100 end-0">Out of Stock</span>'
+                  ? '<span class="badge accent-color2 rounded-0 position-absolute w-100 bottom-100 end-0">Out of Stock</span>'
                   : ""
               }
        
