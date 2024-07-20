@@ -109,7 +109,7 @@ class UIController {
           class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
         >
         <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-8 h-scroll-child">
-          <li class="nav-item border-end px-5 me-3">
+          <li class="nav-item border-end pe-2 pe-lg-5 me-2">
             <a class="nav-link active" href="productCatalog.html">
               All Categories
             </a>
