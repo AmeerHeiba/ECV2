@@ -1,5 +1,5 @@
 
-
+const modal = new CustomModal();
 const registrationFormSeller = document.getElementById(
   "registration-form-seller"
 );
@@ -38,14 +38,12 @@ if (registrationFormSeller) {
       if (!zipCode || !/^\d{5}(-\d{4})?$/.test(zipCode)) errors.push("Valid ZIP code is required.");
   
       if (errors.length > 0) {
-        const modal = new CustomModal();
+        
         modal.showCustomModal(
           'Validation Error',
           errors.join("\n"),
           'OK',
           'Cancel',
-          () => { console.log('User confirmed the error modal'); },
-          () => { console.log('User canceled the error modal'); }
         );
         return;
       }
@@ -74,12 +72,12 @@ if (registrationFormSeller) {
     );
 
     
-    showCustomModal(
+    modal.showCustomModal(
       '"Registration successful!"',
       "Please wait for a confirmation email soon",
       'OK',
       'Cancel',
-      'light' 
+    
     );
     registrationFormSeller.reset();
   });

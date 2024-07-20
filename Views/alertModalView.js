@@ -52,12 +52,12 @@ class CustomModal {
 
     // Add new event listeners
     confirmButton.addEventListener('click', () => {
-      confirmCallback();
+      // confirmCallback();
       modalElement.querySelector('[data-bs-dismiss="modal"]').click();
     });
 
     cancelButton.addEventListener('click', () => {
-      if (cancelCallback) cancelCallback();
+      // if (cancelCallback) cancelCallback();
       modalElement.querySelector('[data-bs-dismiss="modal"]').click();
     });
 

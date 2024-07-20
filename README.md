@@ -70,6 +70,13 @@ This furniture e-commerce system is built using HTML, CSS, and JavaScript, and f
 - **Authentication**:
   - **Logout**: Allows customers to log out of their account.
   - **Authorization**: Ensures that only authorized customers can access the account.
+ 
+### SuperAdmin Dashboard
+
+- **admins Management**:
+  - **Display all admins .
+  - **can delete and add admin.
+
 ### Admin Dashboard
 
 - **Seller Management**:

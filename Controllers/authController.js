@@ -3,6 +3,7 @@ class AuthController {
   static setCurrentUser(user) {
     const modal = new CustomModal();
     if (!AuthController.getCurrentUser()) {
+     
       localStorage.setItem("currentUser", JSON.stringify(user));
     } else {
       modal.showCustomModal(
