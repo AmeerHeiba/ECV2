@@ -8,6 +8,7 @@ UIController.welcomeUser("dark");
 // update cart icon notification
 UIController.updateCartIcon();
 
-// renderWishlist();
+// apply animation
+AOS.init();
 
 UIController.renderWishlist();

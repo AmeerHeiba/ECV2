@@ -23,6 +23,25 @@
   );
 }
 
+.complementary-color {
+  background-color: var(--complementary-color) !important;
+}
+.complementary-color3 {
+  background-image: linear-gradient(
+    to right,
+    rgba(238, 238, 238, 0.1),
+    rgba(41, 104, 143, 0.1)
+  ) !important;
+}
+
+.complementary-color2 {
+  background-color: var(--complementary-color2) !important;
+}
+
+.accent-color2 {
+  background-color: var(--accent-color2) !important;
+}
+
 .muted-color {
   background-color: var(--muted-color) !important;
 }
@@ -45,6 +64,26 @@
 
 .accent-text {
   color: var(--accent-color) !important;
+}
+
+.complementary-text {
+  color: var(--complementary-color);
+}
+
+.complementary-text2 {
+  color: var(--complementary-color2);
+}
+
+.accent-text2 {
+  color: var(--accent-color2);
+}
+
+.accent-text2:hover {
+  color: white;
+}
+
+.bg-danger {
+  background-color: var(--accent-color2) !important;
 }
 
 /* scrollbar */
@@ -73,8 +112,8 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background-image: linear-gradient(
     to bottom,
-    var(--secondary-color),
-    var(--main-color)
+    var(--complementary-color),
+    var(--complementary-color2)
   );
 }
 
@@ -230,7 +269,7 @@ nav a {
 /* dropdown */
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:hover {
-  background-color: #2d4d5c;
+  background-color: var(--complementary-color2);
   color: #fff;
 }
 
@@ -244,6 +283,7 @@ nav a {
 h3 {
   position: relative;
   padding-bottom: 20px;
+  color: var(--complementary-color);
 }
 
 h3::after {
@@ -255,4 +295,91 @@ h3::after {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+/* new card  */
+
+.product-card.card {
+  width: 16rem !important;
+}
+
+.product-card .card-body {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 6rem;
+}
+
+.product-card .card-body::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 100%;
+  height: 100%;
+  /* background-image: url(../../assets/images/cup-hot-fill.svg); */
+  color: #fff;
+  background-repeat: no-repeat;
+  background-size: 8rem;
+  z-index: 0; /* Make sure the pseudo-element is behind the content */
+  filter: brightness(0) invert(1) opacity(0.02);
+}
+
+.product-card .card-body * {
+  position: relative;
+  z-index: 1; /* Ensure other content is above the pseudo-element */
+}
+
+.bg-color {
+  background: #2b5876; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4e4376,
+    #2b5876
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgba(58, 92, 108, 0.9),
+    rgba(43, 88, 118, 0.9)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.card-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+  transition: all 0.3s ease-in-out !important;
+  z-index: 300;
+}
+
+.card-btn-main {
+  background-color: var(--complementary-color) !important;
+}
+.card-btn-success {
+  background-color: #198754 !important;
+}
+
+.card-btn:first-child:hover {
+  filter: brightness(0.92);
+}
+
+.card-btn:active {
+  transform: scale(0.97);
+}
+
+.card-btn i {
+  display: flex;
+  justify-content: center;
+}
+
+.card:hover .card-img-top {
+  filter: brightness(0.7) !important;
+}
+
+.details {
+  visibility: hidden;
+}
+
+.product-card:hover .details {
+  visibility: visible;
+  background-color: rgba(31, 58, 75, 0.2);
+  /* z-index: 200; */
 }

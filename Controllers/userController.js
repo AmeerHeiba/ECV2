@@ -83,7 +83,7 @@ class UserController {
         if (icon.classList.contains("bi-cart-plus-fill")) {
           icon.classList.remove("bi-cart-plus-fill");
           icon.classList.add("bi-cart-check-fill");
-          button.classList.remove("btn-primary");
+          button.classList.remove("card-btn-main");
           button.classList.add("btn-success");
         } else {
           icon.classList.remove("bi-cart-check-fill");
@@ -95,11 +95,11 @@ class UserController {
         icon.classList.remove("bi-bag-heart");
         icon.classList.add("bi-bag-heart-fill");
         button.classList.remove("btn-secondary");
-        button.classList.add("btn-danger");
+        button.classList.add("accent-color2");
       } else if (icon.classList.contains("bi-bag-heart-fill")) {
         icon.classList.remove("bi-bag-heart-fill");
         icon.classList.add("bi-bag-heart");
-        button.classList.remove("btn-danger");
+        button.classList.remove("accent-color2");
         button.classList.add("btn-secondary");
       }
     }

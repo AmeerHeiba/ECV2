@@ -12,7 +12,11 @@
 
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/sellerDashboard.css" rel="stylesheet" />
+    <script src="../assets/js/accessControl.js"></script>
 
+    <script>
+      auth.protectPage('seller');
+  </script>
    
   </head>
   <body>
@@ -39,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="AuthController.logout()">
+            <a class="nav-link" href="#" onclick="ProductController.logoutSeller()">
               <i class="fas fa-sign-out-alt"></i> Logout
             </a>
           </li>

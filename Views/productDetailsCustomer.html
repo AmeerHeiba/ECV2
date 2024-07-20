@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="../assets/css/home.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <link
       rel="stylesheet"
@@ -16,6 +18,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <style>
       .btn-custom {
         width: 130px;
@@ -49,145 +53,20 @@
   </head>
   <body>
     <!-- first navbar start -->
-    <nav
+    <nav id="navbar-1"
       class="navbar navbar-1 navbar-expand-xl secondary-color text-white w-100 border-body"
     >
-      <div class="container mt-1">
-        <a class="h1 navbar-brand fsize-1 text-white" href="./home.html"
-          >Tea.</a
-        >
-        <form class="d-flex col col-lg-8 mx-lg-5" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="What are you looking for?"
-            aria-label="Search"
-            onclick="window.location.href = `productCatalog.html`"
-          />
-        </form>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse col" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mt-4 mt-xl-0 mb-2 mb-lg-0">
-            <li class="nav-item" id="logged-user">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                data-bs-toggle="modal"
-                data-bs-target="#login"
-                ><i class="bi bi-person-fill text-white">&nbsp Login</i></a
-              >
-            </li>
-
-            <li class="nav-item d-none" id="register">
-              <div class="dropdown nav-link p-0">
-                <button
-                  class="btn dropdown-toggle p-0 p-xl-2 text-white"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-person-plus-fill text-white"
-                    >&nbsp Register</i
-                  >
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a
-                      aria-current="page"
-                      data-bs-toggle="modal"
-                      data-bs-target="#registration"
-                      class="dropdown-item"
-                      >New Customer?</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      aria-current="page"
-                      data-bs-toggle="modal"
-                      data-bs-target="#seller-registration"
-                      class="dropdown-item"
-                      class="dropdown-item"
-                      >New Seller?</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </li>
-
-            <li id="wishlist-link" class="nav-item">
-              <a class="nav-link active" href="wishlist.html"
-                ><i class="bi bi-bag-heart-fill text-white"
-                  >&nbsp Wishlist</i
-                ></a
-              >
-            </li>
-            <li id="cart-link" class="nav-item">
-              <a class="nav-link active" href="cart.html"
-                ><i class="bi bi-cart4 text-white"
-                  ><span
-                    id="notification"
-                    style="font-size: 0.6rem"
-                    class="position-absolute top-40 start-10 translate-middle badge rounded-circle"
-                  >
-                  </span
-                  >&nbsp Cart
-                </i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    
     </nav>
     <!-- first navbar end -->
+
     <!-- second navbar start -->
-    <nav class="nav2 navbar navbar-expand navbar-light bg-light">
-      <div
-        class="container h-scroll-parent justify-content-start flex-nowrap overflow-auto"
-      >
-        <ul class="navbar-nav mb-2 mb-lg-0 col-12 col-xl-8 h-scroll-child">
-          <li class="nav-item border-end mx-2 col-4 col-xl-3">
-            <a class="nav-link active" href="productCatalog.html">
-              All Categories
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=living-room"
-              >Living Room</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=Bedroom"
-              >Bedroom</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=dining-room"
-              >Dining Room</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=office"
-              >Office</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="filteredProducts.html?filter=outdoor"
-              >Outdoors</a
-            >
-          </li>
-        </ul>
-      </div>
+    <nav id="navbar-2" class="nav2 navbar navbar-expand navbar-light bg-light">
+     
     </nav>
+
+    <!-- second navbar end -->
+
 
     <!-- product details start -->
     <div class="container my-4 col-10 my-4">
@@ -197,9 +76,383 @@
         id="productDetailsContainer"
       ></div>
       <h3>Related Products</h3>
-      <div id="related-products" class="row gap-4"></div>
+      <div id="products-container" class="row gap-4 " data-aos="zoom-in-up"></div>
     </div>
     <!-- Related Products end -->
+     <!-- login modal start -->
+
+    <!-- Modal -->
+    <div
+    class="modal fade"
+    id="login"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body secondary-color text-white">
+          <div class="container">
+            <form id="login-form" class="my-3">
+              <div class="form-group my-2">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  required
+                />
+              </div>
+              <div class="form-group mt-2">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                />
+              </div>
+
+              <div class="form-group mb-2">
+                <a
+                    aria-current="page"
+                    data-bs-toggle="modal"
+                    data-bs-target="#registration"
+                class="btn text-light p-0"
+                  >Not a user? Register here</a
+                >
+              </div>
+
+              <button
+                type="submit"
+                name="submitBtn"
+                value="userLogin"
+                class="col-3 btn btn-light shadow mt-3 mx-1"
+              >
+                Login
+              </button>
+              <button
+                type="submit"
+                name="submitBtn"
+                value="sellerLogin"
+                class="btn btn-outline-light mt-3"
+              >
+                Login for Sellers
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- login modal end -->
+
+  <!-- new customer registration form start -->
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="registration"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            New Customer Registration
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body secondary-color text-white">
+          <div class="container">
+            <form id="registration-form-Customer" class="mt-3">
+                <h5 class="mb-4">
+                  <i class="bi bi-person-square"></i> Personal Details
+                </h5>
+                <div class="form-group my-2">
+                  <label for="usernameReg">Username</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="usernameReg"
+                    placeholder="Username"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="emailReg">Email</label>
+                  <input
+                    type="email"
+                    class="form-control mt-1"
+                    id="emailReg"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="passwordReg">Password</label>
+                  <input
+                    type="password"
+                    class="form-control mt-1"
+                    id="passwordReg"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="firstNameReg">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="firstNameReg"
+                    placeholder="First Name"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="lastNameReg">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="lastNameReg"
+                    placeholder="Last Name"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="contactReg">Contact Number</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="contactReg"
+                    placeholder="Contact"
+                    required
+                  />
+                </div>
+                  <hr class="my-4">
+                <h5 class="my-4">
+                  <i class="bi bi-geo-alt-fill"></i> Address Details
+                </h5>
+                <div class="form-group my-2">
+                  <label for="titleReg"
+                    >Address Name</label
+                  >
+                  <input
+                    class="form-control mb-2 mt-1"
+                    type="text"
+                    name="title"
+                    id="titleReg"
+                    placeholder="Address Ex: Home, Office"
+                  />
+                  <label for="addressReg">Address Details</label>
+                  <input
+                    class="form-control mb-2 mt-1"
+                    type="text"
+                    name="address"
+                    id="addressReg"
+                    placeholder="Address Details"
+                  />
+                  <label for="cityReg">City</label>
+                  <input
+                    class="form-control mb-2 mt-1"
+                    type="text"
+                    name="city"
+                    id="cityReg"
+                    placeholder="City"
+                  />
+                  <label for="zipReg">ZIP Code</label>
+                  <input
+                    class="form-control mb-2 mt-1"
+                    type="number"
+                    name="zip"
+                    id="zipReg"
+                    placeholder="Zip"
+                  />
+                </div>
+              </div>
+              <div class="form-control secondary-color border-0">
+              <button
+                type="submit"
+                class="col-12 btn btn-outline-light shadow mt-4"
+              >
+                Register
+              </button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- new customer registration form end -->
+
+  <!-- new seller registration form start -->
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="seller-registration"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            New Seller Registration
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body secondary-color text-white">
+          <div class="container">
+            <form id="registration-form-seller" class="mt-3">
+                <h5 class="mb-4">
+                  <i class="bi bi-person-square"></i> Personal Details
+                </h5>
+                <div class="form-group my-2">
+                  <label for="usernameSReg">Username</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="usernameSReg"
+                    placeholder="Username"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="emailSReg">Email</label>
+                  <input
+                    type="email"
+                    class="form-control mt-1"
+                    id="emailSReg"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="passwordSReg">Password</label>
+                  <input
+                    type="password"
+                    class="form-control mt-1"
+                    id="passwordSReg"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="firstNameSReg">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="firstNameSReg"
+                    placeholder="First Name"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="lastNameSReg">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="lastNameSReg"
+                    placeholder="Last Name"
+                    required
+                  />
+                </div>
+                <div class="form-group my-2">
+                  <label for="contactSReg">Contact Number</label>
+                  <input
+                    type="text"
+                    class="form-control mt-1"
+                    id="contactSReg"
+                    placeholder="Contact"
+                    required
+                  />
+                </div>
+
+              <hr class="my-4">
+
+                <h5 class="my-4">
+                  <i class="bi bi-geo-alt-fill"></i> Address Details
+                </h5>
+
+              <div class="form-group my-2">
+                <label for="titleSReg"
+                  >Address Name</label
+                >
+                <input
+                  class="form-control mb-2 mt-1"
+                  type="text"
+                  name="title"
+                  id="titleSReg"
+                  placeholder="Address Ex: Home, Office"
+                />
+                <label for="addressSReg">Address Details</label>
+                <input
+                  class="form-control mb-2 mt-1"
+                  type="text"
+                  name="address"
+                  id="addressSReg"
+                  placeholder="Address"
+                />
+                <label for="citySReg">City</label>
+                <input
+                  class="form-control mb-2 mt-1"
+                  type="text"
+                  name="city"
+                  id="citySReg"
+                  placeholder="City"
+                />
+                <label for="zipSReg">ZIP Code</label>
+                <input
+                  class="form-control mb-2 mt-1"
+                  type="number"
+                  name="zip"
+                  id="zipSReg"
+                  placeholder="Zip"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="col-12 btn btn-outline-light shadow mt-4"
+              >
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- new seller registration form end -->
+   
+    <!-- login & registeration modals end -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -208,9 +461,12 @@
     <script src="../Models/adminModel.js"></script>
     <script src="../Models/userModel.js"></script>
     <script src="../Models/sellerModel.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script src="../Controllers/authController.js"></script>
     <script src="../Controllers/userController.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="../Controllers/UIController.js"></script>
     <script src="./productDetailsCustomer.js"></script>
   </body>
