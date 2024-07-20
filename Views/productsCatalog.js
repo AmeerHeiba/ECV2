@@ -1,5 +1,4 @@
-UIController.renderNavbar();
-UIController.renderNavbar2();
+
 
 UIController.welcomeUser("dark");
 
