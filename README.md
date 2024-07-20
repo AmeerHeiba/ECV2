@@ -108,6 +108,8 @@ This furniture e-commerce system is built using HTML, CSS, and JavaScript, and f
 1. **Open the Application:**
    - Navigate to the `views` directory.
    - Open `home.html` in your web browser to start using the application.
+   - ![Uploading image.png…]()
+
 
 2. **Register as a Customer or Seller:**
    - On the homepage (`home.html`), choose to register as a customer or a seller.
