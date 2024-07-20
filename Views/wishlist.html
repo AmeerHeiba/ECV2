@@ -11,6 +11,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
@@ -30,11 +32,12 @@
     <!-- second navbar end -->
     <!-- wishlist start -->
 
-    <div class="container my-4 col-10 my-4">
-      <h3 class="my-4">Your Wishlist</h3>
+    <div class="container my-4 col-10">
+      <h3 class="mt-5">Your Wishlist</h3>
       <div
-        id="wishlist-wrapper"
-        class="col-12 col-lg-9 row gap-4 mx-auto"
+        id="products-container"
+        class="row gap-4 justify-content-center"
+        data-aos="zoom-in-up"
       ></div>
     </div>
 
@@ -45,6 +48,7 @@
     <script src="../Controllers/authController.js"></script>
     <script src="../Controllers/userController.js"></script>
     <script src="../Controllers/UIController.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="wishlist.js"></script>
   </body>
 </html>
