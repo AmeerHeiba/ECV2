@@ -7,9 +7,11 @@ class UIController {
           <a class="h1 navbar-brand text-light fsize-1" href="./home.html"
             >Tea.</a
           >
+          
           <form class="d-flex col col-lg-8 mx-lg-5" role="search">
+          <i class="d-block d-lg-none bi bi-search text-light ms-auto mx-4 fs-5"  onclick="window.location.href = 'productCatalog.html'"></i>
             <input
-              class="form-control me-2"
+              class="form-control me-2 d-none d-lg-block"
               type="search"
               placeholder="What are you looking for?"
               aria-label="Search"
@@ -17,7 +19,7 @@ class UIController {
             />
           </form>
           <button
-            class="navbar-toggler navbar-dark"
+            class="navbar-toggler navbar-dark border-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
