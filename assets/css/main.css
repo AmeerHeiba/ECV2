@@ -112,8 +112,8 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background-image: linear-gradient(
     to bottom,
-    var(--accent-color2),
-    var(--complementary-color)
+    var(--complementary-color),
+    var(--accent-color2)
   );
 }
 

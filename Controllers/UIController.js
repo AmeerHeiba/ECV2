@@ -3,7 +3,7 @@ class UIController {
     const navBar1 = document.getElementById("navbar-1");
 
     if (navBar1) {
-      navBar1.innerHTML = ` <div class="container my-2">
+      navBar1.innerHTML = ` <div class="container my-1">
           <a class="h1 navbar-brand text-light fsize-1" href="./home.html"
             >Tea.</a
           >
@@ -304,7 +304,7 @@ class UIController {
           <p class="badge bg-success">free shipping</p>
               ${
                 isOutOfStock
-                  ? '<span class="badge bg-danger rounded-0 position-absolute w-50 bottom-100 end-0">Out of Stock</span>'
+                  ? '<span class="badge bg-danger rounded-0 position-absolute w-100 bottom-100 end-0">Out of Stock</span>'
                   : ""
               }
        

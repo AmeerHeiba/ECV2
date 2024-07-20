@@ -196,7 +196,7 @@ select:focus {
   .promotion.show .circle h2 {
     opacity: 1;
     animation-name: fadeX;
-    animation-duration: 3.15s;
+    animation-duration: 1s;
   }
 
   .promotion img {

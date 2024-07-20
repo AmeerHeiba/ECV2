@@ -371,18 +371,26 @@ UIController.renderWishlist();
 
 document.querySelector("#profile-info").addEventListener("click", function () {
   document.querySelector("#profile-card").classList.remove("d-none");
-  document.querySelector("#profile-card").classList.add("active");
+  document.querySelector("#profile-info").classList.add("highlighted");
+  document.querySelector("#orders").classList.remove("highlighted");
+  document.querySelector("#wishlist").classList.remove("highlighted");
   document.querySelector("#orders-card").classList.add("d-none");
   document.querySelector("#wishlist-card").classList.add("d-none");
 });
 document.querySelector("#orders").addEventListener("click", function () {
   document.querySelector("#orders-card").classList.remove("d-none");
   document.querySelector("#profile-card").classList.add("d-none");
+  document.querySelector("#orders").classList.add("highlighted");
+  document.querySelector("#profile-info").classList.remove("highlighted");
+  document.querySelector("#wishlist").classList.remove("highlighted");
   document.querySelector("#wishlist-card").classList.add("d-none");
 });
 
 document.querySelector("#wishlist").addEventListener("click", function () {
   document.querySelector("#wishlist-card").classList.remove("d-none");
+  document.querySelector("#wishlist").classList.add("highlighted");
+  document.querySelector("#orders").classList.remove("highlighted");
+  document.querySelector("#profile-info").classList.remove("highlighted");
   document.querySelector("#orders-card").classList.add("d-none");
   document.querySelector("#profile-card").classList.add("d-none");
 });
