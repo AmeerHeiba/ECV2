@@ -1,9 +1,12 @@
 @media screen and (min-width: 1200px) {
   #sidebar {
-    height: 92vh;
+    height: 100%;
     background: #2d4d5c !important;
-    margin: 0 !important;
     width: 19%;
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 45px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
 }
 

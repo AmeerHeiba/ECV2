@@ -269,7 +269,7 @@ nav a {
 /* dropdown */
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:hover {
-  background-color: #2d4d5c;
+  background-color: var(--complementary-color2);
   color: #fff;
 }
 
