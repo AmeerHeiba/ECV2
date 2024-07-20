@@ -160,7 +160,7 @@ select:focus {
 
 .promotion img,
 .promotion .circle {
-  transition: all 3.5s ease-in-out;
+  transition: all 3.2s ease-in-out;
 }
 
 .promotion .circle {
@@ -181,7 +181,7 @@ select:focus {
 .promotion.show .circle h2 {
   opacity: 1;
   animation-name: fadeX;
-  animation-duration: 4.3s;
+  animation-duration: 3.7s;
 }
 
 .promotion.show img {
@@ -267,6 +267,12 @@ select:focus {
 
 .filtered-products .card .card-img-overlay h4 {
   margin: 0;
+}
+
+@media screen and (min-width: 1200px) {
+  .filtered-products .last-card {
+    transform: translateY(-75px);
+  }
 }
 
 /* .filtered-products .card.text-bg-warning {
