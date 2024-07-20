@@ -1,6 +1,6 @@
 [
     {
-        "id": 7,
+        "id": 1,
         "username": "Seller1",
         "password": "Password1@",
         "email": "seller1@example.com",
@@ -16,7 +16,7 @@
         "date": "07/08/2024"
     },
     {
-        "id": 8,
+        "id": 2,
         "username": "Seller2",
         "password": "Password2@",
         "email": "seller2@example.com",
@@ -32,7 +32,7 @@
         "date": "07/08/2024"
     },
     {
-        "id": 9,
+        "id": 3,
         "username": "Seller3",
         "password": "Password3@",
         "email": "seller3@example.com",
@@ -48,7 +48,7 @@
         "date": "07/08/2024"
     },
     {
-        "id": 10,
+        "id": 4,
         "username": "Seller4",
         "password": "Password4@",
         "email": "seller4@example.com",
@@ -64,7 +64,7 @@
         "date": "07/08/2024"
     },
     {
-        "id": 11,
+        "id": 5,
         "username": "Seller5",
         "password": "123456Aa@",
         "email": "seller5@example.us",
@@ -80,7 +80,7 @@
         "date": "08/07/2024"
     },
     {
-        "id": 12,
+        "id": 6,
         "username": "Seller6",
         "password": "Password6@",
         "email": "seller6@example.com",
