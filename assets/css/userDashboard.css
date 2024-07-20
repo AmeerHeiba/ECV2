@@ -8,6 +8,10 @@
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }
+
+  #navbar-1 {
+    background: #2d4d5c !important;
+  }
 }
 
 @media screen and (max-width: 1200px) {
