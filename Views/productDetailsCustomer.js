@@ -2,6 +2,9 @@ function backCatalog() {
   window.location.href = `productCatalog.html`;
 }
 window.addEventListener("DOMContentLoaded", () => {
+ 
+  UIController.renderNavbar();
+  UIController.renderNavbar2();
   UIController.welcomeUser("dark");
 
   // update cart icon notification
