@@ -81,7 +81,7 @@ function renderOrders() {
       // Render order details
       ordersContainer.innerHTML += `
         <div class="order-wrapper card complementary-color3 col-12 col-xl-8 mb-4 p-3">
-          <span class="badge accent-color2 col-xl-4 text-light">Order ID: ${
+          <span class="badge secondary-color col-xl-4 text-light">Order ID: ${
             order.id
           }</span>
           <h6 class="mt-3 ms-1">Total Price: <span class="fw-normal">${orderTotal.toFixed(
